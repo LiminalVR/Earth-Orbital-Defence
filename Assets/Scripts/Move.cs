@@ -4,18 +4,34 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    public int Speedmin = 0;
+    public int Speedmin = 4;
     public float Speedmax = 20;
-
+    public GameObject earth;
+    public float Basespeed;
+    
     int speed;
     void Start()
     {
-        //speed = UnityEngine.Random.Range(Speedmin, Speedmax);
+        speed = ((int)Basespeed * (int)UnityEngine.Random.Range(Speedmin, Speedmax)); 
     }
-
-    // Update is called once per frame
     void Update()
     {
-        transform.Translate(-Vector3.forward*0.001f, Space.Self);
+        if(gameObject.activeSelf == true)
+        {
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, earth.transform.position, step);
+
+
+            if (Vector3.Distance(transform.position, earth.transform.position) < 0.001f)
+            {
+
+                gameObject.SetActive(false);
+            }
+        }
+        
+       
+        
+            
+        
     }
 }
