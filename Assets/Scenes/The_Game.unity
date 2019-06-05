@@ -912,6 +912,12 @@ PrefabInstance:
       propertyPath: textBox
       value: 
       objectReference: {fileID: 1507894728}
+    - target: {fileID: 622656507232026036, guid: a5493118129f3b14c8a2d22c2d093654,
+        type: 3}
+      propertyPath: crosshairsSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 194f29ca7d914a74c87cf2b7952276b3,
+        type: 3}
     - target: {fileID: 6515576078503343816, guid: a5493118129f3b14c8a2d22c2d093654,
         type: 3}
       propertyPath: m_Enabled
@@ -937,6 +943,27 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.78431374
       objectReference: {fileID: 0}
+    - target: {fileID: 6515576078503343816, guid: a5493118129f3b14c8a2d22c2d093654,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 194f29ca7d914a74c87cf2b7952276b3,
+        type: 3}
+    - target: {fileID: 6515576078503343816, guid: a5493118129f3b14c8a2d22c2d093654,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 4.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515576078503343816, guid: a5493118129f3b14c8a2d22c2d093654,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 4.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515576078503343816, guid: a5493118129f3b14c8a2d22c2d093654,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5493118129f3b14c8a2d22c2d093654, type: 3}
 --- !u!1001 &1389259794
@@ -946,11 +973,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1613514210}
     m_Modifications:
-    - target: {fileID: 1260162970045296579, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: m_Name
-      value: VRAvatar
-      objectReference: {fileID: 0}
     - target: {fileID: 1260162969423114810, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1005,6 +1027,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260162970045296579, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: m_Name
+      value: VRAvatar
       objectReference: {fileID: 0}
     - target: {fileID: 1260162969970794164, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
@@ -1540,6 +1567,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2513366188909639626, guid: c52c1d74deee8b641a5dca453930ed70,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 753136279}
+    - target: {fileID: 318633298234474775, guid: c52c1d74deee8b641a5dca453930ed70,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1816403389}
     - target: {fileID: 150571650, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
       propertyPath: healthBar
       value: 
@@ -1552,16 +1589,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2513366188909639626, guid: c52c1d74deee8b641a5dca453930ed70,
-        type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 753136279}
-    - target: {fileID: 318633298234474775, guid: c52c1d74deee8b641a5dca453930ed70,
-        type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 1816403389}
     m_RemovedComponents:
     - {fileID: 150571650, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
     - {fileID: 150571652, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
