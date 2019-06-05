@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7912300834209918935}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Enemy
+  m_TagString: Alien
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,4 +107,6 @@ MonoBehaviour:
   Speedmin: 4
   Speedmax: 20
   earth: {fileID: 4649786932157779518, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+  Projectile: {fileID: 6518821337871650744, guid: cd01d2320841dd0478e9f7545296fd1e,
+    type: 3}
   Basespeed: 10

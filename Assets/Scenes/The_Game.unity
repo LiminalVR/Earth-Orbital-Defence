@@ -226,23 +226,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnDistFromPlayer: {x: 0, y: 0, z: 15}
   Timer: {fileID: 919191907}
-  Resp: []
   Debri: {fileID: 3891948190781857504, guid: 688c63ebfa8767542bf5f8f4f8710e7e, type: 3}
   Rock: {fileID: 6518821337871650744, guid: cd01d2320841dd0478e9f7545296fd1e, type: 3}
-  Boi: {fileID: 7959533909212975527, guid: cd486ef238fafc341b440c051a22e24a, type: 3}
+  Alien: {fileID: 7959533909212975527, guid: cd486ef238fafc341b440c051a22e24a, type: 3}
   MAXNUMOFDEBRI: 100
   MAXNUMOFROCK: 100
   MAXNUMOFGREENBOI: 100
-  StartingTime: 118
-  AmountDebriAddedAfterTime: 30
-  AmountRockAddedAfterTime: 5
-  AmountAlienAddedAfterTime: 10
-  startingAmtDebri: 1
+  StartingTime: 115
+  AmountDebriAddedAfterTime: 50
+  AmountRockAddedAfterTime: 50
+  AmountAlienAddedAfterTime: 50
+  startingAmtDebri: 5
   startingAmtRock: 5
-  startingAmtBoi: 10
-  timeToWaitTillSpawnIncreaseDebri: 1
-  timeToWaitTillSpawnIncreaseRock: 1
-  timeToWaitTillSpawnIncreaseAlien: 1
+  startingAmtBoi: 5
+  timeToWaitTillSpawnIncreaseDebri: 7
+  timeToWaitTillSpawnIncreaseRock: 6
+  timeToWaitTillSpawnIncreaseAlien: 5
 --- !u!1 &326879574
 GameObject:
   m_ObjectHideFlags: 0

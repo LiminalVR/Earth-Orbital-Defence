@@ -11,13 +11,13 @@ public class RespawnEnemys : MonoBehaviour
 
     public Vector3 SpawnDistFromPlayer;
 
-    // public int AmountofEnemys = 0;
-
     public WaveTimer Timer;
-    public GameObject[] Resp;
+    private GameObject[] DebriArr;
     public GameObject Debri;
+    private GameObject[] RockArr;
     public GameObject Rock;
-    public GameObject Boi;
+    private GameObject[] AlienArr;
+    public GameObject Alien;
 
     public int MAXNUMOFDEBRI = 0;
     public int MAXNUMOFROCK = 0;
@@ -39,159 +39,187 @@ public class RespawnEnemys : MonoBehaviour
     private float timerDebri;
     private float timerRock;
     private float timerAlien;
-
-
+    int i =0;
+    int u = 0;
+    int v = 0;
     void Start()
     {
-
-        max = MAXNUMOFDEBRI + MAXNUMOFROCK + MAXNUMOFGREENBOI;
-        Resp = new GameObject[max];
+        DebriArr = new GameObject[MAXNUMOFDEBRI];
+        RockArr = new GameObject[MAXNUMOFDEBRI];
+        AlienArr = new GameObject[MAXNUMOFGREENBOI];
         for (int i = 0; i < MAXNUMOFDEBRI; i++)
         {
             Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
             SpawnDistFromPlayer.x = Spawn.x * 2400;
             SpawnDistFromPlayer.z = Spawn.y * 2400 - (376);
             GameObject go = Instantiate(Debri, SpawnDistFromPlayer, Quaternion.identity) as GameObject;
+            DebriArr[i] = go;
+            DebriArr[i].SetActive(false);
 
-            Resp[i] = go;
-            Resp[i].SetActive(false);
-            lastDebriSpawned = i;
         }
-        for (int i = MAXNUMOFDEBRI; i < max; i++)
+        lastDebriSpawned = startingAmtDebri;
+        for (int i = 0; i < MAXNUMOFROCK; i++)
         {
             Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
             SpawnDistFromPlayer.x = Spawn.x * 2400;
             SpawnDistFromPlayer.z = Spawn.y * 2400 - (376);
             GameObject go = Instantiate(Rock, SpawnDistFromPlayer, Quaternion.identity) as GameObject;
+            RockArr[i] = go;
+            RockArr[i].SetActive(false);
 
-            Resp[i] = go;
-            Resp[i].SetActive(false);
-            lastRockSpawned = i;
         }
-        for (int i = MAXNUMOFROCK + MAXNUMOFDEBRI; i < max; i++)
+        lastRockSpawned = startingAmtRock;
+        for (int i = 0; i < MAXNUMOFGREENBOI; i++)
         {
             Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
             SpawnDistFromPlayer.x = Spawn.x * 2400;
             SpawnDistFromPlayer.z = Spawn.y * 2400 - (376);
-            GameObject go = Instantiate(Boi, SpawnDistFromPlayer, Quaternion.identity) as GameObject;
+            GameObject go = Instantiate(Alien, SpawnDistFromPlayer, Quaternion.identity) as GameObject;
+            AlienArr[i] = go;
+            AlienArr[i].SetActive(false);
 
-            Resp[i] = go;
-            Resp[i].SetActive(false);
-            lastAlienSpawned = i;
         }
+        lastAlienSpawned = startingAmtBoi;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        timerDebri += Time.deltaTime;
-        timerRock += Time.deltaTime;
-        timerAlien += Time.deltaTime;
+        
+        
         if (Timer.getTime() <= StartingTime)
         {
-            for (int i = 0; i < startingAmtDebri; i++)
+            timerDebri += Time.deltaTime;
+            timerRock += Time.deltaTime;
+            timerAlien += Time.deltaTime;
+            spawnDebri();
+            spawnRock();
+            spawnAlien();
+            if(timerDebri >= timeToWaitTillSpawnIncreaseDebri)
             {
-                if (!Resp[i].activeInHierarchy)
+                if((lastDebriSpawned + AmountDebriAddedAfterTime) < MAXNUMOFDEBRI -1)
                 {
-                    Resp[i].SetActive(true);
-                    Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
-                    SpawnDistFromPlayer.x = Spawn.x * 1200;
-                    SpawnDistFromPlayer.z = Spawn.y * 1200 - (376);
-                    Resp[i].transform.position = SpawnDistFromPlayer;
-
+                    lastDebriSpawned += AmountDebriAddedAfterTime;
+                    timerDebri = 0;
                 }
+                else if((lastDebriSpawned + AmountDebriAddedAfterTime) > MAXNUMOFDEBRI - 1 )
+                {
+                    lastDebriSpawned = MAXNUMOFDEBRI - 1;
+                    timerDebri = 0;
+                }
+                
             }
-            for (int i = MAXNUMOFDEBRI; i < MAXNUMOFDEBRI + startingAmtRock; i++)
+            if (timerRock >= timeToWaitTillSpawnIncreaseRock)
             {
-                if (!Resp[i].activeInHierarchy)
+                if ((lastRockSpawned + AmountRockAddedAfterTime) < MAXNUMOFROCK - 1)
                 {
-                    Resp[i].SetActive(true);
-                    Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
-                    SpawnDistFromPlayer.x = Spawn.x * 2400;
-                    SpawnDistFromPlayer.z = Spawn.y * 2400 - (376);
-                    Resp[i].transform.position = SpawnDistFromPlayer;
-
+                    lastRockSpawned += AmountRockAddedAfterTime;
+                    timerRock = 0;
                 }
+                else if ((lastRockSpawned + AmountRockAddedAfterTime) > MAXNUMOFROCK - 1)
+                {
+                    lastRockSpawned = MAXNUMOFROCK - 1;
+                    timerRock = 0;
+                }
+
             }
-            for (int i = MAXNUMOFDEBRI + MAXNUMOFROCK; i < MAXNUMOFDEBRI + MAXNUMOFROCK + startingAmtBoi; i++)
+            if (timerAlien >= timeToWaitTillSpawnIncreaseAlien)
             {
-                if (!Resp[i].activeInHierarchy)
+                if ((lastAlienSpawned + AmountAlienAddedAfterTime) < MAXNUMOFGREENBOI - 1)
                 {
-                    Resp[i].SetActive(true);
-                    Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
-                    SpawnDistFromPlayer.x = Spawn.x * 2400;
-                    SpawnDistFromPlayer.z = Spawn.y * 2400 - (376);
-                    Resp[i].transform.position = SpawnDistFromPlayer;
-
+                    lastAlienSpawned += AmountAlienAddedAfterTime;
+                    timerAlien = 0;
                 }
-            }
-        }
-        if (timerDebri >= timeToWaitTillSpawnIncreaseDebri)
-        {
-            int size = lastDebriSpawned + AmountDebriAddedAfterTime;
-
-            if (size > MAXNUMOFDEBRI)
-                size = MAXNUMOFDEBRI - 1;
-            for (int i = lastDebriSpawned; i < size; i++)
-            {
-                if (!Resp[i].activeInHierarchy)
+                else if ((lastAlienSpawned + AmountAlienAddedAfterTime) > MAXNUMOFGREENBOI - 1)
                 {
-                    Resp[i].SetActive(true);
-                    Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
-                    SpawnDistFromPlayer.x = Spawn.x * 1200;
-                    SpawnDistFromPlayer.z = Spawn.y * 1200 - (376);
-                    Resp[i].transform.position = SpawnDistFromPlayer;
-                    lastDebriSpawned = i;
+                    lastAlienSpawned = MAXNUMOFGREENBOI - 1;
+                    timerAlien = 0;
                 }
+
             }
-            timerDebri = 0;
 
-        }
-        if (timerRock >= timeToWaitTillSpawnIncreaseRock)
-        {
-            int size = lastRockSpawned + AmountRockAddedAfterTime;
-
-            if (size > MAXNUMOFROCK)
-                size = MAXNUMOFROCK - 1;
-            for (int i = lastRockSpawned; i < size; i++)
-            {
-                if (!Resp[i].activeInHierarchy)
-                {
-                    Resp[i].SetActive(true);
-                    Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
-                    SpawnDistFromPlayer.x = Spawn.x * 1200;
-                    SpawnDistFromPlayer.z = Spawn.y * 1200 - (376);
-                    Resp[i].transform.position = SpawnDistFromPlayer;
-                    lastRockSpawned = i;
-                }
-            }
-            timerAlien = 0;
-
-        }
-        if (timerAlien >= timeToWaitTillSpawnIncreaseAlien)
-        {
-            int size = lastAlienSpawned + AmountAlienAddedAfterTime;
-
-            if (size > MAXNUMOFGREENBOI)
-                size = MAXNUMOFGREENBOI - 1;
-            for (int i = lastAlienSpawned; i < size; i++)
-            {
-                if (!Resp[i].activeInHierarchy)
-                {
-                    Resp[i].SetActive(true);
-                    Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
-                    SpawnDistFromPlayer.x = Spawn.x * 1200;
-                    SpawnDistFromPlayer.z = Spawn.y * 1200 - (376);
-                    Resp[i].transform.position = SpawnDistFromPlayer;
-                    lastAlienSpawned = i;
-                }
-            }
-            timerAlien = 0;
 
         }
 
     }
+    void spawnDebri()
+    {
+        if(i >=100)
+        {
+            i = 0;
+        }
+        if(!DebriArr[i].activeInHierarchy)
+        {
+            DebriArr[i].SetActive(true);
+            Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
+            SpawnDistFromPlayer.x = Spawn.x * 1200;
+            SpawnDistFromPlayer.z = Spawn.y * 1200 - (376);
+            DebriArr[i].transform.position = SpawnDistFromPlayer;
+            Debug.Log(i);
+            
+        }
+        if (i <= lastDebriSpawned)
+        {
+            i++;
+        }
+        else
+        {
+            i = 0;
+        }
 
+    }
+    void spawnRock()
+    {
+        if (u >= 100)
+        {
+            u = 0;
+        }
+        if (!RockArr[u].activeInHierarchy)
+        {
+            RockArr[u].SetActive(true);
+            Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
+            SpawnDistFromPlayer.x = Spawn.x * 1200;
+            SpawnDistFromPlayer.z = Spawn.y * 1200 - (376);
+            RockArr[u].transform.position = SpawnDistFromPlayer;
+            Debug.Log(u);
+
+        }
+        if (u <= lastRockSpawned)
+        {
+            u++;
+        }
+        else
+        {
+            u = 0;
+        }
+
+    }
+    void spawnAlien()
+    {
+        if (v >= 100)
+        {
+            v = 0;
+        }
+        if (!AlienArr[v].activeInHierarchy)
+        {
+            AlienArr[v].SetActive(true);
+            Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
+            SpawnDistFromPlayer.x = Spawn.x * 1200;
+            SpawnDistFromPlayer.z = Spawn.y * 1200 - (376);
+            AlienArr[v].transform.position = SpawnDistFromPlayer;
+            Debug.Log(v);
+
+        }
+        if (v <= lastAlienSpawned)
+        {
+            v++;
+        }
+        else
+        {
+            v = 0;
+        }
+
+    }
 
 }
