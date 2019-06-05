@@ -107,4 +107,4 @@ MonoBehaviour:
   Speedmin: 0
   Speedmax: 20
   earth: {fileID: 4649786932157779518, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-  Basespeed: 6
+  Basespeed: 4
