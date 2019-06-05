@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 public class Fire : MonoBehaviour
 {
     [Header("Events")]
@@ -18,7 +20,12 @@ public class Fire : MonoBehaviour
     }
     #endregion
     public GameObject obj;
-    
+
+    // Enemy Count //////////////
+    public Text textBox;
+    private int enemyCount = 0;
+    ////////////////////////////
+
     private void FireGun()
     {
         int layerMask = 1 << 8;
@@ -50,7 +57,13 @@ public class Fire : MonoBehaviour
                  if(hit.collider.CompareTag("Enemy"))
                  {
                     hit.collider.gameObject.SetActive(false);
-                 }
+
+                    // Enemy Count ///////////////////////
+                    enemyCount++;
+                    textBox.text = enemyCount.ToString();
+                    print("WE got one!!!");
+                    //////////////////////////////////////
+                }
                 Debug.Log("Did Hit");
             }
             else

@@ -7,7 +7,7 @@ public class Move : MonoBehaviour
     public int Speedmin = 4;
     public float Speedmax = 20;
     public GameObject earth;
-    public float Basespeed;
+    public float Basespeed = 1f;
     
     int speed;
     void Start()
