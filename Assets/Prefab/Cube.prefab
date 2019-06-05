@@ -11,15 +11,10 @@ GameObject:
   - component: {fileID: 3891948190781857505}
   - component: {fileID: 3891948190781857508}
   - component: {fileID: 3891948190781857511}
-<<<<<<< HEAD
+  - component: {fileID: 2326889503692405771}
   - component: {fileID: 3891948190781857510}
   - component: {fileID: 3303529029405348124}
-=======
-  - component: {fileID: 7786126294779043625}
-  - component: {fileID: 3891948190781857510}
-  - component: {fileID: 3303529029405348124}
-  - component: {fileID: 5901317396629283295}
->>>>>>> Ivan-Aupart
+  - component: {fileID: 7682475794959012123}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Enemy
@@ -86,9 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-<<<<<<< HEAD
-=======
---- !u!54 &7786126294779043625
+--- !u!54 &2326889503692405771
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,7 +97,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
->>>>>>> Ivan-Aupart
 --- !u!65 &3891948190781857510
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113,19 +105,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3891948190781857504}
   m_Material: {fileID: 0}
-<<<<<<< HEAD
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 20, y: 3, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
-=======
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 14.362815, y: 3, z: 14.549133}
-  m_Center: {x: -0.4381958, y: 0, z: 0.22543335}
->>>>>>> Ivan-Aupart
 --- !u!114 &3303529029405348124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,11 +125,9 @@ MonoBehaviour:
   Speedmin: 0
   Speedmax: 20
   earth: {fileID: 4649786932157779518, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-<<<<<<< HEAD
+  Projectile: {fileID: 0}
   Basespeed: 6
-=======
-  Basespeed: 4
---- !u!114 &5901317396629283295
+--- !u!114 &7682475794959012123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,8 +136,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3891948190781857504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08a0c1ffd9e634b4aae2124b97d2ac2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 73b51f8bae0cdc4428b14b8565e72097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
->>>>>>> Ivan-Aupart
+  rotationSpeed: 7

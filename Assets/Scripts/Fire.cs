@@ -1,11 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< HEAD
-=======
 using UnityEngine.UI;
-
->>>>>>> Ivan-Aupart
 public class Fire : MonoBehaviour
 {
     [Header("Events")]
@@ -23,16 +19,22 @@ public class Fire : MonoBehaviour
     }
     #endregion
     public GameObject obj;
-<<<<<<< HEAD
-    
-=======
+    public GameObject ExplosionEffect;
+    public GameObject FireEffect;
+    public GameObject FireEffectSP;
+    private AudioSource Gunfire;
+    private AudioSource Explosion;
 
     // Enemy Count //////////////
     public Text textBox;
     private int enemyCount = 0;
     ////////////////////////////
+    private void Start()
+    {
+        Gunfire = GetComponent<AudioSource>();
+        Explosion = GetComponent<AudioSource>();
+    }
 
->>>>>>> Ivan-Aupart
     private void FireGun()
     {
         int layerMask = 1 << 8;
@@ -61,12 +63,13 @@ public class Fire : MonoBehaviour
             if (Physics.Raycast(pointer.Transform.position, pointer.Transform.forward, out hit, Mathf.Infinity))
             {
                 Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * hit.distance, Color.yellow,40,false);
-                 if(hit.collider.CompareTag("Enemy"))
+                Instantiate(FireEffect, FireEffectSP.transform.position, Quaternion.identity);
+                Gunfire.Play();
+                if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Alien"))
                  {
                     hit.collider.gameObject.SetActive(false);
-<<<<<<< HEAD
-                 }
-=======
+                    Instantiate(ExplosionEffect, hit.transform.position, Quaternion.identity);
+                    Explosion.Play();
 
                     // Enemy Count ///////////////////////
                     enemyCount++;
@@ -74,7 +77,6 @@ public class Fire : MonoBehaviour
                     print("WE got one!!!");
                     //////////////////////////////////////
                 }
->>>>>>> Ivan-Aupart
                 Debug.Log("Did Hit");
             }
             else

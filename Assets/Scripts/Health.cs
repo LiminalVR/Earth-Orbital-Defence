@@ -8,6 +8,8 @@ public class Health : MonoBehaviour
     public Image healthBar;
     private SphereCollider mSphereCollider;
 
+    public GameObject explossionPrefab;
+
     public int earthHealth;
     private int currentHealth;
     private float mHealth;
@@ -35,6 +37,7 @@ public class Health : MonoBehaviour
     {
         if(currentHealth <= 0.0f)
         {
+            Instantiate(explossionPrefab, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
     }

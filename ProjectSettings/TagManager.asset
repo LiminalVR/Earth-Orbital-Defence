@@ -6,12 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Earth
-<<<<<<< HEAD
   - Alien
-=======
-  - Enemy2
-  - Enemy3
->>>>>>> Ivan-Aupart
   layers:
   - Default
   - TransparentFX
@@ -22,11 +17,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-<<<<<<< HEAD
   - MyUI
-=======
-  - 
->>>>>>> Ivan-Aupart
   - 
   - 
   - 

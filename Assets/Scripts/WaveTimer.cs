@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Globalization;
 public class WaveTimer : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -15,17 +15,17 @@ public class WaveTimer : MonoBehaviour
     {
 
         time -= Time.deltaTime;
-        var minutes = time / 60;
-        var seconds = time % 60;
-        if (minutes < 0 && seconds < 0)
+        string minutes = Mathf.Floor(time / 60).ToString();
+        string seconds = ((int)(time % 60)).ToString();
+
+        if (float.Parse(minutes, CultureInfo.InvariantCulture.NumberFormat) <=0 && float.Parse(seconds,CultureInfo.InvariantCulture.NumberFormat) <=0)
         {
-            minutes = 0;
-            seconds = 0;
-            timerLable.text = string.Format("{0:00} : {1:00}", minutes, seconds);
+
+            timerLable.text = string.Format("{0}:{1}", 0, 0);
         }
         else
         {
-            timerLable.text = string.Format("{0:00} : {1:00}", minutes, seconds);
+            timerLable.text = string.Format("{0} : {1:00}", minutes, seconds);
         }
         
         
