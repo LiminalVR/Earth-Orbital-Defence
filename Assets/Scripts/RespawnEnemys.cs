@@ -3,7 +3,7 @@ using System.Collections;
 using System.Timers;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class RespawnEnemys : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -18,6 +18,7 @@ public class RespawnEnemys : MonoBehaviour
     public GameObject Rock;
     private GameObject[] AlienArr;
     public GameObject Alien;
+    public Button button;
 
     public int MAXNUMOFDEBRI = 0;
     public int MAXNUMOFROCK = 0;
@@ -39,6 +40,7 @@ public class RespawnEnemys : MonoBehaviour
     private float timerDebri;
     private float timerRock;
     private float timerAlien;
+    private bool start = false;
     int i =0;
     int u = 0;
     int v = 0;
@@ -47,6 +49,7 @@ public class RespawnEnemys : MonoBehaviour
         DebriArr = new GameObject[MAXNUMOFDEBRI];
         RockArr = new GameObject[MAXNUMOFDEBRI];
         AlienArr = new GameObject[MAXNUMOFGREENBOI];
+        button.onClick.AddListener(StartG);
         for (int i = 0; i < MAXNUMOFDEBRI; i++)
         {
             Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
@@ -87,61 +90,64 @@ public class RespawnEnemys : MonoBehaviour
     {
 
         
-        
-        if (Timer.getTime() <= StartingTime)
+        if(start == true)
         {
-            timerDebri += Time.deltaTime;
-            timerRock += Time.deltaTime;
-            timerAlien += Time.deltaTime;
-            spawnDebri();
-            spawnRock();
-            spawnAlien();
-            if(timerDebri >= timeToWaitTillSpawnIncreaseDebri)
+            if (Timer.getTime() <= StartingTime)
             {
-                if((lastDebriSpawned + AmountDebriAddedAfterTime) < MAXNUMOFDEBRI -1)
+                timerDebri += Time.deltaTime;
+                timerRock += Time.deltaTime;
+                timerAlien += Time.deltaTime;
+                spawnDebri();
+                spawnRock();
+                spawnAlien();
+                if (timerDebri >= timeToWaitTillSpawnIncreaseDebri)
                 {
-                    lastDebriSpawned += AmountDebriAddedAfterTime;
-                    timerDebri = 0;
+                    if ((lastDebriSpawned + AmountDebriAddedAfterTime) < MAXNUMOFDEBRI - 1)
+                    {
+                        lastDebriSpawned += AmountDebriAddedAfterTime;
+                        timerDebri = 0;
+                    }
+                    else if ((lastDebriSpawned + AmountDebriAddedAfterTime) > MAXNUMOFDEBRI - 1)
+                    {
+                        lastDebriSpawned = MAXNUMOFDEBRI - 1;
+                        timerDebri = 0;
+                    }
+
                 }
-                else if((lastDebriSpawned + AmountDebriAddedAfterTime) > MAXNUMOFDEBRI - 1 )
+                if (timerRock >= timeToWaitTillSpawnIncreaseRock)
                 {
-                    lastDebriSpawned = MAXNUMOFDEBRI - 1;
-                    timerDebri = 0;
+                    if ((lastRockSpawned + AmountRockAddedAfterTime) < MAXNUMOFROCK - 1)
+                    {
+                        lastRockSpawned += AmountRockAddedAfterTime;
+                        timerRock = 0;
+                    }
+                    else if ((lastRockSpawned + AmountRockAddedAfterTime) > MAXNUMOFROCK - 1)
+                    {
+                        lastRockSpawned = MAXNUMOFROCK - 1;
+                        timerRock = 0;
+                    }
+
                 }
-                
-            }
-            if (timerRock >= timeToWaitTillSpawnIncreaseRock)
-            {
-                if ((lastRockSpawned + AmountRockAddedAfterTime) < MAXNUMOFROCK - 1)
+                if (timerAlien >= timeToWaitTillSpawnIncreaseAlien)
                 {
-                    lastRockSpawned += AmountRockAddedAfterTime;
-                    timerRock = 0;
+                    if ((lastAlienSpawned + AmountAlienAddedAfterTime) < MAXNUMOFGREENBOI - 1)
+                    {
+                        lastAlienSpawned += AmountAlienAddedAfterTime;
+                        timerAlien = 0;
+                    }
+                    else if ((lastAlienSpawned + AmountAlienAddedAfterTime) > MAXNUMOFGREENBOI - 1)
+                    {
+                        lastAlienSpawned = MAXNUMOFGREENBOI - 1;
+                        timerAlien = 0;
+                    }
+
                 }
-                else if ((lastRockSpawned + AmountRockAddedAfterTime) > MAXNUMOFROCK - 1)
-                {
-                    lastRockSpawned = MAXNUMOFROCK - 1;
-                    timerRock = 0;
-                }
+
 
             }
-            if (timerAlien >= timeToWaitTillSpawnIncreaseAlien)
-            {
-                if ((lastAlienSpawned + AmountAlienAddedAfterTime) < MAXNUMOFGREENBOI - 1)
-                {
-                    lastAlienSpawned += AmountAlienAddedAfterTime;
-                    timerAlien = 0;
-                }
-                else if ((lastAlienSpawned + AmountAlienAddedAfterTime) > MAXNUMOFGREENBOI - 1)
-                {
-                    lastAlienSpawned = MAXNUMOFGREENBOI - 1;
-                    timerAlien = 0;
-                }
-
-            }
-
-
         }
-
+       
+        
     }
     void spawnDebri()
     {
@@ -220,6 +226,21 @@ public class RespawnEnemys : MonoBehaviour
             v = 0;
         }
 
+    }
+
+    void StartG()
+    {
+        if(start == false)
+        {
+            start = true;
+            button.gameObject.SetActive(false);
+            return;
+        }
+        if(start == true)
+        {
+            start = false;
+            return;
+        }
     }
 
 }

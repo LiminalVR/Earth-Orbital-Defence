@@ -9,12 +9,19 @@ public class WaveTimer : MonoBehaviour
     public Text timerLable;
 
     public float time;
-
+    public Button button;
+    private bool start = false;
     // Update is called once per frame
+
+    private void Start()
+    {
+        button.onClick.AddListener(StartG);
+    }
     void Update()
     {
-
-        time -= Time.deltaTime;
+        if(start == true)
+        {
+             time -= Time.deltaTime;
         string minutes = Mathf.Floor(time / 60).ToString();
         string seconds = ((int)(time % 60)).ToString();
 
@@ -27,6 +34,8 @@ public class WaveTimer : MonoBehaviour
         {
             timerLable.text = string.Format("{0} : {1:00}", minutes, seconds);
         }
+        }
+       
         
         
 
@@ -38,5 +47,19 @@ public class WaveTimer : MonoBehaviour
     public float getTime()
     {
         return time;
+    }
+    void StartG()
+    {
+        if (start == false)
+        {
+            start = true;
+            button.gameObject.SetActive(false);
+            return;
+        }
+        if (start == true)
+        {
+            start = false;
+            return;
+        }
     }
 }
