@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class Fire : MonoBehaviour
 {
     [Header("Events")]
@@ -20,6 +19,7 @@ public class Fire : MonoBehaviour
     }
     #endregion
     public GameObject obj;
+    public GameObject explossion;
 
     // Enemy Count //////////////
     public Text textBox;
@@ -33,7 +33,8 @@ public class Fire : MonoBehaviour
         RaycastHit hit;
         var vrDevice = Liminal.SDK.VR.VRDevice.Device;
         var pointer = vrDevice.PrimaryInputDevice.Pointer;
-        
+
+
         if (vrDevice == null)
         {
             Debug.Log("VRDEVICE WAS NULL");
@@ -54,7 +55,7 @@ public class Fire : MonoBehaviour
             if (Physics.Raycast(pointer.Transform.position, pointer.Transform.forward, out hit, Mathf.Infinity))
             {
                 Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * hit.distance, Color.yellow,40,false);
-                 if(hit.collider.CompareTag("Enemy"))
+                 if(hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Alien"))
                  {
                     hit.collider.gameObject.SetActive(false);
 
@@ -63,6 +64,8 @@ public class Fire : MonoBehaviour
                     textBox.text = enemyCount.ToString();
                     print("WE got one!!!");
                     //////////////////////////////////////
+                    Instantiate(explossion, hit.transform.position, hit.transform.rotation);
+
                 }
                 Debug.Log("Did Hit");
             }

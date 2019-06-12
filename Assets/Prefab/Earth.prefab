@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 5450199488673983800}
   - component: {fileID: 4649786932157779507}
   - component: {fileID: 4649786932157779504}
-  - component: {fileID: 150571651}
+  - component: {fileID: 880550599328199306}
   - component: {fileID: 4649786932157779505}
-  - component: {fileID: 150571649}
-  - component: {fileID: 2513366188909639626}
-  - component: {fileID: 318633298234474775}
+  - component: {fileID: 2070293300}
+  - component: {fileID: 2070293302}
   m_Layer: 0
   m_Name: Earth
   m_TagString: Earth
@@ -87,7 +86,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!54 &150571651
+--- !u!54 &880550599328199306
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +115,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &150571649
+--- !u!114 &2070293300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,37 +124,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 4649786932157779518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08a0c1ffd9e634b4aae2124b97d2ac2a, type: 3}
+  m_Script: {fileID: 11500000, guid: a226d9bf96bc52045818695b2da76cd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  earthBar: {fileID: 0}
+  screenhBar: {fileID: 0}
+  explossionPrefab: {fileID: 0}
+  earthHealth: 5
+  setActiveBarOne: 0
+  setActiveBarTwo: 0
+--- !u!114 &2070293302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4649786932157779518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b51f8bae0cdc4428b14b8565e72097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
---- !u!114 &2513366188909639626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4649786932157779518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247624c5851f3714f8e8f6d1ebdd6b7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  earthHealth: 10
-  currentHealth: 0
---- !u!114 &318633298234474775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4649786932157779518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247624c5851f3714f8e8f6d1ebdd6b7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  earthHealth: 10
-  currentHealth: 0
+  staticRotate: 0

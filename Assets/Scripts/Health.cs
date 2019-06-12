@@ -5,13 +5,19 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public Image healthBar;
-    private SphereCollider mSphereCollider;
+    public Image earthBar;
+    public Image screenBar;
+    private SphereCollider earthCollider;
+
+    public ParticleSystem explossionPrefab;
 
     public int earthHealth;
     private int currentHealth;
     private float mHealth;
- 
+
+    public bool setActiveEarthBar = true;
+    public bool setActiveScreenBar = true;
+
     private int damageOne;
     private int damageTwo;
     private int damageThree;
@@ -19,12 +25,15 @@ public class Health : MonoBehaviour
     // Initalizing Variables
     void Start()
     {
-        mSphereCollider = GetComponent<SphereCollider>();
-        mSphereCollider.isTrigger = true;
+        earthCollider = GetComponent<SphereCollider>();
+        earthCollider.isTrigger = true;
         mHealth = 1.0f;
 
-        currentHealth = earthHealth;
+        earthBar.gameObject.SetActive(setActiveEarthBar);
+        screenBar.gameObject.SetActive(setActiveScreenBar);
 
+        currentHealth = earthHealth;
+        
         damageOne = 1;
         damageTwo = 2;
         damageThree = 3;
@@ -35,6 +44,7 @@ public class Health : MonoBehaviour
     {
         if(currentHealth <= 0.0f)
         {
+            Instantiate(explossionPrefab, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
     }
@@ -46,7 +56,8 @@ public class Health : MonoBehaviour
         {
             currentHealth -= damageOne;
             mHealth = (float)currentHealth / (float)earthHealth;
-            healthBar.fillAmount = mHealth;
+            earthBar.fillAmount = mHealth;
+            screenBar.fillAmount = mHealth;
             print("Enemy1 has collided!!");
             print(mHealth);
         }
@@ -55,7 +66,8 @@ public class Health : MonoBehaviour
         {
             currentHealth -= damageTwo;
             mHealth = (float)currentHealth / (float)earthHealth;
-            healthBar.fillAmount = mHealth;
+            earthBar.fillAmount = mHealth;
+            screenBar.fillAmount = mHealth;
             print("Enemy2 has collided!!");
         }
 
@@ -63,7 +75,8 @@ public class Health : MonoBehaviour
         {
             currentHealth -= damageThree;
             mHealth = (float)currentHealth / (float)earthHealth;
-            healthBar.fillAmount = mHealth;
+            earthBar.fillAmount = mHealth;
+            screenBar.fillAmount = mHealth;
             print("Enemy3 has collided!!");
         }
     }

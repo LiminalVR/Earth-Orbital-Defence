@@ -7,7 +7,9 @@ public class Move : MonoBehaviour
     public int Speedmin = 4;
     public float Speedmax = 20;
     public GameObject earth;
-    public float Basespeed = 1f;
+    public GameObject Projectile;
+    float timer;
+    public float Basespeed;
     
     int speed;
     void Start()
@@ -18,20 +20,42 @@ public class Move : MonoBehaviour
     {
         if(gameObject.activeSelf == true)
         {
+
             float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, earth.transform.position, step);
-
-
-            if (Vector3.Distance(transform.position, earth.transform.position) < 0.001f)
+            if(Vector3.Distance(transform.position, earth.transform.position) < 100f && gameObject.tag == "Alien")
             {
+                timer = 2* Time.deltaTime;
 
-                gameObject.SetActive(false);
+                if(timer >= 4)
+                {
+                    Fire();
+                    timer = 0;
+                }
+               
             }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, earth.transform.position, step);
+
+
+                if (Vector3.Distance(transform.position, earth.transform.position) < 0.001f)
+                {
+
+                    gameObject.SetActive(false);
+                }
+            }
+            
         }
         
        
         
             
         
+    }
+    void Fire()
+    {
+        GameObject go = Instantiate(Projectile, gameObject.transform.position, Quaternion.identity) as GameObject;
+        float step = 2 * Time.deltaTime;
+        go.transform.position = Vector3.MoveTowards(transform.position, earth.transform.position, step);
     }
 }
