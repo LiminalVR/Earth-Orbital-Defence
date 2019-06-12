@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speedmin: 0
-  Speedmax: 20
+  Speedmax: 10
   earth: {fileID: 4649786932157779518, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
   Projectile: {fileID: 0}
   Basespeed: 6
