@@ -14,7 +14,7 @@ public class Fire : MonoBehaviour
         this.gameObject.transform.position = obj.transform.position;
         this.gameObject.transform.rotation = obj.transform.rotation;
         var pointer = Liminal.SDK.VR.VRDevice.Device.PrimaryInputDevice.Pointer;
-        
+
         //this.gameObject.transform.localPosition = obj.transform.localPosition;
         FireGun();
     }
@@ -25,9 +25,9 @@ public class Fire : MonoBehaviour
     public GameObject FireEffectSP;
     private AudioSource Gunfire;
     private AudioSource Explosion;
-    
+
     private GameObject[] Ex;
-    
+
     private GameObject[] Gu;
     // Enemy Count //////////////
     public Text textBox;
@@ -41,10 +41,10 @@ public class Fire : MonoBehaviour
         Gu = new GameObject[10];
         for (int i = 0; i < 50; i++)
         {
-            Ex[i] = GameObject.Instantiate(ExplosionEffect,new Vector3(0,0,0), new Quaternion());
+            Ex[i] = GameObject.Instantiate(ExplosionEffect, new Vector3(0, 0, 0), new Quaternion());
             Ex[i].SetActive(false);
         }
-        for(int i = 0;i< 10;i++)
+        for (int i = 0; i < 10; i++)
         {
             Gu[i] = GameObject.Instantiate(FireEffect, new Vector3(0, 0, 0), new Quaternion());
             Gu[i].SetActive(false);
@@ -58,36 +58,36 @@ public class Fire : MonoBehaviour
         RaycastHit hit;
         var vrDevice = Liminal.SDK.VR.VRDevice.Device;
         var pointer = vrDevice.PrimaryInputDevice.Pointer;
-        
+
         if (vrDevice == null)
         {
             Debug.Log("VRDEVICE WAS NULL");
             return;
         }
-        
+
         var input = vrDevice.PrimaryInputDevice;
         if (input == null)
         {
             Debug.Log("VR INPUT WAS NULL");
             return;
         }
-        
+
         if (input.GetButtonDown(Liminal.SDK.VR.Input.VRButton.One))
         {
-            
+
             Debug.Log(string.Format("[InputHandler] Input detected: {0}", Liminal.SDK.VR.Input.VRButton.One), this);
             if (Physics.Raycast(pointer.Transform.position, pointer.Transform.forward, out hit, Mathf.Infinity))
             {
-                Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * hit.distance, Color.yellow,40,false);
-                PlayerEffect(1, FireEffectSP.transform.position);
+                Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * hit.distance, Color.yellow, 40, false);
+                //PlayerEffect(1, FireEffectSP.transform.position);
                 Gunfire.Play();
                 if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Button"))
-                 {
+                {
                     hit.collider.gameObject.SetActive(false);
-                   
+
                     PlayerEffect(0, hit.transform.position);
                     Explosion.Play();
-                    
+
                     // Enemy Count ///////////////////////
                     enemyCount++;
                     textBox.text = enemyCount.ToString();
@@ -98,7 +98,7 @@ public class Fire : MonoBehaviour
             }
             else
             {
-                Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * 1000, Color.white,40,false);
+                Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * 1000, Color.white, 40, false);
                 Debug.Log("Did not Hit");
             }
 
@@ -109,13 +109,13 @@ public class Fire : MonoBehaviour
 
     private void PlayerEffect(int effect, Vector3 pos)
     {
-        switch(effect)
+        switch (effect)
         {
             case 0:
-                
-                for(int i = 0; i < 50;i++)
+
+                for (int i = 0; i < 50; i++)
                 {
-                    if(Ex[i].activeInHierarchy)
+                    if (Ex[i].activeInHierarchy)
                     {
                         Ex[i].SetActive(false);
                     }
@@ -125,7 +125,7 @@ public class Fire : MonoBehaviour
                         Ex[i].SetActive(true);
                         i = 50;
 
-                        
+
                     }
                 }
                 break;
@@ -138,7 +138,7 @@ public class Fire : MonoBehaviour
                     }
                     else
                     {
-                        Gu[i].transform.position= pos;
+                        Gu[i].transform.position = pos;
                         Gu[i].SetActive(true);
                         i = 10;
                     }

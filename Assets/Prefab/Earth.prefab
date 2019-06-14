@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 880550599328199306}
   - component: {fileID: 4649786932157779505}
   - component: {fileID: 2070293300}
-  - component: {fileID: 2070293301}
   - component: {fileID: 2070293302}
   m_Layer: 0
   m_Name: Earth
@@ -128,24 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a226d9bf96bc52045818695b2da76cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  earthBar: {fileID: 0}
+  screenBar: {fileID: 0}
   explossionPrefab: {fileID: 0}
   earthHealth: 5
---- !u!114 &2070293301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4649786932157779518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a226d9bf96bc52045818695b2da76cd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  explossionPrefab: {fileID: 0}
-  earthHealth: 5
+  setActiveEarthBar: 1
+  setActiveScreenBar: 1
 --- !u!114 &2070293302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,3 +146,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
+  staticRotate: 0

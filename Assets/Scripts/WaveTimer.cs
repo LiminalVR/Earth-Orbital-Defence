@@ -10,43 +10,50 @@ public class WaveTimer : MonoBehaviour
 
     public float time;
     public Button button;
-    private bool start = false;
+    float startT;
+    public bool start = true;
     // Update is called once per frame
 
     private void Start()
     {
         button.onClick.AddListener(StartG);
+        startT = time;
     }
     void Update()
     {
-        if(start == true)
+        if (start == true)
         {
-             time -= Time.deltaTime;
-        string minutes = Mathf.Floor(time / 60).ToString();
-        string seconds = ((int)(time % 60)).ToString();
+            time -= Time.deltaTime;
+            string minutes = Mathf.Floor(time / 60).ToString();
+            string seconds = ((int)(time % 60)).ToString();
 
-        if (float.Parse(minutes, CultureInfo.InvariantCulture.NumberFormat) <=0 && float.Parse(seconds,CultureInfo.InvariantCulture.NumberFormat) <=0)
-        {
+            if (float.Parse(minutes, CultureInfo.InvariantCulture.NumberFormat) <= 0 && float.Parse(seconds, CultureInfo.InvariantCulture.NumberFormat) <= 0)
+            {
 
-            timerLable.text = string.Format("{0}:{1}", 0, 0);
+                timerLable.text = string.Format("{0}:{1}", 0, 0);
+            }
+            else
+            {
+                timerLable.text = string.Format("{0} : {1:00}", minutes, seconds);
+            }
         }
-        else
-        {
-            timerLable.text = string.Format("{0} : {1:00}", minutes, seconds);
-        }
-        }
-       
-        
-        
 
-        
 
-        
+
+
+
+
+
     }
 
     public float getTime()
     {
         return time;
+    }
+
+    public float GetStart()
+    {
+        return startT;
     }
     void StartG()
     {

@@ -18,7 +18,9 @@ public class RespawnEnemys : MonoBehaviour
     public GameObject Rock;
     private GameObject[] AlienArr;
     public GameObject Alien;
-    public Button button;
+    public GameObject health;
+    public Button button1;
+    public Button button2;
 
     public int MAXNUMOFDEBRI = 0;
     public int MAXNUMOFROCK = 0;
@@ -41,7 +43,8 @@ public class RespawnEnemys : MonoBehaviour
     private float timerRock;
     private float timerAlien;
     private bool start = false;
-    int i =0;
+    private bool finish = false;
+    int i = 0;
     int u = 0;
     int v = 0;
     void Start()
@@ -49,7 +52,8 @@ public class RespawnEnemys : MonoBehaviour
         DebriArr = new GameObject[MAXNUMOFDEBRI];
         RockArr = new GameObject[MAXNUMOFDEBRI];
         AlienArr = new GameObject[MAXNUMOFGREENBOI];
-        button.onClick.AddListener(StartG);
+        button1.onClick.AddListener(StartG);
+        button2.onClick.AddListener(StartG);
         for (int i = 0; i < MAXNUMOFDEBRI; i++)
         {
             Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
@@ -89,10 +93,10 @@ public class RespawnEnemys : MonoBehaviour
     void Update()
     {
 
-        
-        if(start == true)
+
+        if (start == true && finish == false)
         {
-            if (Timer.getTime() <= StartingTime)
+            if (Timer.getTime() <= StartingTime && Timer.getTime() >= 0)
             {
                 timerDebri += Time.deltaTime;
                 timerRock += Time.deltaTime;
@@ -145,17 +149,47 @@ public class RespawnEnemys : MonoBehaviour
 
 
             }
+            if (!health.gameObject.activeInHierarchy)
+            {
+                
+
+                finish = true;
+
+            }
+            if (Timer.getTime() <= 0)
+            {
+                
+
+                finish = true;
+
+            }
         }
-       
-        
+        if (start == true && finish == true)
+        {
+            button2.gameObject.SetActive(true);
+            i = 0;
+            v = 0;
+            u = 0;
+            KillAlien();
+            KillDebri();
+            KillRock();
+            lastAlienSpawned = 0;
+            lastDebriSpawned = 0;
+            lastRockSpawned = 0;
+            
+            start = false;
+            finish = false;
+        }
+
+
     }
     void spawnDebri()
     {
-        if(i >=100)
+        if (i >= MAXNUMOFDEBRI +1)
         {
             i = 0;
         }
-        if(!DebriArr[i].activeInHierarchy)
+        if (!DebriArr[i].activeInHierarchy)
         {
             DebriArr[i].SetActive(true);
             Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
@@ -163,9 +197,9 @@ public class RespawnEnemys : MonoBehaviour
             SpawnDistFromPlayer.z = Spawn.y * 1200 - (376);
             DebriArr[i].transform.position = SpawnDistFromPlayer;
             Debug.Log(i);
-            
+
         }
-        if (i <= lastDebriSpawned)
+        if (i <=lastDebriSpawned)
         {
             i++;
         }
@@ -175,9 +209,21 @@ public class RespawnEnemys : MonoBehaviour
         }
 
     }
+
+    void KillDebri()
+    {
+
+        for (int i = 0; i < MAXNUMOFDEBRI; i++)
+        {
+            if (DebriArr[i].activeInHierarchy)
+            {
+                DebriArr[i].SetActive(false);
+            }
+        }
+    }
     void spawnRock()
     {
-        if (u >= 100)
+        if (u >= MAXNUMOFROCK)
         {
             u = 0;
         }
@@ -201,9 +247,24 @@ public class RespawnEnemys : MonoBehaviour
         }
 
     }
+
+    void KillRock()
+    {
+
+        for (int i = 0; i < MAXNUMOFROCK; i++)
+        {
+          
+            if (RockArr[i].activeInHierarchy)
+            {
+                RockArr[i].SetActive(false);
+
+
+            }
+        }
+    }
     void spawnAlien()
     {
-        if (v >= 100)
+        if (v >= MAXNUMOFGREENBOI)
         {
             v = 0;
         }
@@ -227,20 +288,37 @@ public class RespawnEnemys : MonoBehaviour
         }
 
     }
+    void KillAlien()
+    {
+        for (int i = 0; i < MAXNUMOFGREENBOI; i++)
+        {
+            if (AlienArr[i].activeInHierarchy)
+            {
+                AlienArr[i].SetActive(false);
+            }
+        }
 
+    }
     void StartG()
     {
-        if(start == false)
+        if (start == false && button1.IsActive())
         {
             start = true;
-            button.gameObject.SetActive(false);
+            button1.gameObject.SetActive(false);
             return;
         }
-        if(start == true)
+        else if (start == false && !button1.IsActive())
         {
-            start = false;
+            start = true;
+            button2.gameObject.SetActive(false);
+            health.gameObject.SetActive(true);
+            
+            Timer.time = Timer.GetStart();
             return;
         }
+
     }
+
+
 
 }

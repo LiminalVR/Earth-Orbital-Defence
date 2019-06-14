@@ -10,23 +10,23 @@ public class Move : MonoBehaviour
     public GameObject Projectile;
     float timer;
     public float Basespeed;
-    
+
     int speed;
     void Start()
     {
-        speed = ((int)Basespeed * (int)UnityEngine.Random.Range(Speedmin, Speedmax)); 
+        speed = ((int)Basespeed * (int)UnityEngine.Random.Range(Speedmin, Speedmax));
     }
     void Update()
     {
-        if(gameObject.activeSelf == true)
+        if (gameObject.activeSelf == true)
         {
 
             float step = speed * Time.deltaTime;
-            
+
             transform.position = Vector3.MoveTowards(transform.position, earth.transform.position, step);
             Vector3 relativePos = earth.transform.position - transform.position;
 
-            
+
             Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
             transform.rotation = rotation;
 
@@ -35,14 +35,14 @@ public class Move : MonoBehaviour
 
                 gameObject.SetActive(false);
             }
-            
-            
+
+
         }
-        
-       
-        
-            
-        
+
+
+
+
+
     }
     void Fire()
     {
