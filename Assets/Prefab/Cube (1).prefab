@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6518821337871650744}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300010, guid: 1da96eef2abec4342bba496bf9aa71e8, type: 3}
 --- !u!23 &852058565062698089
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d90eb0606de82a943a932e4129de1f1e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,7 +90,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 3.99, y: 4.17, z: 4.41}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7931566427520175567
 MonoBehaviour:
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speedmin: 4
-  Speedmax: 20
+  Speedmax: 15
   earth: {fileID: 4649786932157779518, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+  Projectile: {fileID: 0}
   Basespeed: 8

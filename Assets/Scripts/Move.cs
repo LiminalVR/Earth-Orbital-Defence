@@ -22,28 +22,20 @@ public class Move : MonoBehaviour
         {
 
             float step = speed * Time.deltaTime;
-            if(Vector3.Distance(transform.position, earth.transform.position) < 100f && gameObject.tag == "Alien")
+            
+            transform.position = Vector3.MoveTowards(transform.position, earth.transform.position, step);
+            Vector3 relativePos = earth.transform.position - transform.position;
+
+            
+            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+            transform.rotation = rotation;
+
+            if (Vector3.Distance(transform.position, earth.transform.position) < 0.001f)
             {
-                timer = 2* Time.deltaTime;
-                Debug.Log("yes");
-                if(timer >= 4)
-                {
-                    Fire();
-                    timer = 0;
-                }
-               
+
+                gameObject.SetActive(false);
             }
-            else
-            {
-                transform.position = Vector3.MoveTowards(transform.position, earth.transform.position, step);
-
-
-                if (Vector3.Distance(transform.position, earth.transform.position) < 0.001f)
-                {
-
-                    gameObject.SetActive(false);
-                }
-            }
+            
             
         }
         
