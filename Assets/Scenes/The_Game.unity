@@ -143,6 +143,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 692689895}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -198,10 +202,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX (1)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -427,6 +427,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 280332314}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: fxOutro (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.7000015
@@ -483,10 +487,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.6205598
       objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: fxOutro (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -511,6 +511,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 280332314}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: fxOutro
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.7000015
@@ -567,10 +571,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.6205598
       objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: fxOutro
-      objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -595,6 +595,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1945789223}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.9
@@ -650,10 +654,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 8.733863
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -962,6 +962,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1945789223}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.89
@@ -1017,10 +1021,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.3904598
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX (3)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -1164,6 +1164,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 280332314}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: fxOutro (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.7000015
@@ -1219,10 +1223,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.6205598
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: fxOutro (2)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -1333,6 +1333,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2121126980}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1388,10 +1392,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX (1)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -1472,6 +1472,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 704349218}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1527,10 +1531,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX (1)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -1912,6 +1912,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1945789223}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.89
@@ -1968,10 +1972,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.3904598
       objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -1996,6 +1996,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1711318048}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2051,10 +2055,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX (1)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -2406,54 +2406,6 @@ MonoBehaviour:
   time: 120
   button: {fileID: 465749014}
   start: 0
---- !u!1 &960131868
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 960131869}
-  - component: {fileID: 960131871}
-  m_Layer: 0
-  m_Name: SpwanManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &960131869
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960131868}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2004253150}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &960131871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960131868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1700805e9f14f334ea1229e01a003f5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pools:
-  - objectTag: Explossions
-    prefab: {fileID: 2224453311418880217, guid: abcf075393eb0b244840f52930244fec,
-      type: 3}
-    numberOfObjects: 500
 --- !u!4 &1032412138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4327719134266240, guid: 62455f283ec250249919c3ac8f82ea6e,
@@ -3120,6 +3072,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2118042107}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3175,10 +3131,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX (1)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -3458,6 +3410,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 280332314}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: fxOutro (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.7000015
@@ -3513,10 +3469,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.6205598
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: fxOutro (4)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -3604,7 +3556,6 @@ Transform:
   - {fileID: 1190934128}
   - {fileID: 170644741}
   - {fileID: 919191906}
-  - {fileID: 2004253150}
   - {fileID: 1945789223}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -3914,6 +3865,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1945789223}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3969,10 +3924,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 8.733863
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX (2)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -4203,6 +4154,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1108895936}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4258,10 +4213,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX (1)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -4342,6 +4293,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 280332314}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: fxOutro (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.7000015
@@ -4398,10 +4353,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.6205598
       objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: fxOutro (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -4426,6 +4377,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 886284960}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4481,10 +4436,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX (1)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -4835,7 +4786,7 @@ Transform:
   - {fileID: 1711318048}
   - {fileID: 280332314}
   m_Father: {fileID: 1613514210}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1974936726 stripped
 Camera:
@@ -5001,37 +4952,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984911719}
   m_CullTransparentMesh: 0
---- !u!1 &2004253149
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2004253150}
-  m_Layer: 0
-  m_Name: mPooler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2004253150
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004253149}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.031301428, y: 998.5538, z: -339.35934}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 960131869}
-  m_Father: {fileID: 1613514210}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2015864786 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4388363155141945719, guid: c6a6356b3611a1848b45530951362592,
@@ -5045,6 +4965,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 84754763}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5100,10 +5024,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX (1)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
@@ -5366,6 +5286,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 335461064}
     m_Modifications:
+    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
+      propertyPath: m_Name
+      value: Fog FX (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5421,10 +5345,6 @@ PrefabInstance:
     - target: {fileID: 4339794298256250, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029049552644110, guid: 5d92d3c6f97114f378b0eed64ada0a6c, type: 3}
-      propertyPath: m_Name
-      value: Fog FX (1)
       objectReference: {fileID: 0}
     - target: {fileID: 198079035555830294, guid: 5d92d3c6f97114f378b0eed64ada0a6c,
         type: 3}
