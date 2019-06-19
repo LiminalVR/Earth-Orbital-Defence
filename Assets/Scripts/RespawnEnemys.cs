@@ -18,7 +18,7 @@ public class RespawnEnemys : MonoBehaviour
     public GameObject Rock;
     private GameObject[] AlienArr;
     public GameObject Alien;
-    public GameObject health;
+    public Health health;
     public Button button1;
     public Button button2;
 
@@ -57,8 +57,8 @@ public class RespawnEnemys : MonoBehaviour
         for (int i = 0; i < MAXNUMOFDEBRI; i++)
         {
             Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
-            SpawnDistFromPlayer.x = Spawn.x * 2400;
-            SpawnDistFromPlayer.z = Spawn.y * 2400 - (376);
+            SpawnDistFromPlayer.x = Spawn.x * 3600;
+            SpawnDistFromPlayer.z = Spawn.y * 3600 - (376);
             GameObject go = Instantiate(Debri, SpawnDistFromPlayer, Quaternion.identity) as GameObject;
             DebriArr[i] = go;
             DebriArr[i].SetActive(false);
@@ -68,8 +68,8 @@ public class RespawnEnemys : MonoBehaviour
         for (int i = 0; i < MAXNUMOFROCK; i++)
         {
             Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
-            SpawnDistFromPlayer.x = Spawn.x * 2400;
-            SpawnDistFromPlayer.z = Spawn.y * 2400 - (376);
+            SpawnDistFromPlayer.x = Spawn.x * 3600;
+            SpawnDistFromPlayer.z = Spawn.y * 3600 - (376);
             GameObject go = Instantiate(Rock, SpawnDistFromPlayer, Quaternion.identity) as GameObject;
             RockArr[i] = go;
             RockArr[i].SetActive(false);
@@ -79,8 +79,8 @@ public class RespawnEnemys : MonoBehaviour
         for (int i = 0; i < MAXNUMOFGREENBOI; i++)
         {
             Vector2 Spawn = UnityEngine.Random.insideUnitCircle.normalized;
-            SpawnDistFromPlayer.x = Spawn.x * 2400;
-            SpawnDistFromPlayer.z = Spawn.y * 2400 - (376);
+            SpawnDistFromPlayer.x = Spawn.x * 3600;
+            SpawnDistFromPlayer.z = Spawn.y * 3600 - (376);
             GameObject go = Instantiate(Alien, SpawnDistFromPlayer, Quaternion.identity) as GameObject;
             AlienArr[i] = go;
             AlienArr[i].SetActive(false);
@@ -176,7 +176,6 @@ public class RespawnEnemys : MonoBehaviour
             lastAlienSpawned = 0;
             lastDebriSpawned = 0;
             lastRockSpawned = 0;
-            
             start = false;
             finish = false;
         }
@@ -305,6 +304,7 @@ public class RespawnEnemys : MonoBehaviour
         {
             start = true;
             button1.gameObject.SetActive(false);
+            health.mPercentage = health.earthHealth;
             return;
         }
         else if (start == false && !button1.IsActive())

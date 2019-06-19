@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Globalization;
+
 public class WaveTimer : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -12,6 +13,9 @@ public class WaveTimer : MonoBehaviour
     public Button button;
     float startT;
     public bool start = true;
+    public AudioSource audi1;
+    public AudioSource audi2;
+
     // Update is called once per frame
 
     private void Start()
@@ -21,20 +25,40 @@ public class WaveTimer : MonoBehaviour
     }
     void Update()
     {
+        audi1.Pause();
+        audi2.Pause();
         if (start == true)
         {
+            
+            
             time -= Time.deltaTime;
             string minutes = Mathf.Floor(time / 60).ToString();
             string seconds = ((int)(time % 60)).ToString();
-
-            if (float.Parse(minutes, CultureInfo.InvariantCulture.NumberFormat) <= 0 && float.Parse(seconds, CultureInfo.InvariantCulture.NumberFormat) <= 0)
+            int i = 0;
+            int u = 0;
+            i = System.Int32.Parse(seconds);
+            u = System.Int32.Parse(minutes);
+            string str = "0";
+            if(i < 10 )
             {
-
-                timerLable.text = string.Format("{0}:{1}", 0, 0);
+                timerLable.text = string.Format("{0} : {1:00}", minutes, str + seconds);
             }
             else
             {
+                
+                
                 timerLable.text = string.Format("{0} : {1:00}", minutes, seconds);
+            }
+
+            if (!audi2.isPlaying)
+            {
+
+                audi1.UnPause();
+            }
+            if (i <= 60 && u < 1)
+            {
+                audi2.UnPause();
+                audi1.Pause();
             }
         }
 

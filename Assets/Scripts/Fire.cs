@@ -23,8 +23,12 @@ public class Fire : MonoBehaviour
     public GameObject ExplosionEffect;
     public GameObject FireEffect;
     public GameObject FireEffectSP;
+    public GameObject earth;
+    public GameObject longboi;
     private AudioSource Gunfire;
     private AudioSource Explosion;
+    public bool fired;
+        
 
     private GameObject[] Ex;
 
@@ -51,7 +55,10 @@ public class Fire : MonoBehaviour
         }
     }
 
-    private void FireGun()
+
+
+
+    public void FireGun()
     {
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
@@ -74,6 +81,11 @@ public class Fire : MonoBehaviour
 
         if (input.GetButtonDown(Liminal.SDK.VR.Input.VRButton.One))
         {
+            ///////////////////
+            // Instantiate(longboi, pointer.Transform.position, pointer.Transform.rotation);
+            fired = true;
+
+            ///////////////////////
 
             Debug.Log(string.Format("[InputHandler] Input detected: {0}", Liminal.SDK.VR.Input.VRButton.One), this);
             if (Physics.Raycast(pointer.Transform.position, pointer.Transform.forward, out hit, Mathf.Infinity))
@@ -81,10 +93,12 @@ public class Fire : MonoBehaviour
                 Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * hit.distance, Color.yellow, 40, false);
                 //PlayerEffect(1, FireEffectSP.transform.position);
                 Gunfire.Play();
-                if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Button"))
+                if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Button") ||
+                    hit.collider.CompareTag("Enemy2") ||
+                    hit.collider.CompareTag("Enemy3"))
                 {
                     hit.collider.gameObject.SetActive(false);
-
+                   // Instantiate(longboi, hit.transform.position, pointer.Transform.rotation);
                     PlayerEffect(0, hit.transform.position);
                     Explosion.Play();
 
@@ -100,8 +114,10 @@ public class Fire : MonoBehaviour
             {
                 Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * 1000, Color.white, 40, false);
                 Debug.Log("Did not Hit");
+                fired = false;
+                //Instantiate(longboi, pointer.Transform.position, pointer.Transform.rotation);
             }
-
+            
             OnPressed.Invoke();
         }
 

@@ -129,10 +129,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   earthBar: {fileID: 0}
   screenBar: {fileID: 0}
+  percetengeBox: {fileID: 0}
   explossionPrefab: {fileID: 0}
   earthHealth: 5
-  setActiveEarthBar: 1
-  setActiveScreenBar: 1
+  currentHealth: 0
+  mHealth: 0
+  mPercentage: 0
 --- !u!114 &2070293302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,4 +148,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
-  staticRotate: 0
+  staticRotate: 1
+  astroRotate: 0
