@@ -25,8 +25,11 @@ public class Fire : MonoBehaviour
     public GameObject FireEffectSP;
     public GameObject earth;
     public GameObject longboi;
+    GameObject lazer;
     private AudioSource Gunfire;
     private AudioSource Explosion;
+
+    float cooldown = 2.0f;
     public bool fired;
         
 
@@ -53,6 +56,10 @@ public class Fire : MonoBehaviour
             Gu[i] = GameObject.Instantiate(FireEffect, new Vector3(0, 0, 0), new Quaternion());
             Gu[i].SetActive(false);
         }
+
+        lazer = GameObject.Instantiate(longboi, new Vector3(0, 0, 0), new Quaternion());
+        lazer.SetActive(false);
+
     }
 
 
@@ -79,9 +86,13 @@ public class Fire : MonoBehaviour
             return;
         }
 
+      
         if (input.GetButtonDown(Liminal.SDK.VR.Input.VRButton.One))
         {
             ///////////////////
+            lazer.transform.position = pointer.Transform.position;
+            lazer.transform.rotation = pointer.Transform.rotation;
+            lazer.SetActive(true);
             // Instantiate(longboi, pointer.Transform.position, pointer.Transform.rotation);
             fired = true;
 
@@ -114,14 +125,23 @@ public class Fire : MonoBehaviour
             {
                 Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * 1000, Color.white, 40, false);
                 Debug.Log("Did not Hit");
+                lazer.SetActive(false);
                 fired = false;
                 //Instantiate(longboi, pointer.Transform.position, pointer.Transform.rotation);
             }
             
             OnPressed.Invoke();
+            Invoke("CoolDown", .2f);
         }
 
     }
+
+    void CoolDown()
+    {
+      lazer.SetActive(false);
+    }
+
+
 
     private void PlayerEffect(int effect, Vector3 pos)
     {

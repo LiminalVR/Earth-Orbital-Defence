@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.27246398, g: 0.19332045, b: 0.20716438, a: 1}
+  m_IndirectSpecularColor: {r: 0.27280843, g: 0.1931462, b: 0.20786628, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1915,13 +1915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 268fb4d91644e42409780f6594097609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xRotation: 0
-  yRotation: 2
-  zRotation: 1
 --- !u!199 &507436581
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -6495,14 +6488,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1945789223}
     m_Modifications:
-    - target: {fileID: 1397402549733478, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
-      propertyPath: m_Name
-      value: Particle revolver 002 Eternal charge (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1397402549733478, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4200883865063198, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 68.7
@@ -6558,6 +6543,14 @@ PrefabInstance:
     - target: {fileID: 4200883865063198, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 6.3369055
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397402549733478, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
+      propertyPath: m_Name
+      value: Particle revolver 002 Eternal charge (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397402549733478, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
@@ -7051,13 +7044,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 268fb4d91644e42409780f6594097609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xRotation: 0
-  yRotation: 2
-  zRotation: 1
 --- !u!199 &850881178
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -12484,14 +12470,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1945789223}
     m_Modifications:
-    - target: {fileID: 1397402549733478, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
-      propertyPath: m_Name
-      value: Particle revolver 002 Eternal charge
-      objectReference: {fileID: 0}
-    - target: {fileID: 1397402549733478, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4200883865063198, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -60.7
@@ -12547,6 +12525,14 @@ PrefabInstance:
     - target: {fileID: 4200883865063198, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
       propertyPath: m_LocalScale.z
       value: 6.3369055
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397402549733478, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
+      propertyPath: m_Name
+      value: Particle revolver 002 Eternal charge
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397402549733478, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eb29fd5f7a8920409dcd8cec44ecb6c, type: 3}
@@ -12681,11 +12667,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1613514210}
     m_Modifications:
-    - target: {fileID: 1260162970045296579, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: m_Name
-      value: VRAvatar
-      objectReference: {fileID: 0}
     - target: {fileID: 1260162969423114810, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12740,6 +12721,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260162970045296579, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: m_Name
+      value: VRAvatar
       objectReference: {fileID: 0}
     - target: {fileID: 1260162968871696498, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
@@ -24561,47 +24547,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 1830682523}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: explossionPrefab
-      value: 
-      objectReference: {fileID: 1121192042590650, guid: b6290d05520a7ac4ebf1e36fe846c02f,
-        type: 3}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: earthHealth
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: earthBar
-      value: 
-      objectReference: {fileID: 1830682523}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: screenhBar
-      value: 
-      objectReference: {fileID: 191865273}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: setActiveBarOne
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: screenBar
-      value: 
-      objectReference: {fileID: 2083393851}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: setActiveBarTwo
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: percetengeBox
-      value: 
-      objectReference: {fileID: 288134861}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: fog
-      value: 
-      objectReference: {fileID: 280332313}
     - target: {fileID: 5450199488673983800, guid: c52c1d74deee8b641a5dca453930ed70,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24722,6 +24667,47 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1830682523}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: explossionPrefab
+      value: 
+      objectReference: {fileID: 1121192042590650, guid: b6290d05520a7ac4ebf1e36fe846c02f,
+        type: 3}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: earthHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: earthBar
+      value: 
+      objectReference: {fileID: 1830682523}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: screenhBar
+      value: 
+      objectReference: {fileID: 191865273}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: setActiveBarOne
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: screenBar
+      value: 
+      objectReference: {fileID: 2083393851}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: setActiveBarTwo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: percetengeBox
+      value: 
+      objectReference: {fileID: 288134861}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: fog
+      value: 
+      objectReference: {fileID: 280332313}
     - target: {fileID: 2070293302, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
       propertyPath: rotationSpeed
       value: 10
