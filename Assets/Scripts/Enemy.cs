@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour
+public class Enemy 
+    : MonoBehaviour
+    , IKillable
 {
     public int Speedmin = 4;
     public float Speedmax = 20;
@@ -58,5 +60,10 @@ public class Move : MonoBehaviour
        // collisionExplossion.transform.position = this.gameObject.transform.position;
         collisionExplossion.Play();
         this.gameObject.SetActive(false);
+    }
+
+    public void Kill()
+    {
+        gameObject.SetActive(false);
     }
 }

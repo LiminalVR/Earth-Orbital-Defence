@@ -99,16 +99,19 @@ public class Fire : MonoBehaviour
             ///////////////////////
 
             Debug.Log(string.Format("[InputHandler] Input detected: {0}", Liminal.SDK.VR.Input.VRButton.One), this);
-            if (Physics.Raycast(pointer.Transform.position, pointer.Transform.forward, out hit, Mathf.Infinity))
+            if (Physics.SphereCast(pointer.Transform.position,2f, pointer.Transform.forward, out hit, Mathf.Infinity))
             {
                 Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * hit.distance, Color.yellow, 40, false);
                 //PlayerEffect(1, FireEffectSP.transform.position);
+                var killableObject = hit.collider.GetComponent<IKillable>();
+
                 Gunfire.Play();
-                if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Button") ||
-                    hit.collider.CompareTag("Enemy2") ||
-                    hit.collider.CompareTag("Enemy3"))
+
+                if (killableObject != null)
                 {
-                    hit.collider.gameObject.SetActive(false);
+                    killableObject.Kill();
+
+                    //hit.collider.gameObject.SetActive(false);
                    // Instantiate(longboi, hit.transform.position, pointer.Transform.rotation);
                     PlayerEffect(0, hit.transform.position);
                     Explosion.Play();
