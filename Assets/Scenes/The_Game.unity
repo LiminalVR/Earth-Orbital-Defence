@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.27280843, g: 0.1931462, b: 0.20786628, a: 1}
+  m_IndirectSpecularColor: {r: 0.27246398, g: 0.19332045, b: 0.20716438, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -118,6 +118,129 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 209032803}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &87585428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87585429}
+  - component: {fileID: 87585430}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &87585429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87585428}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1613514210}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &87585430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87585428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff007d0c627003b439aac7f00f157406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HostileObjects:
+  - Prefab: {fileID: 8889528796676172953, guid: a8f40263bcb315b4a9612fb12c0777ab,
+      type: 3}
+    Weight: 50
+  - Prefab: {fileID: 6518821337871650744, guid: cd01d2320841dd0478e9f7545296fd1e,
+      type: 3}
+    Weight: 35
+  - Prefab: {fileID: 6081174868770802860, guid: 6870a305ec31a9e40a334443a4bb375e,
+      type: 3}
+    Weight: 15
+  WaveSpawnCount:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 10
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 180
+      value: 5
+      inSlope: 0.0005405409
+      outSlope: 0.0005405409
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.15271945
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TimeBetweenWaves:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 7
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 60
+      value: 5
+      inSlope: -0.0072350223
+      outSlope: -0.0072350223
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.54811704
+      outWeight: 0.1809625
+    - serializedVersion: 3
+      time: 140
+      value: 2
+      inSlope: 0.0011450668
+      outSlope: 0.0011450668
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.46338996
+    - serializedVersion: 3
+      time: 180
+      value: 2
+      inSlope: -0.000072984396
+      outSlope: -0.000072984396
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.44002533
+      outWeight: 0.53974915
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  EarthTransform: {fileID: 4649786932154586490}
+  SpawnDistance: 1000
+  MaxExperienceLength: 180
+  Active: 0
 --- !u!1 &109878636 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4649786932157779518, guid: c52c1d74deee8b641a5dca453930ed70,
@@ -342,7 +465,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1.0000001, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 1613514210}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &170644740
 GameObject:
@@ -360,7 +483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &170644741
 Transform:
   m_ObjectHideFlags: 0
@@ -373,7 +496,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1613514210}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &170644742
 MonoBehaviour:
@@ -1723,7 +1846,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 465749015}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 87585430}
+        m_MethodName: StartSpawning
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 355641968}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &465749015
@@ -11647,7 +11792,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1613514210}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &919191907
 MonoBehaviour:
@@ -12068,7 +12213,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1613514210}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1190934129
 MonoBehaviour:
@@ -12667,6 +12812,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1613514210}
     m_Modifications:
+    - target: {fileID: 1260162970045296579, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: m_Name
+      value: VRAvatar
+      objectReference: {fileID: 0}
     - target: {fileID: 1260162969423114810, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12705,7 +12855,7 @@ PrefabInstance:
     - target: {fileID: 1260162969423114810, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1260162969423114810, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
@@ -12721,11 +12871,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1260162970045296579, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: m_Name
-      value: VRAvatar
       objectReference: {fileID: 0}
     - target: {fileID: 1260162968871696498, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
@@ -17709,6 +17854,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 87585429}
   - {fileID: 579708653}
   - {fileID: 170076735}
   - {fileID: 1190934128}
@@ -23642,7 +23788,7 @@ Transform:
   - {fileID: 280332314}
   - {fileID: 444979835}
   m_Father: {fileID: 1613514210}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1974936726 stripped
 Camera:
@@ -24547,6 +24693,47 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1830682523}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: explossionPrefab
+      value: 
+      objectReference: {fileID: 1121192042590650, guid: b6290d05520a7ac4ebf1e36fe846c02f,
+        type: 3}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: earthHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: earthBar
+      value: 
+      objectReference: {fileID: 1830682523}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: screenhBar
+      value: 
+      objectReference: {fileID: 191865273}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: setActiveBarOne
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: screenBar
+      value: 
+      objectReference: {fileID: 2083393851}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: setActiveBarTwo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: percetengeBox
+      value: 
+      objectReference: {fileID: 288134861}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: fog
+      value: 
+      objectReference: {fileID: 280332313}
     - target: {fileID: 5450199488673983800, guid: c52c1d74deee8b641a5dca453930ed70,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24667,47 +24854,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 200
       objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 1830682523}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: explossionPrefab
-      value: 
-      objectReference: {fileID: 1121192042590650, guid: b6290d05520a7ac4ebf1e36fe846c02f,
-        type: 3}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: earthHealth
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: earthBar
-      value: 
-      objectReference: {fileID: 1830682523}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: screenhBar
-      value: 
-      objectReference: {fileID: 191865273}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: setActiveBarOne
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: screenBar
-      value: 
-      objectReference: {fileID: 2083393851}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: setActiveBarTwo
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: percetengeBox
-      value: 
-      objectReference: {fileID: 288134861}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: fog
-      value: 
-      objectReference: {fileID: 280332313}
     - target: {fileID: 2070293302, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
       propertyPath: rotationSpeed
       value: 10
