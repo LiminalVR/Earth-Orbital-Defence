@@ -5,17 +5,15 @@ using UnityEngine.UI;
 
 public class Reticule : MonoBehaviour
 {
-    public SpriteRenderer crosshairsRenderer;
-    public Sprite crosshairsSprite;
-    public GameObject cannonPrefab;
+    public Transform Crosshairs;
+    public Image EnergyFill;
     public Button button;
-
 
     private bool start = false;
     private void Start()
     {
         button.onClick.AddListener(StartG);
-        crosshairsRenderer.gameObject.SetActive(false);
+        Crosshairs.gameObject.SetActive(false);
     }
 
 
@@ -26,8 +24,7 @@ public class Reticule : MonoBehaviour
 
 
         if (start == true)
-        crosshairsRenderer.transform.SetPositionAndRotation(pointer.CurrentRaycastResult.worldPosition, pointer.Transform.rotation);
-        cannonPrefab.transform.rotation = pointer.Transform.rotation;
+        Crosshairs.SetPositionAndRotation(pointer.CurrentRaycastResult.worldPosition, pointer.Transform.rotation);
     }    
     
      void StartG()
@@ -36,7 +33,7 @@ public class Reticule : MonoBehaviour
         {
             start = true;
             button.gameObject.SetActive(false);
-            crosshairsRenderer.gameObject.SetActive(true);
+            Crosshairs.gameObject.SetActive(true);
             return;
         }
         if (start == true)

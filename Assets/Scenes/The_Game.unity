@@ -1833,6 +1833,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1190934127}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &465749015
@@ -2098,6 +2109,7 @@ MonoBehaviour:
   MaxGameLength: 180
   AudioFadeSpeed: 1
   TextPanel: {fileID: 1984911721}
+  FireController: {fileID: 1190934129}
 --- !u!4 &661571355
 Transform:
   m_ObjectHideFlags: 0
@@ -2933,18 +2945,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d64ceb20724ace459a90ba2fa7ab730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPressed:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   obj: {fileID: 502009523}
   ExplosionEffect: {fileID: 2224453311418880217, guid: abcf075393eb0b244840f52930244fec,
     type: 3}
   FireEffect: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c, type: 3}
   earth: {fileID: 109878636}
-  longboi: {fileID: 2400862318761669902, guid: ab0151f5afa33ab4c8b72bb709bcd529, type: 3}
-  fired: 0
+  LaserPrefab: {fileID: 8199528834344135941, guid: 48d9983f48d58a74d933aac350811a94,
+    type: 3}
+  CannonObject: {fileID: 683383145}
+  MaxLaserCharge: 100
+  LaserChargeSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 40
+      inSlope: -2.4613662
+      outSlope: -2.4613662
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.27
+      value: 35
+      inSlope: -32.698956
+      outSlope: -32.698956
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 25
+      inSlope: 0.01759422
+      outSlope: 0.01759422
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  LaserDrainSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 15
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 20
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ChargedColor: {r: 1, g: 0.7530315, b: 0, a: 1}
+  DrainedColor: {r: 1, g: 0, b: 0, a: 1}
+  BeamChargedWidth: 0.25
+  BeamDrainedWidth: 0
+  TargetingReticule: {fileID: 1884428081}
   textBox: {fileID: 707404100}
 --- !u!82 &1190934130
 AudioSource:
@@ -3231,6 +3302,21 @@ PrefabInstance:
       propertyPath: l
       value: 
       objectReference: {fileID: 1190934127}
+    - target: {fileID: 7129379462751546293, guid: a5493118129f3b14c8a2d22c2d093654,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990228288731886184, guid: a5493118129f3b14c8a2d22c2d093654,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990228288731886184, guid: a5493118129f3b14c8a2d22c2d093654,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5493118129f3b14c8a2d22c2d093654, type: 3}
 --- !u!1 &1242802376
@@ -3327,7 +3413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1311085756
 Transform:
   m_ObjectHideFlags: 0
@@ -5027,6 +5113,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871301444}
   m_CullTransparentMesh: 1
+--- !u!114 &1884428081 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 622656507232026036, guid: a5493118129f3b14c8a2d22c2d093654,
+    type: 3}
+  m_PrefabInstance: {fileID: 1208508635}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ea8b617c4c7734c9a3a9435514de45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1945789222
 GameObject:
   m_ObjectHideFlags: 0

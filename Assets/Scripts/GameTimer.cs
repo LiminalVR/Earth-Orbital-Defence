@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 
 using UnityEngine;
-
-using Liminal.Core.Fader;
-using Liminal.SDK.Core;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 /// <summary>
-/// GameTimer is used to control the length of the experience and display how long until the game ends.
+/// GameTimer is used to control the length of the experience and display how long until the game ends. It also tells <see cref="Fire"/> that users can fire/not fire.
 /// </summary>
 public class GameTimer
     : MonoBehaviour
@@ -17,14 +13,15 @@ public class GameTimer
     public float MaxGameLength;
     public float CurrentTime { get; private set; }
     public float CountdownTime => MaxGameLength - CurrentTime;
-
     public float AudioFadeSpeed;
 
     public Text TextPanel;
+    public Fire FireController;
 
     public void OnValidate()
     {
         Assert.IsNotNull(TextPanel, "TextPanel must not be null!");
+        Assert.IsNotNull(FireController, "FireController must not be null!");
     }
 
     // Start is called before the first frame update
@@ -35,6 +32,8 @@ public class GameTimer
 
     private IEnumerator TimerCoro()
     {
+        FireController.CanFire(true);
+
         while (CurrentTime < MaxGameLength)
         {
             CurrentTime += Time.deltaTime;

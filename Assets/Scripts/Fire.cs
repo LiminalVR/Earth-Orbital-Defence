@@ -5,13 +5,10 @@ using Liminal.SDK.VR;
 using Liminal.SDK.VR.Input;
 using Liminal.SDK.VR.Pointers;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 public class Fire : MonoBehaviour
 {
-    [Header("Events")]
-    [Tooltip("Raised when Button Pressed")]
-    public UnityEngine.Events.UnityEvent OnPressed = new UnityEngine.Events.UnityEvent();
- 
     public GameObject obj;
     public GameObject ExplosionEffect;
     public GameObject FireEffect;
@@ -21,13 +18,17 @@ public class Fire : MonoBehaviour
     private AudioSource Explosion;
 
     [Header("Laser Details")]
+    public GameObject CannonObject;
     public float MaxLaserCharge;
+    public AnimationCurve LaserChargeSpeed;
     public AnimationCurve LaserDrainSpeedCurve;
-    public float LaserChargeSpeed;
     public Color ChargedColor;
     public Color DrainedColor;
     public float BeamChargedWidth;
     public float BeamDrainedWidth;
+    public bool CanFire(bool state) 
+        => _canFire = state;
+    public Reticule TargetingReticule;
 
     private float _currentLaserCharge;
     private IVRInputDevice _inputDevice;
@@ -35,7 +36,7 @@ public class Fire : MonoBehaviour
     private LineRenderer _laserRend;
     private Material _laserMaterial;
     private float _normalisedCharge => _currentLaserCharge / MaxLaserCharge;
-
+    private bool _canFire;
     private GameObject[] Ex;
 
     private GameObject[] Gu;
@@ -43,6 +44,12 @@ public class Fire : MonoBehaviour
     public Text textBox;
     private int enemyCount = 0;
     ////////////////////////////
+
+    private void OnValidate()
+    {
+        Assert.IsNotNull(TargetingReticule, "TargetingReticule must not be null.");
+    }
+
     private void Start()
     {
         Gunfire = GetComponent<AudioSource>();
@@ -67,7 +74,6 @@ public class Fire : MonoBehaviour
         _inputDevice = VRDevice.Device.PrimaryInputDevice;
         _pointer = VRDevice.Device.PrimaryInputDevice.Pointer;
         _currentLaserCharge = MaxLaserCharge;
-
     }
 
     private void Update()
@@ -75,9 +81,9 @@ public class Fire : MonoBehaviour
         this.gameObject.transform.position = obj.transform.position;
         this.gameObject.transform.rotation = obj.transform.rotation;
 
-        //FireGun();
-
         FireLaser();
+
+        CannonObject.transform.rotation = _pointer.Transform.rotation;
     }
 
     private void FireLaser()
@@ -85,7 +91,7 @@ public class Fire : MonoBehaviour
         if (_pointer == null)
             return;
 
-        if (_inputDevice.GetButton(VRButton.One) && _currentLaserCharge > 0f)
+        if (_inputDevice.GetButton(VRButton.One) && _currentLaserCharge > 0f && _canFire)
         {
             _currentLaserCharge = Mathf.Clamp(_currentLaserCharge - (Time.deltaTime * LaserDrainSpeedCurve.Evaluate(_normalisedCharge)), 0, MaxLaserCharge);
 
@@ -100,15 +106,15 @@ public class Fire : MonoBehaviour
 
         if (!_inputDevice.GetButton(VRButton.One))
         {
-            _currentLaserCharge = Mathf.Clamp(_currentLaserCharge + (Time.deltaTime * LaserChargeSpeed), 0, MaxLaserCharge);
+            _currentLaserCharge = Mathf.Clamp(_currentLaserCharge + (Time.deltaTime * LaserChargeSpeed.Evaluate(_normalisedCharge)), 0, MaxLaserCharge);
         }
 
-        print(_currentLaserCharge);
+        TargetingReticule.EnergyFill.fillAmount = _normalisedCharge;
     }
 
     private void LaserRaycast()
     {
-        if (!Physics.SphereCast(_pointer.Transform.position, 2f, _pointer.Transform.forward, out var hit,
+        if (!Physics.SphereCast(_pointer.Transform.position, 10f, _pointer.Transform.forward, out var hit,
             Mathf.Infinity))
             return;
 
