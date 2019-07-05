@@ -97,11 +97,22 @@ public class Fire : MonoBehaviour
 
             LaserRaycast();
             UpdateLaserVisual();
+
+            if(!Gunfire.isPlaying)
+            {
+                Gunfire.Play();
+            }
+            
         }
         else
         {
             _laserRend.SetPosition(0, _pointer.Transform.position);
             _laserRend.SetPosition(1, _pointer.Transform.position);
+
+            if (Gunfire.isPlaying)
+            {
+                Gunfire.Stop();
+            }
         }
 
         if (!_inputDevice.GetButton(VRButton.One))
@@ -122,19 +133,17 @@ public class Fire : MonoBehaviour
 
         var killableObject = hit.collider.GetComponent<IKillable>();
 
-        Gunfire.Play();
+        if (killableObject == null)
+            return;
 
-        if (killableObject != null)
-        {
-            killableObject.Kill();
+        killableObject.Kill();
 
-            PlayerEffect(0, hit.transform.position);
-            Explosion.Play();
+        PlayerEffect(0, hit.transform.position);
+        Explosion.Play();
 
-            // Enemy Count ///////////////////////
-            enemyCount++;
-            textBox.text = enemyCount.ToString();
-        }
+        // Enemy Count ///////////////////////
+        enemyCount++;
+        textBox.text = enemyCount.ToString();
     }
 
     private void UpdateLaserVisual()
