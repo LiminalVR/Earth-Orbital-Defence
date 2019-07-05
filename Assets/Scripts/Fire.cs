@@ -22,7 +22,6 @@ public class Fire : MonoBehaviour
     public GameObject obj;
     public GameObject ExplosionEffect;
     public GameObject FireEffect;
-    public GameObject FireEffectSP;
     public GameObject earth;
     public GameObject longboi;
     GameObject lazer;
