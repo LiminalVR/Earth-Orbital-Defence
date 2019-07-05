@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnDistFromPlayer: {x: 0, y: 0, z: 15}
-  Timer: {fileID: 919191907}
+  Timer: {fileID: 0}
   Debri: {fileID: 8889528796676172953, guid: a8f40263bcb315b4a9612fb12c0777ab, type: 3}
   Rock: {fileID: 6518821337871650744, guid: cd01d2320841dd0478e9f7545296fd1e, type: 3}
   Alien: {fileID: 6081174868770802860, guid: 6870a305ec31a9e40a334443a4bb375e, type: 3}
@@ -2494,7 +2494,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 919191906}
-  - component: {fileID: 919191907}
   - component: {fileID: 919191909}
   - component: {fileID: 919191908}
   m_Layer: 0
@@ -2518,24 +2517,6 @@ Transform:
   m_Father: {fileID: 1311085756}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &919191907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919191905}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c02dcae4ab95b448b733fd4ff9b270f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerLable: {fileID: 1984911721}
-  time: 180
-  button: {fileID: 465749014}
-  start: 0
-  audi1: {fileID: 919191909}
-  audi2: {fileID: 919191908}
 --- !u!82 &919191908
 AudioSource:
   m_ObjectHideFlags: 0
