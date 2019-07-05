@@ -23,7 +23,7 @@ public class SpawnSystem
 
     public void StartSpawning()
     {
-        _timeSinceLastSpawn = (int) TimeBetweenWaves.Evaluate(Timer.GetTime());
+        _timeSinceLastSpawn = (int) TimeBetweenWaves.Evaluate(Timer.CurrentTime);
         Active = true;
     }
 
@@ -34,7 +34,7 @@ public class SpawnSystem
 
         _timeSinceLastSpawn += Time.deltaTime;
 
-        if (_timeSinceLastSpawn < (int)TimeBetweenWaves.Evaluate(Timer.GetTime()))
+        if (_timeSinceLastSpawn < (int)TimeBetweenWaves.Evaluate(Timer.CurrentTime))
             return;
 
         if (SpawnerRoutine != null)
@@ -48,7 +48,7 @@ public class SpawnSystem
     {
         var spawnedEnemies = 0;
 
-        while (spawnedEnemies < (int)WaveSpawnCount.Evaluate(Timer.GetTime()))
+        while (spawnedEnemies < (int)WaveSpawnCount.Evaluate(Timer.CurrentTime))
         {
             var pos = RandomCircle(EarthTransform.position, SpawnDistance);
 
