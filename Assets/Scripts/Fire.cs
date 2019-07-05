@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System;
 using System.Collections.Generic;
+using Liminal.SDK.VR;
+using Liminal.SDK.VR.Input;
+using Liminal.SDK.VR.Pointers;
 using UnityEngine;
 using UnityEngine.UI;
 public class Fire : MonoBehaviour
@@ -8,29 +11,30 @@ public class Fire : MonoBehaviour
     [Header("Events")]
     [Tooltip("Raised when Button Pressed")]
     public UnityEngine.Events.UnityEvent OnPressed = new UnityEngine.Events.UnityEvent();
-    #region MonoBehaviour
-    private void Update()
-    {
-        this.gameObject.transform.position = obj.transform.position;
-        this.gameObject.transform.rotation = obj.transform.rotation;
-        var pointer = Liminal.SDK.VR.VRDevice.Device.PrimaryInputDevice.Pointer;
-
-        //this.gameObject.transform.localPosition = obj.transform.localPosition;
-        FireGun();
-    }
-    #endregion
+ 
     public GameObject obj;
     public GameObject ExplosionEffect;
     public GameObject FireEffect;
     public GameObject earth;
-    public GameObject longboi;
-    GameObject lazer;
+    public LineRenderer LaserPrefab;
     private AudioSource Gunfire;
     private AudioSource Explosion;
 
-    float cooldown = 2.0f;
-    public bool fired;
-        
+    [Header("Laser Details")]
+    public float MaxLaserCharge;
+    public AnimationCurve LaserDrainSpeedCurve;
+    public float LaserChargeSpeed;
+    public Color ChargedColor;
+    public Color DrainedColor;
+    public float BeamChargedWidth;
+    public float BeamDrainedWidth;
+
+    private float _currentLaserCharge;
+    private IVRInputDevice _inputDevice;
+    private IVRPointer _pointer;
+    private LineRenderer _laserRend;
+    private Material _laserMaterial;
+    private float _normalisedCharge => _currentLaserCharge / MaxLaserCharge;
 
     private GameObject[] Ex;
 
@@ -56,94 +60,85 @@ public class Fire : MonoBehaviour
             Gu[i].SetActive(false);
         }
 
-        lazer = GameObject.Instantiate(longboi, new Vector3(0, 0, 0), new Quaternion());
-        lazer.SetActive(false);
+        _laserRend = Instantiate(LaserPrefab, new Vector3(0, 0, 0), new Quaternion());
+        _laserMaterial = _laserRend.material;
+        _laserMaterial.color = ChargedColor;
+
+        _inputDevice = VRDevice.Device.PrimaryInputDevice;
+        _pointer = VRDevice.Device.PrimaryInputDevice.Pointer;
+        _currentLaserCharge = MaxLaserCharge;
 
     }
 
-
-
-
-    public void FireGun()
+    private void Update()
     {
-        int layerMask = 1 << 8;
-        layerMask = ~layerMask;
-        RaycastHit hit;
-        var vrDevice = Liminal.SDK.VR.VRDevice.Device;
-        var pointer = vrDevice.PrimaryInputDevice.Pointer;
+        this.gameObject.transform.position = obj.transform.position;
+        this.gameObject.transform.rotation = obj.transform.rotation;
 
-        if (vrDevice == null)
-        {
-            Debug.Log("VRDEVICE WAS NULL");
-            return;
-        }
+        //FireGun();
 
-        var input = vrDevice.PrimaryInputDevice;
-        if (input == null)
-        {
-            Debug.Log("VR INPUT WAS NULL");
-            return;
-        }
-
-      
-        if (input.GetButtonDown(Liminal.SDK.VR.Input.VRButton.One))
-        {
-            ///////////////////
-            lazer.transform.position = pointer.Transform.position;
-            lazer.transform.rotation = pointer.Transform.rotation;
-            lazer.SetActive(true);
-            // Instantiate(longboi, pointer.Transform.position, pointer.Transform.rotation);
-            fired = true;
-
-            ///////////////////////
-
-            Debug.Log(string.Format("[InputHandler] Input detected: {0}", Liminal.SDK.VR.Input.VRButton.One), this);
-            if (Physics.SphereCast(pointer.Transform.position,2f, pointer.Transform.forward, out hit, Mathf.Infinity))
-            {
-                Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * hit.distance, Color.yellow, 40, false);
-                //PlayerEffect(1, FireEffectSP.transform.position);
-                var killableObject = hit.collider.GetComponent<IKillable>();
-
-                Gunfire.Play();
-
-                if (killableObject != null)
-                {
-                    killableObject.Kill();
-
-                    //hit.collider.gameObject.SetActive(false);
-                   // Instantiate(longboi, hit.transform.position, pointer.Transform.rotation);
-                    PlayerEffect(0, hit.transform.position);
-                    Explosion.Play();
-
-                    // Enemy Count ///////////////////////
-                    enemyCount++;
-                    textBox.text = enemyCount.ToString();
-                    print("WE got one!!!");
-                    //////////////////////////////////////
-                }
-                Debug.Log("Did Hit");
-            }
-            else
-            {
-                Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * 1000, Color.white, 40, false);
-                Debug.Log("Did not Hit");
-                lazer.SetActive(false);
-                fired = false;
-                //Instantiate(longboi, pointer.Transform.position, pointer.Transform.rotation);
-            }
-            
-            OnPressed.Invoke();
-            Invoke("CoolDown", .2f);
-        }
-
+        FireLaser();
     }
 
-    void CoolDown()
+    private void FireLaser()
     {
-      lazer.SetActive(false);
+        if (_pointer == null)
+            return;
+
+        if (_inputDevice.GetButton(VRButton.One) && _currentLaserCharge > 0f)
+        {
+            _currentLaserCharge = Mathf.Clamp(_currentLaserCharge - (Time.deltaTime * LaserDrainSpeedCurve.Evaluate(_normalisedCharge)), 0, MaxLaserCharge);
+
+            LaserRaycast();
+            UpdateLaserVisual();
+        }
+        else
+        {
+            _laserRend.SetPosition(0, _pointer.Transform.position);
+            _laserRend.SetPosition(1, _pointer.Transform.position);
+        }
+
+        if (!_inputDevice.GetButton(VRButton.One))
+        {
+            _currentLaserCharge = Mathf.Clamp(_currentLaserCharge + (Time.deltaTime * LaserChargeSpeed), 0, MaxLaserCharge);
+        }
+
+        print(_currentLaserCharge);
     }
 
+    private void LaserRaycast()
+    {
+        if (!Physics.SphereCast(_pointer.Transform.position, 2f, _pointer.Transform.forward, out var hit,
+            Mathf.Infinity))
+            return;
 
+        _laserRend.SetPosition(1, hit.point);
+
+        var killableObject = hit.collider.GetComponent<IKillable>();
+
+        Gunfire.Play();
+
+        if (killableObject != null)
+        {
+            killableObject.Kill();
+
+            PlayerEffect(0, hit.transform.position);
+            Explosion.Play();
+
+            // Enemy Count ///////////////////////
+            enemyCount++;
+            textBox.text = enemyCount.ToString();
+        }
+    }
+
+    private void UpdateLaserVisual()
+    {
+        if (_laserMaterial == null)
+            return;
+
+        _laserMaterial.color = Color.Lerp(DrainedColor, ChargedColor, _normalisedCharge);
+        _laserRend.widthMultiplier = Mathf.Lerp(BeamDrainedWidth, BeamChargedWidth, _normalisedCharge);
+    }
 
     private void PlayerEffect(int effect, Vector3 pos)
     {
