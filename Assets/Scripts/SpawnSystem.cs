@@ -10,21 +10,20 @@ using Random = UnityEngine.Random;
 public class SpawnSystem 
     : MonoBehaviour
 {
+    public GameTimer Timer;
     public List<WeightedEnemy> HostileObjects;
     public AnimationCurve WaveSpawnCount;
     public AnimationCurve TimeBetweenWaves;
     public Transform EarthTransform;
     public float SpawnDistance;
-    public float MaxExperienceLength;
     public bool Active;
 
-    private float _currentTime;
     private float _timeSinceLastSpawn;
     private Coroutine SpawnerRoutine;
 
     public void StartSpawning()
     {
-        _timeSinceLastSpawn = (int) TimeBetweenWaves.Evaluate(_currentTime);
+        _timeSinceLastSpawn = (int) TimeBetweenWaves.Evaluate(Timer.GetTime());
         Active = true;
     }
 
@@ -33,10 +32,9 @@ public class SpawnSystem
         if(!Active)
             return;
 
-        _currentTime += Time.deltaTime;
         _timeSinceLastSpawn += Time.deltaTime;
 
-        if (_timeSinceLastSpawn < (int)TimeBetweenWaves.Evaluate(_currentTime))
+        if (_timeSinceLastSpawn < (int)TimeBetweenWaves.Evaluate(Timer.GetTime()))
             return;
 
         if (SpawnerRoutine != null)
@@ -50,7 +48,7 @@ public class SpawnSystem
     {
         var spawnedEnemies = 0;
 
-        while (spawnedEnemies < (int)WaveSpawnCount.Evaluate(_currentTime))
+        while (spawnedEnemies < (int)WaveSpawnCount.Evaluate(Timer.GetTime()))
         {
             var pos = RandomCircle(EarthTransform.position, SpawnDistance);
 
