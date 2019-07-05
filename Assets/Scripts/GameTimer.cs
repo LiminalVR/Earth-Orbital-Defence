@@ -18,6 +18,8 @@ public class GameTimer
     public float CurrentTime { get; private set; }
     public float CountdownTime => MaxGameLength - CurrentTime;
 
+    public float AudioFadeSpeed;
+
     public Text TextPanel;
 
     public void OnValidate()
@@ -28,28 +30,25 @@ public class GameTimer
     // Start is called before the first frame update
     public void StartTimer()
     {
-        StartCoroutine(CountdownCoro());
+        StartCoroutine(TimerCoro());
     }
 
-   private IEnumerator CountdownCoro()
-   {
-       while (CurrentTime < MaxGameLength)
-       {
-           CurrentTime += Time.deltaTime;
+    private IEnumerator TimerCoro()
+    {
+        while (CurrentTime < MaxGameLength)
+        {
+            CurrentTime += Time.deltaTime;
 
-           var minutes = Mathf.Floor(CountdownTime / 60).ToString("00");
-           var seconds = (CountdownTime % 60).ToString("00");
+            var minutes = Mathf.Floor(CountdownTime / 60).ToString("00");
+            var seconds = (CountdownTime % 60).ToString("00");
 
-           TextPanel.text = $"{minutes}:{seconds}";
+            TextPanel.text = $"{minutes}:{seconds}";
 
-           yield return new WaitForEndOfFrame();
-       }
+            yield return new WaitForEndOfFrame();
+        }
 
-       TextPanel.text = $"00:00";
-       ScreenFader.Instance.FadeToBlack(2);
+        TextPanel.text = $"00:00";
 
-       yield return ScreenFader.Instance.WaitUntilFadeComplete();
-
-       ExperienceApp.End();
+        yield return EndExperience.EndExperienceCoro(AudioFadeSpeed);
     }
 }

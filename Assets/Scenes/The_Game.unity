@@ -2096,6 +2096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxGameLength: 180
+  AudioFadeSpeed: 1
   TextPanel: {fileID: 1984911721}
 --- !u!4 &661571355
 Transform:
