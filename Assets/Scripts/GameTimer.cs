@@ -14,9 +14,13 @@ public class GameTimer
     public float CurrentTime { get; private set; }
     public float CountdownTime => MaxGameLength - CurrentTime;
     public float AudioFadeSpeed;
+    public bool SetActive(bool state)
+        => _timerActive = state;
 
     public Text TextPanel;
     public Fire FireController;
+
+    private bool _timerActive;
 
     public void OnValidate()
     {
@@ -24,9 +28,9 @@ public class GameTimer
         Assert.IsNotNull(FireController, "FireController must not be null!");
     }
 
-    // Start is called before the first frame update
     public void StartTimer()
     {
+        SetActive(true);
         StartCoroutine(TimerCoro());
     }
 
@@ -36,6 +40,11 @@ public class GameTimer
 
         while (CurrentTime < MaxGameLength)
         {
+            while (!_timerActive)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
             CurrentTime += Time.deltaTime;
 
             var minutes = Mathf.Floor(CountdownTime / 60).ToString("00");
