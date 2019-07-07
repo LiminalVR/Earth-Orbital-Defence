@@ -2992,7 +2992,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 15
+      value: 10
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3001,7 +3001,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 20
+      value: 15
       inSlope: 2
       outSlope: 2
       tangentMode: 0
@@ -3014,8 +3014,10 @@ MonoBehaviour:
   ChargedColor: {r: 1, g: 0.7530315, b: 0, a: 1}
   DrainedColor: {r: 1, g: 0, b: 0, a: 1}
   BeamChargedWidth: 0.25
-  BeamDrainedWidth: 0
+  BeamDrainedWidth: 0.05
+  LaserCooldownTime: 0.25
   TargetingReticule: {fileID: 1884428081}
+  ReticuleFillSpeed: 2
   textBox: {fileID: 707404100}
 --- !u!82 &1190934130
 AudioSource:
