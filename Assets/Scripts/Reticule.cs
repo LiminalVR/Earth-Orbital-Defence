@@ -1,14 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Reticule : MonoBehaviour
 {
     public Transform Crosshairs;
-    public Image EnergyFill;
     public Button button;
+    public Image EnergyFill;
+    public float FillSpeed;
 
+    private float _targetFillValue;
     private bool start = false;
     private void Start()
     {
@@ -42,6 +42,16 @@ public class Reticule : MonoBehaviour
             return;
         }
     }
+
+     private void Update()
+     {
+         EnergyFill.fillAmount = Mathf.MoveTowards(EnergyFill.fillAmount, _targetFillValue, FillSpeed * Time.deltaTime);
+     }
+
+     public void SetTargetFillAmount(float targetValue)
+     {
+         _targetFillValue = targetValue;
+     }
 }   
 
 
