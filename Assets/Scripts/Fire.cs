@@ -26,9 +26,11 @@ public class Fire : MonoBehaviour
     public Color DrainedColor;
     public float BeamChargedWidth;
     public float BeamDrainedWidth;
+    public float LaserCooldownTime;
     public bool CanFire(bool state) 
         => _canFire = state;
     public Reticule TargetingReticule;
+    public float ReticuleFillSpeed;
 
     private float _currentLaserCharge;
     private IVRInputDevice _inputDevice;
@@ -37,9 +39,10 @@ public class Fire : MonoBehaviour
     private Material _laserMaterial;
     private float _normalisedCharge => _currentLaserCharge / MaxLaserCharge;
     private bool _canFire;
+    private Coroutine EnergyRefillRoutine;
     private GameObject[] Ex;
-
     private GameObject[] Gu;
+
     // Enemy Count //////////////
     public Text textBox;
     private int enemyCount = 0;
@@ -73,7 +76,9 @@ public class Fire : MonoBehaviour
 
         _inputDevice = VRDevice.Device.PrimaryInputDevice;
         _pointer = VRDevice.Device.PrimaryInputDevice.Pointer;
+
         _currentLaserCharge = MaxLaserCharge;
+        TargetingReticule.FillSpeed = ReticuleFillSpeed;
     }
 
     private void Update()
@@ -93,7 +98,8 @@ public class Fire : MonoBehaviour
 
         if (_inputDevice.GetButton(VRButton.One) && _currentLaserCharge > 0f && _canFire)
         {
-            _currentLaserCharge = Mathf.Clamp(_currentLaserCharge - (Time.deltaTime * LaserDrainSpeedCurve.Evaluate(_normalisedCharge)), 0, MaxLaserCharge);
+            _canFire = false;
+            _currentLaserCharge = Mathf.Clamp(_currentLaserCharge - (LaserDrainSpeedCurve.Evaluate(_normalisedCharge)), 0, MaxLaserCharge);
 
             LaserRaycast();
             UpdateLaserVisual();
@@ -102,7 +108,8 @@ public class Fire : MonoBehaviour
             {
                 Gunfire.Play();
             }
-            
+
+            StartCoroutine(FireCooldownCoro(LaserCooldownTime));
         }
         else
         {
@@ -119,8 +126,33 @@ public class Fire : MonoBehaviour
         {
             _currentLaserCharge = Mathf.Clamp(_currentLaserCharge + (Time.deltaTime * LaserChargeSpeed.Evaluate(_normalisedCharge)), 0, MaxLaserCharge);
         }
+        else if (!_inputDevice.GetButton(VRButton.One) || _currentLaserCharge <= 0f)
+        {
+            if (EnergyRefillRoutine != null)
+                return;
 
-        TargetingReticule.EnergyFill.fillAmount = _normalisedCharge;
+            EnergyRefillRoutine = StartCoroutine(FreeEnergyCoro(LaserCooldownTime*2));
+        }
+        else
+        {
+            if (EnergyRefillRoutine != null)
+                StopCoroutine(EnergyRefillRoutine);
+        }
+
+        TargetingReticule.SetTargetFillAmount(_normalisedCharge);
+    }
+
+    private IEnumerator FireCooldownCoro(float cooldownTime)
+    {
+        yield return new WaitForSeconds(cooldownTime);
+        CanFire(true);
+    }
+
+    private IEnumerator FreeEnergyCoro(float cooldownTime)
+    {
+        yield return new WaitForSeconds(cooldownTime);
+        _currentLaserCharge += LaserDrainSpeedCurve.Evaluate(_normalisedCharge);
+        EnergyRefillRoutine = null;
     }
 
     private void LaserRaycast()
