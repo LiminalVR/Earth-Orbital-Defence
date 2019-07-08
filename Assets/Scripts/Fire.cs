@@ -112,16 +112,6 @@ public class Fire : MonoBehaviour
 
             StartCoroutine(FireCooldownCoro(LaserCooldownTime));
         }
-        else
-        {
-            _laserRend.SetPosition(0, _pointer.Transform.position);
-            _laserRend.SetPosition(1, _pointer.Transform.position);
-
-            if (Gunfire.isPlaying)
-            {
-                Gunfire.Stop();
-            }
-        }
 
         if (!_inputDevice.GetButton(VRButton.One))
         {
@@ -145,7 +135,12 @@ public class Fire : MonoBehaviour
 
     private IEnumerator FireCooldownCoro(float cooldownTime)
     {
-        yield return new WaitForSeconds(cooldownTime);
+        yield return new WaitForSeconds(cooldownTime / 2f);
+
+        _laserRend.SetPosition(0, _pointer.Transform.position);
+        _laserRend.SetPosition(1, _pointer.Transform.position);
+        yield return new WaitForSeconds(cooldownTime / 2f);
+
         CanFire(true);
     }
 
