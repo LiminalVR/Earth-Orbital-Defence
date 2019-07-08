@@ -27,6 +27,7 @@ public class Fire : MonoBehaviour
     public float BeamChargedWidth;
     public float BeamDrainedWidth;
     public float LaserCooldownTime;
+    public float LaserRadius;
     public bool CanFire(bool state) 
         => _canFire = state;
     public Reticule TargetingReticule;
@@ -157,7 +158,7 @@ public class Fire : MonoBehaviour
 
     private void LaserRaycast()
     {
-        if (!Physics.SphereCast(_pointer.Transform.position, 10f, _pointer.Transform.forward, out var hit,
+        if (!Physics.SphereCast(_pointer.Transform.position, LaserRadius, _pointer.Transform.forward, out var hit,
             Mathf.Infinity))
             return;
 

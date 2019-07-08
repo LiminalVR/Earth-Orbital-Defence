@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 public class SpawnSystem 
     : MonoBehaviour
 {
-    public GameTimer Timer;
+    public AppController Timer;
     public List<WeightedEnemy> HostileObjects;
     public AnimationCurve WaveSpawnCount;
     public AnimationCurve TimeBetweenWaves;

@@ -5,9 +5,9 @@ using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 /// <summary>
-/// GameTimer is used to control the length of the experience and display how long until the game ends. It also tells <see cref="Fire"/> that users can fire/not fire.
+/// AppController is used to control the length of the experience and display how long until the game ends. It also tells <see cref="Fire"/> that users can fire/not fire.
 /// </summary>
-public class GameTimer
+public class AppController
     : MonoBehaviour
 {
     public float MaxGameLength;

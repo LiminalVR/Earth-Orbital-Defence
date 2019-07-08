@@ -247,18 +247,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4649786932154586489}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &109878638 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70,
-    type: 3}
-  m_PrefabInstance: {fileID: 4649786932154586489}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109878636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a226d9bf96bc52045818695b2da76cd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &161771787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -467,70 +455,6 @@ Transform:
   m_Father: {fileID: 1311085756}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &170644740
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 170644741}
-  - component: {fileID: 170644742}
-  m_Layer: 0
-  m_Name: RespawnEnemys System
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &170644741
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170644740}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 60.7, y: -1012.5, z: 338.21}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1311085756}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &170644742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170644740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2321267f8dd27c74c91c1dabdb0ac451, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpawnDistFromPlayer: {x: 0, y: 0, z: 15}
-  Timer: {fileID: 0}
-  Debri: {fileID: 8889528796676172953, guid: a8f40263bcb315b4a9612fb12c0777ab, type: 3}
-  Rock: {fileID: 6518821337871650744, guid: cd01d2320841dd0478e9f7545296fd1e, type: 3}
-  Alien: {fileID: 6081174868770802860, guid: 6870a305ec31a9e40a334443a4bb375e, type: 3}
-  health: {fileID: 109878638}
-  button1: {fileID: 465749014}
-  button2: {fileID: 1716161989}
-  MAXNUMOFDEBRI: 10
-  MAXNUMOFROCK: 5
-  MAXNUMOFGREENBOI: 1
-  StartingTime: 175
-  AmountDebriAddedAfterTime: 1
-  AmountRockAddedAfterTime: 1
-  AmountAlienAddedAfterTime: 1
-  startingAmtDebri: 0
-  startingAmtRock: 0
-  startingAmtBoi: 0
-  timeToWaitTillSpawnIncreaseDebri: 10
-  timeToWaitTillSpawnIncreaseRock: 20
-  timeToWaitTillSpawnIncreaseAlien: 30
 --- !u!114 &191865273 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7822454759835836647, guid: d2509eff19b492b4488458734308b596,
@@ -2088,7 +2012,7 @@ GameObject:
   - component: {fileID: 661571355}
   - component: {fileID: 661571354}
   m_Layer: 0
-  m_Name: GameTimer
+  m_Name: AppController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2528,7 +2452,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1311085756}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &919191908
 AudioSource:
@@ -2967,15 +2891,6 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.27
-      value: 35
-      inSlope: -32.698956
-      outSlope: -32.698956
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
       value: 25
       inSlope: 0.01759422
@@ -2992,7 +2907,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 10
+      value: 5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3001,7 +2916,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 15
+      value: 10
       inSlope: 2
       outSlope: 2
       tangentMode: 0
@@ -3016,8 +2931,9 @@ MonoBehaviour:
   BeamChargedWidth: 0.25
   BeamDrainedWidth: 0.05
   LaserCooldownTime: 0.25
+  LaserRadius: 15
   TargetingReticule: {fileID: 1884428081}
-  ReticuleFillSpeed: 2
+  ReticuleFillSpeed: 3
   textBox: {fileID: 707404100}
 --- !u!82 &1190934130
 AudioSource:
@@ -3431,7 +3347,6 @@ Transform:
   - {fileID: 87585429}
   - {fileID: 170076735}
   - {fileID: 1190934128}
-  - {fileID: 170644741}
   - {fileID: 919191906}
   - {fileID: 1945789223}
   m_Father: {fileID: 2075410028}
@@ -5170,7 +5085,7 @@ Transform:
   - {fileID: 1711318048}
   - {fileID: 280332314}
   m_Father: {fileID: 1311085756}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1974936726 stripped
 Camera:
