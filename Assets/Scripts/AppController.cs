@@ -16,9 +16,11 @@ public class AppController
     public float AudioFadeSpeed;
     public bool SetActive(bool state)
         => _timerActive = state;
-
+    public float ClearingWallGrowthSpeed;
+    public Transform Earth;
     public Text TextPanel;
     public Fire FireController;
+    public SpawnSystem SpawnSystem;
 
     private bool _timerActive;
 
@@ -26,6 +28,7 @@ public class AppController
     {
         Assert.IsNotNull(TextPanel, "TextPanel must not be null!");
         Assert.IsNotNull(FireController, "FireController must not be null!");
+        Assert.IsNotNull(Earth, "Earth must not be null!");
     }
 
     public void StartTimer()
@@ -55,8 +58,35 @@ public class AppController
             yield return new WaitForEndOfFrame();
         }
 
+        SpawnSystem.Active = false;
+        FireController.CanFire(false);
+
         TextPanel.text = $"00:00";
 
+        yield return ClearEnemiesCoro();
+
         yield return EndExperience.EndExperienceCoro(AudioFadeSpeed);
+    }
+
+
+    private IEnumerator ClearEnemiesCoro()
+    {
+
+        var clearingWall = new GameObject("Clearing Wall");
+
+        clearingWall.transform.SetParent(Earth);
+        clearingWall.transform.localPosition = Vector3.zero;
+        clearingWall.transform.SetParent(null);
+
+        clearingWall.AddComponent<SphereCollider>();
+
+        var elapsedTime = 0f;
+
+        while (elapsedTime < 5f)
+        {
+            clearingWall.transform.localScale += ClearingWallGrowthSpeed * Time.deltaTime * new Vector3(1, 1, 1);
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
     }
 }
