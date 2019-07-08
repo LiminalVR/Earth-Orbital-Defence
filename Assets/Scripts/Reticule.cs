@@ -14,6 +14,7 @@ public class Reticule : MonoBehaviour
     {
         button.onClick.AddListener(StartG);
         Crosshairs.gameObject.SetActive(false);
+        EnergyFill.fillAmount = 1;
     }
 
 

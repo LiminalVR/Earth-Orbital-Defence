@@ -63,6 +63,6 @@ public class Enemy
     {
         var explosion =  Instantiate(collisionExplossion, this.transform.position, this.transform.rotation);
         explosion.Play();
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }
