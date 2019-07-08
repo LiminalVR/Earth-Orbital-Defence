@@ -56,14 +56,13 @@ public class Enemy
 
     private void OnTriggerEnter(Collider other)
     {
-        Instantiate(collisionExplossion, this.transform.position, this.transform.rotation);
-       // collisionExplossion.transform.position = this.gameObject.transform.position;
-        collisionExplossion.Play();
-        this.gameObject.SetActive(false);
+        Kill();
     }
 
     public void Kill()
     {
+        var explosion =  Instantiate(collisionExplossion, this.transform.position, this.transform.rotation);
+        explosion.Play();
         gameObject.SetActive(false);
     }
 }
