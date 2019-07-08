@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 /// <summary>
-/// AppController is used to control the length of the experience and display how long until the game ends. It also tells <see cref="Fire"/> that users can fire/not fire.
+/// AppController is used to control the length of the experience and display how long until the game ends. It also tells <see cref="Fire"/> that users can fire/not fire, <see cref="SpawnSystem"/> to stop spawning, and <see cref="Reticule"/> to hide the crosshairs from view.
 /// </summary>
 public class AppController
     : MonoBehaviour
@@ -21,6 +21,7 @@ public class AppController
     public Text TextPanel;
     public Fire FireController;
     public SpawnSystem SpawnSystem;
+    public Reticule Crosshairs;
 
     private bool _timerActive;
 
@@ -29,6 +30,7 @@ public class AppController
         Assert.IsNotNull(TextPanel, "TextPanel must not be null!");
         Assert.IsNotNull(FireController, "FireController must not be null!");
         Assert.IsNotNull(Earth, "Earth must not be null!");
+        Assert.IsNotNull(Crosshairs, "Crosshairs must not be null!");
     }
 
     public void StartTimer()
@@ -60,6 +62,7 @@ public class AppController
 
         SpawnSystem.Active = false;
         FireController.CanFire(false);
+        Crosshairs.SetCrosshairVisibility(false);
 
         TextPanel.text = $"00:00";
 

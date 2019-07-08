@@ -2030,13 +2030,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639761a423101774fbc40989cec293c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxGameLength: 5
+  MaxGameLength: 180
   AudioFadeSpeed: 1
   ClearingWallGrowthSpeed: 250
   Earth: {fileID: 4649786932154586490}
   TextPanel: {fileID: 1984911721}
   FireController: {fileID: 1190934129}
   SpawnSystem: {fileID: 87585430}
+  Crosshairs: {fileID: 1884428081}
 --- !u!4 &661571355
 Transform:
   m_ObjectHideFlags: 0
