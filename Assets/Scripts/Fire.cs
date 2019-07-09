@@ -6,6 +6,7 @@ using Liminal.SDK.VR.Input;
 using Liminal.SDK.VR.Pointers;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 public class Fire : MonoBehaviour
 {
@@ -19,17 +20,7 @@ public class Fire : MonoBehaviour
 
     [Header("Laser Details")]
     public GameObject CannonObject;
-    public float MaxLaserCharge;
-    public AnimationCurve LaserChargeSpeed;
-    public AnimationCurve LaserDrainSpeedCurve;
-    public Color ChargedColor;
-    public Color DrainedColor;
-    public float BeamChargedWidth;
-    public float BeamDrainedWidth;
-    public float LaserCooldownTime;
-    public float LaserRadius;
-    public bool CanFire(bool state) 
-        => _canFire = state;
+    public LaserDetails PlayerLaserDetails;
     public Reticule TargetingReticule;
     public float ReticuleFillSpeed;
     public int GetShotsFired() 
@@ -37,12 +28,8 @@ public class Fire : MonoBehaviour
     public int GetEnemiesKilled()
         => _enemiesKilled;
 
-    private float _currentLaserCharge;
-    private float _normalisedCharge => _currentLaserCharge / MaxLaserCharge;
     private int _shotsFired;
     private int _enemiesKilled;
-    private bool _canFire;
-
     private IVRInputDevice _inputDevice;
     private IVRPointer _pointer;
     private LineRenderer _laserRend;
@@ -80,12 +67,12 @@ public class Fire : MonoBehaviour
 
         _laserRend = Instantiate(LaserPrefab, new Vector3(0, 0, 0), new Quaternion());
         _laserMaterial = _laserRend.material;
-        _laserMaterial.color = ChargedColor;
+        _laserMaterial.color = PlayerLaserDetails.ChargedColor;
 
         _inputDevice = VRDevice.Device.PrimaryInputDevice;
         _pointer = VRDevice.Device.PrimaryInputDevice.Pointer;
 
-        _currentLaserCharge = MaxLaserCharge;
+        PlayerLaserDetails.CurrentLaserCharge = PlayerLaserDetails.MaxLaserCharge;
         TargetingReticule.FillSpeed = ReticuleFillSpeed;
     }
 
@@ -104,10 +91,10 @@ public class Fire : MonoBehaviour
         if (_pointer == null)
             return;
 
-        if (_inputDevice.GetButton(VRButton.One) && _currentLaserCharge > 0f && _canFire)
+        if (_inputDevice.GetButton(VRButton.One) && PlayerLaserDetails.CurrentLaserCharge > 0f && PlayerLaserDetails.CanFire)
         {
-            _canFire = false;
-            _currentLaserCharge = Mathf.Clamp(_currentLaserCharge - (LaserDrainSpeedCurve.Evaluate(_normalisedCharge)), 0, MaxLaserCharge);
+            PlayerLaserDetails.CanFire = false;
+            PlayerLaserDetails.DrainEnergy();
 
             LaserRaycast();
             UpdateLaserVisual();
@@ -117,21 +104,21 @@ public class Fire : MonoBehaviour
                 Gunfire.Play();
             }
 
-            StartCoroutine(FireCooldownCoro(LaserCooldownTime));
+            StartCoroutine(PlayerLaserDetails.FireCooldownCoro(_laserRend, _pointer.Transform.position));
 
             _shotsFired++;
         }
 
         if (!_inputDevice.GetButton(VRButton.One))
         {
-            _currentLaserCharge = Mathf.Clamp(_currentLaserCharge + (Time.deltaTime * LaserChargeSpeed.Evaluate(_normalisedCharge)), 0, MaxLaserCharge);
+            PlayerLaserDetails.ChargeLaser();
         }
-        else if (!_inputDevice.GetButton(VRButton.One) || _currentLaserCharge <= 0f)
+        else if (!_inputDevice.GetButton(VRButton.One) || PlayerLaserDetails.CurrentLaserCharge <= 0f)
         {
             if (EnergyRefillRoutine != null)
                 return;
 
-            EnergyRefillRoutine = StartCoroutine(FreeEnergyCoro(LaserCooldownTime*2));
+            EnergyRefillRoutine = StartCoroutine(FreeEnergyCoro(PlayerLaserDetails.LaserCooldownTime * 2));
         }
         else
         {
@@ -139,30 +126,19 @@ public class Fire : MonoBehaviour
                 StopCoroutine(EnergyRefillRoutine);
         }
 
-        TargetingReticule.SetTargetFillAmount(_normalisedCharge);
-    }
-
-    private IEnumerator FireCooldownCoro(float cooldownTime)
-    {
-        yield return new WaitForSeconds(cooldownTime / 2f);
-
-        _laserRend.SetPosition(0, _pointer.Transform.position);
-        _laserRend.SetPosition(1, _pointer.Transform.position);
-        yield return new WaitForSeconds(cooldownTime / 2f);
-
-        CanFire(true);
+        TargetingReticule.SetTargetFillAmount(PlayerLaserDetails.NormalisedCharge);
     }
 
     private IEnumerator FreeEnergyCoro(float cooldownTime)
     {
         yield return new WaitForSeconds(cooldownTime);
-        _currentLaserCharge += LaserDrainSpeedCurve.Evaluate(_normalisedCharge);
+        PlayerLaserDetails.CurrentLaserCharge += PlayerLaserDetails.LaserDrainSpeedCurve.Evaluate(PlayerLaserDetails.NormalisedCharge);
         EnergyRefillRoutine = null;
     }
 
     private void LaserRaycast()
     {
-        if (!Physics.SphereCast(_pointer.Transform.position, LaserRadius, _pointer.Transform.forward, out var hit,
+        if (!Physics.SphereCast(_pointer.Transform.position, PlayerLaserDetails.LaserRadius, _pointer.Transform.forward, out var hit,
             Mathf.Infinity))
             return;
 
@@ -190,8 +166,8 @@ public class Fire : MonoBehaviour
         if (_laserMaterial == null)
             return;
 
-        _laserMaterial.color = Color.Lerp(DrainedColor, ChargedColor, _normalisedCharge);
-        _laserRend.widthMultiplier = Mathf.Lerp(BeamDrainedWidth, BeamChargedWidth, _normalisedCharge);
+        _laserMaterial.color = Color.Lerp(PlayerLaserDetails.DrainedColor, PlayerLaserDetails.ChargedColor, PlayerLaserDetails.NormalisedCharge);
+        _laserRend.widthMultiplier = Mathf.Lerp(PlayerLaserDetails.BeamDrainedWidth, PlayerLaserDetails.BeamChargedWidth, PlayerLaserDetails.NormalisedCharge);
     }
 
     private void PlayerEffect(int effect, Vector3 pos)

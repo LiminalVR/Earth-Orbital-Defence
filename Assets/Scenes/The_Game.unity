@@ -3120,61 +3120,64 @@ MonoBehaviour:
   LaserPrefab: {fileID: 8199528834344135941, guid: 48d9983f48d58a74d933aac350811a94,
     type: 3}
   CannonObject: {fileID: 683383145}
-  MaxLaserCharge: 100
-  LaserChargeSpeed:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 40
-      inSlope: -2.4613662
-      outSlope: -2.4613662
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 25
-      inSlope: 0.01759422
-      outSlope: 0.01759422
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  LaserDrainSpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 5
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 10
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ChargedColor: {r: 1, g: 0.7530315, b: 0, a: 1}
-  DrainedColor: {r: 1, g: 0, b: 0, a: 1}
-  BeamChargedWidth: 0.25
-  BeamDrainedWidth: 0.05
-  LaserCooldownTime: 0.25
-  LaserRadius: 15
+  PlayerLaser:
+    MaxLaserCharge: 100
+    LaserChargeSpeed:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 40
+        inSlope: -2.4613662
+        outSlope: -2.4613662
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 25
+        inSlope: 0.01759422
+        outSlope: 0.01759422
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    LaserDrainSpeedCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 10
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ChargedColor: {r: 1, g: 0.7530315, b: 0, a: 1}
+    DrainedColor: {r: 1, g: 0, b: 0, a: 1}
+    BeamChargedWidth: 0.25
+    BeamDrainedWidth: 0.05
+    LaserCooldownTime: 0.25
+    LaserRadius: 15
+    CurrentLaserCharge: 0
+    CanFire: 1
   TargetingReticule: {fileID: 1884428081}
   ReticuleFillSpeed: 0.25
   textBox: {fileID: 707404100}
@@ -6455,6 +6458,10 @@ PrefabInstance:
       propertyPath: fog
       value: 
       objectReference: {fileID: 280332313}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: AppController
+      value: 
+      objectReference: {fileID: 661571354}
     - target: {fileID: 5450199488673983800, guid: c52c1d74deee8b641a5dca453930ed70,
         type: 3}
       propertyPath: m_LocalPosition.x
