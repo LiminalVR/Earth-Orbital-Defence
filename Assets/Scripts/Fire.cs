@@ -102,7 +102,7 @@ public class Fire : MonoBehaviour
         {
             playerLaser.ChargeLaser();
         }
-        else if (_inputDevice.GetButton(VRButton.One) && playerLaser.CurrentLaserCharge <= 0f)
+        else if (playerLaser.CurrentLaserCharge <= 1f)
         {
             if (EnergyRefillRoutine != null)
                 return;
@@ -120,7 +120,7 @@ public class Fire : MonoBehaviour
 
     private IEnumerator FreeEnergyCoro(float cooldownTime)
     {
-        yield return new WaitForSeconds(cooldownTime);
+        yield return new WaitForSeconds(cooldownTime * 2f);
 
         playerLaser.CurrentLaserCharge += playerLaser.LaserDrainSpeedCurve.Evaluate(playerLaser.NormalisedCharge);
         EnergyRefillRoutine = null;

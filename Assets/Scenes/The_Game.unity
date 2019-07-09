@@ -2912,7 +2912,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1047427982
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3118,9 +3118,15 @@ MonoBehaviour:
   FireEffect: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c, type: 3}
   earth: {fileID: 109878636}
   CannonObject: {fileID: 683383145}
-  PlayerLaserDetails:
+  playerLaser:
     LaserPrefab: {fileID: 8199528834344135941, guid: 48d9983f48d58a74d933aac350811a94,
       type: 3}
+    LaserRend: {fileID: 0}
+    BeamChargedWidth: 0.25
+    BeamDrainedWidth: 0.05
+    LaserCooldownTime: 0.1
+    LaserRadius: 15
+    CurrentLaserCharge: 0
     MaxLaserCharge: 100
     LaserChargeSpeed:
       serializedVersion: 2
@@ -3151,7 +3157,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 5
+        value: 2.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -3160,7 +3166,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 10
+        value: 5
         inSlope: 2
         outSlope: 2
         tangentMode: 0
@@ -3172,15 +3178,9 @@ MonoBehaviour:
       m_RotationOrder: 4
     ChargedColor: {r: 1, g: 0.7530315, b: 0, a: 1}
     DrainedColor: {r: 1, g: 0, b: 0, a: 1}
-    BeamChargedWidth: 0.25
-    BeamDrainedWidth: 0.05
-    LaserCooldownTime: 0.25
-    LaserRadius: 15
-    CurrentLaserCharge: 0
     CanFire: 1
   TargetingReticule: {fileID: 1884428081}
   ReticuleFillSpeed: 0.25
-  textBox: {fileID: 707404100}
 --- !u!82 &1190934130
 AudioSource:
   m_ObjectHideFlags: 0
