@@ -10,6 +10,7 @@ public class Reticule : MonoBehaviour
 
     private float _targetFillValue;
     private bool start = false;
+
     private void Start()
     {
         button.onClick.AddListener(StartG);
@@ -37,6 +38,7 @@ public class Reticule : MonoBehaviour
             SetCrosshairVisibility(true);
             return;
         }
+
         if (start == true)
         {
             start = false;
@@ -58,7 +60,4 @@ public class Reticule : MonoBehaviour
     {
         Crosshairs.gameObject.SetActive(state);
     }
-}   
-
-
-
+}

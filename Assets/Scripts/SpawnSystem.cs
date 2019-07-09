@@ -14,11 +14,9 @@ public class SpawnSystem
     public List<WeightedEnemy> HostileObjects;
     public AnimationCurve WaveSpawnCount;
     public AnimationCurve TimeBetweenWaves;
-
     [Space]
     public List<Enemy> ActiveEnemies = new List<Enemy>();
     [Space]
-
     public Transform EarthTransform;
     public float SpawnDistance;
     public bool Active;
@@ -42,7 +40,7 @@ public class SpawnSystem
 
         _timeSinceLastSpawn += Time.deltaTime;
 
-        if (_timeSinceLastSpawn < (int)TimeBetweenWaves.Evaluate(Timer.CurrentTime))
+        if (_timeSinceLastSpawn < (int) TimeBetweenWaves.Evaluate(Timer.CurrentTime))
             return;
 
         if (SpawnerRoutine != null)
@@ -76,7 +74,7 @@ public class SpawnSystem
         SpawnerRoutine = null;
     }
 
-    public Enemy GetRandomWeightedPrefab(List<WeightedEnemy> weightedEnemies)
+    private Enemy GetRandomWeightedPrefab(List<WeightedEnemy> weightedEnemies)
     {
         var weightSum = 0;
 
@@ -101,7 +99,7 @@ public class SpawnSystem
         return weightedEnemies[index].Prefab;
     }
 
-    Vector3 GetPosInCircle(Vector3 center, float radius, float angle, int itemNumber)
+    private Vector3 GetPosInCircle(Vector3 center, float radius, float angle, int itemNumber)
     {
         var rotation = Quaternion.AngleAxis(itemNumber * angle, Vector3.up);
         var direction = rotation * Vector3.forward;

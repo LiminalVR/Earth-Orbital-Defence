@@ -11,16 +11,17 @@ public class LaserDetails
 {
     public LineRenderer LaserPrefab;
     public LineRenderer LaserRend;
-    public float MaxLaserCharge;
-    public AnimationCurve LaserChargeSpeed;
-    public AnimationCurve LaserDrainSpeedCurve;
-    public Color ChargedColor;
-    public Color DrainedColor;
     public float BeamChargedWidth;
     public float BeamDrainedWidth;
     public float LaserCooldownTime;
     public float LaserRadius;
     public float CurrentLaserCharge;
+    public float MaxLaserCharge;
+    public AnimationCurve LaserChargeSpeed;
+    public AnimationCurve LaserDrainSpeedCurve;
+    public Color ChargedColor;
+    public Color DrainedColor;
+    
     public float NormalisedCharge => CurrentLaserCharge / MaxLaserCharge;
     public bool CanFire;
 

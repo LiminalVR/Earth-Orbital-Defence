@@ -8,7 +8,7 @@ public class Starter
 {
     public GameObject SceneObject;
 
-    void Start()
+    private void Start()
     {
         SceneObject.SetActive(true);
     }

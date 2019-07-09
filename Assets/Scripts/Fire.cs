@@ -121,6 +121,7 @@ public class Fire : MonoBehaviour
     private IEnumerator FreeEnergyCoro(float cooldownTime)
     {
         yield return new WaitForSeconds(cooldownTime);
+
         PlayerLaserDetails.CurrentLaserCharge += PlayerLaserDetails.LaserDrainSpeedCurve.Evaluate(PlayerLaserDetails.NormalisedCharge);
         EnergyRefillRoutine = null;
     }
