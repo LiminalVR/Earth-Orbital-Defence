@@ -32,6 +32,10 @@ public class Fire : MonoBehaviour
         => _canFire = state;
     public Reticule TargetingReticule;
     public float ReticuleFillSpeed;
+    public int GetShotsFired() 
+        => _shotsFired;
+    public int GetEnemiesKilled()
+        => _enemiesKilled;
 
     private float _currentLaserCharge;
     private IVRInputDevice _inputDevice;
@@ -39,6 +43,8 @@ public class Fire : MonoBehaviour
     private LineRenderer _laserRend;
     private Material _laserMaterial;
     private float _normalisedCharge => _currentLaserCharge / MaxLaserCharge;
+    private int _shotsFired;
+    private int _enemiesKilled;
     private bool _canFire;
     private Coroutine EnergyRefillRoutine;
     private GameObject[] Ex;
@@ -111,6 +117,8 @@ public class Fire : MonoBehaviour
             }
 
             StartCoroutine(FireCooldownCoro(LaserCooldownTime));
+
+            _shotsFired++;
         }
 
         if (!_inputDevice.GetButton(VRButton.One))
@@ -169,6 +177,8 @@ public class Fire : MonoBehaviour
         PlayerEffect(0, hit.transform.position);
         Explosion.Play();
 
+        _enemiesKilled++;
+        
         // Enemy Count ///////////////////////
         enemyCount++;
         textBox.text = enemyCount.ToString();
