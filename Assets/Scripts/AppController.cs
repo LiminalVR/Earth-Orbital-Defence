@@ -14,9 +14,14 @@ public class AppController
     public float CurrentTime { get; private set; }
     public float CountdownTime => MaxGameLength - CurrentTime;
     public float AudioFadeSpeed;
+    public float ClearingWallGrowthSpeed;
+
     public bool SetActive(bool state)
         => _timerActive = state;
-    public float ClearingWallGrowthSpeed;
+    public bool SetIsEnded(bool state)
+
+        => _isEnded = state;
+    
     public Transform Earth;
     public Text TextPanel;
     public Fire FireController;
@@ -25,6 +30,7 @@ public class AppController
     public ScoreMenu ScoreMenu;
 
     private bool _timerActive;
+    private bool _isEnded;
 
     public void OnValidate()
     {
@@ -44,7 +50,7 @@ public class AppController
     {
         FireController.CanFire(true);
 
-        while (CurrentTime < MaxGameLength)
+        while (CurrentTime < MaxGameLength && !_isEnded)
         {
             while (!_timerActive)
             {
@@ -61,6 +67,11 @@ public class AppController
             yield return new WaitForEndOfFrame();
         }
 
+        StartCoroutine(EndSequenceCoro());
+    }
+
+    private IEnumerator EndSequenceCoro()
+    {
         SpawnSystem.Active = false;
         FireController.CanFire(false);
         Crosshairs.SetCrosshairVisibility(false);
