@@ -10,6 +10,7 @@ using UnityEngine;
 public class LaserDetails
 {
     public LineRenderer LaserPrefab;
+    public LineRenderer LaserRend;
     public float MaxLaserCharge;
     public AnimationCurve LaserChargeSpeed;
     public AnimationCurve LaserDrainSpeedCurve;
@@ -23,6 +24,14 @@ public class LaserDetails
     public float NormalisedCharge => CurrentLaserCharge / MaxLaserCharge;
     public bool CanFire;
 
+    private Material _laserMaterial;
+
+    public void SetLaserVisuals()
+    {
+        _laserMaterial = LaserRend.material;
+        _laserMaterial.color = ChargedColor;
+    }
+
     public void DrainEnergy()
     {
         CurrentLaserCharge = Mathf.Clamp(CurrentLaserCharge - (LaserDrainSpeedCurve.Evaluate(NormalisedCharge)), 0, MaxLaserCharge);
@@ -33,12 +42,21 @@ public class LaserDetails
         CurrentLaserCharge = Mathf.Clamp(CurrentLaserCharge + (Time.deltaTime * LaserChargeSpeed.Evaluate(NormalisedCharge)), 0, MaxLaserCharge);
     }
 
-    public IEnumerator FireCooldownCoro(LineRenderer lineRend, Vector3 pointerPos)
+    public void UpdateLaserVisual()
+    {
+        if (_laserMaterial == null)
+            return;
+
+        _laserMaterial.color = Color.Lerp(DrainedColor, ChargedColor, NormalisedCharge);
+        LaserRend.widthMultiplier = Mathf.Lerp(BeamDrainedWidth, BeamChargedWidth, NormalisedCharge);
+    }
+
+    public IEnumerator FireCooldownCoro(Vector3 pointerPos)
     {
         yield return new WaitForSeconds(LaserCooldownTime / 2f);
 
-        lineRend.SetPosition(0, pointerPos);
-        lineRend.SetPosition(1, pointerPos);
+        LaserRend.SetPosition(0, pointerPos);
+        LaserRend.SetPosition(1, pointerPos);
         yield return new WaitForSeconds(LaserCooldownTime / 2f);
 
         CanFire = true;

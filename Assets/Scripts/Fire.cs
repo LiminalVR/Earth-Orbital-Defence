@@ -1,12 +1,9 @@
 ﻿using System.Collections;
-using System;
-using System.Collections.Generic;
 using Liminal.SDK.VR;
 using Liminal.SDK.VR.Input;
 using Liminal.SDK.VR.Pointers;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 public class Fire : MonoBehaviour
 {
@@ -32,16 +29,9 @@ public class Fire : MonoBehaviour
     private int _enemiesKilled;
     private IVRInputDevice _inputDevice;
     private IVRPointer _pointer;
-    private LineRenderer _laserRend;
-    private Material _laserMaterial;
     private Coroutine EnergyRefillRoutine;
     private GameObject[] Ex;
     private GameObject[] Gu;
-
-    // Enemy Count //////////////
-    public Text textBox;
-    private int enemyCount = 0;
-    ////////////////////////////
 
     private void OnValidate()
     {
@@ -65,9 +55,8 @@ public class Fire : MonoBehaviour
             Gu[i].SetActive(false);
         }
 
-        _laserRend = Instantiate(PlayerLaserDetails.LaserPrefab, new Vector3(0, 0, 0), new Quaternion());
-        _laserMaterial = _laserRend.material;
-        _laserMaterial.color = PlayerLaserDetails.ChargedColor;
+        PlayerLaserDetails.LaserRend = Instantiate(PlayerLaserDetails.LaserPrefab, new Vector3(0, 0, 0), new Quaternion());
+        PlayerLaserDetails.SetLaserVisuals();
 
         _inputDevice = VRDevice.Device.PrimaryInputDevice;
         _pointer = VRDevice.Device.PrimaryInputDevice.Pointer;
@@ -97,14 +86,14 @@ public class Fire : MonoBehaviour
             PlayerLaserDetails.DrainEnergy();
 
             LaserRaycast();
-            UpdateLaserVisual();
+            PlayerLaserDetails.UpdateLaserVisual();
 
             if(!Gunfire.isPlaying)
             {
                 Gunfire.Play();
             }
 
-            StartCoroutine(PlayerLaserDetails.FireCooldownCoro(_laserRend, _pointer.Transform.position));
+            StartCoroutine(PlayerLaserDetails.FireCooldownCoro(_pointer.Transform.position));
 
             _shotsFired++;
         }
@@ -142,7 +131,7 @@ public class Fire : MonoBehaviour
             Mathf.Infinity))
             return;
 
-        _laserRend.SetPosition(1, hit.point);
+        PlayerLaserDetails.LaserRend.SetPosition(1, hit.point);
 
         var killableObject = hit.collider.GetComponent<IKillable>();
 
@@ -155,19 +144,6 @@ public class Fire : MonoBehaviour
         Explosion.Play();
 
         _enemiesKilled++;
-        
-        // Enemy Count ///////////////////////
-        enemyCount++;
-        textBox.text = enemyCount.ToString();
-    }
-
-    private void UpdateLaserVisual()
-    {
-        if (_laserMaterial == null)
-            return;
-
-        _laserMaterial.color = Color.Lerp(PlayerLaserDetails.DrainedColor, PlayerLaserDetails.ChargedColor, PlayerLaserDetails.NormalisedCharge);
-        _laserRend.widthMultiplier = Mathf.Lerp(PlayerLaserDetails.BeamDrainedWidth, PlayerLaserDetails.BeamChargedWidth, PlayerLaserDetails.NormalisedCharge);
     }
 
     private void PlayerEffect(int effect, Vector3 pos)
