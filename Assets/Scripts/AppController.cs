@@ -15,13 +15,11 @@ public class AppController
     public float CountdownTime => MaxGameLength - CurrentTime;
     public float AudioFadeSpeed;
     public float ClearingWallGrowthSpeed;
-
     public bool SetActive(bool state)
         => _timerActive = state;
     public bool SetIsEnded(bool state)
 
         => _isEnded = state;
-    
     public Transform Earth;
     public Text TextPanel;
     public Fire FireController;
@@ -90,11 +88,9 @@ public class AppController
     private IEnumerator ClearEnemiesCoro()
     {
         var clearingWall = new GameObject("Clearing Wall");
-
         clearingWall.transform.SetParent(Earth);
         clearingWall.transform.localPosition = Vector3.zero;
         clearingWall.transform.SetParent(null);
-
         clearingWall.AddComponent<SphereCollider>();
 
         var elapsedTime = 0f;
