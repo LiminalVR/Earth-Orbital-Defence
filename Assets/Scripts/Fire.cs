@@ -102,7 +102,7 @@ public class Fire : MonoBehaviour
         {
             PlayerLaserDetails.ChargeLaser();
         }
-        else if (!_inputDevice.GetButton(VRButton.One) || PlayerLaserDetails.CurrentLaserCharge <= 0f)
+        else if (_inputDevice.GetButton(VRButton.One) && PlayerLaserDetails.CurrentLaserCharge <= 0f)
         {
             if (EnergyRefillRoutine != null)
                 return;
