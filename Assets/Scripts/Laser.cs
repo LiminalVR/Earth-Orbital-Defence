@@ -4,10 +4,10 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// Laser is used by <see cref="Fire"/> to store details about the player's laser.
+/// Laser is used by <see cref="Fire"/> to store details about the player's laser, as well as set the laser's visuals, and set the amount of energy is available to use.
 /// </summary>
 [Serializable]
-public class LaserDetails
+public class Laser
 {
     public LineRenderer LaserPrefab;
     public LineRenderer LaserRend;

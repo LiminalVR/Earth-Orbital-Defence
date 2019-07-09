@@ -4,7 +4,7 @@ using Liminal.SDK.VR.Input;
 using Liminal.SDK.VR.Pointers;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.UI;
+
 public class Fire : MonoBehaviour
 {
     public GameObject obj;
@@ -17,7 +17,7 @@ public class Fire : MonoBehaviour
 
     [Header("Laser Details")]
     public GameObject CannonObject;
-    public LaserDetails PlayerLaserDetails;
+    public Laser playerLaser;
     public Reticule TargetingReticule;
     public float ReticuleFillSpeed;
     public int GetShotsFired() 
@@ -55,13 +55,13 @@ public class Fire : MonoBehaviour
             Gu[i].SetActive(false);
         }
 
-        PlayerLaserDetails.LaserRend = Instantiate(PlayerLaserDetails.LaserPrefab, new Vector3(0, 0, 0), new Quaternion());
-        PlayerLaserDetails.SetLaserVisuals();
+        playerLaser.LaserRend = Instantiate(playerLaser.LaserPrefab, new Vector3(0, 0, 0), new Quaternion());
+        playerLaser.SetLaserVisuals();
 
         _inputDevice = VRDevice.Device.PrimaryInputDevice;
         _pointer = VRDevice.Device.PrimaryInputDevice.Pointer;
 
-        PlayerLaserDetails.CurrentLaserCharge = PlayerLaserDetails.MaxLaserCharge;
+        playerLaser.CurrentLaserCharge = playerLaser.MaxLaserCharge;
         TargetingReticule.FillSpeed = ReticuleFillSpeed;
     }
 
@@ -80,34 +80,34 @@ public class Fire : MonoBehaviour
         if (_pointer == null)
             return;
 
-        if (_inputDevice.GetButton(VRButton.One) && PlayerLaserDetails.CurrentLaserCharge > 0f && PlayerLaserDetails.CanFire)
+        if (_inputDevice.GetButton(VRButton.One) && playerLaser.CurrentLaserCharge > 0f && playerLaser.CanFire)
         {
-            PlayerLaserDetails.CanFire = false;
-            PlayerLaserDetails.DrainEnergy();
+            playerLaser.CanFire = false;
+            playerLaser.DrainEnergy();
 
             LaserRaycast();
-            PlayerLaserDetails.UpdateLaserVisual();
+            playerLaser.UpdateLaserVisual();
 
             if(!Gunfire.isPlaying)
             {
                 Gunfire.Play();
             }
 
-            StartCoroutine(PlayerLaserDetails.FireCooldownCoro(_pointer.Transform.position));
+            StartCoroutine(playerLaser.FireCooldownCoro(_pointer.Transform.position));
 
             _shotsFired++;
         }
 
         if (!_inputDevice.GetButton(VRButton.One))
         {
-            PlayerLaserDetails.ChargeLaser();
+            playerLaser.ChargeLaser();
         }
-        else if (_inputDevice.GetButton(VRButton.One) && PlayerLaserDetails.CurrentLaserCharge <= 0f)
+        else if (_inputDevice.GetButton(VRButton.One) && playerLaser.CurrentLaserCharge <= 0f)
         {
             if (EnergyRefillRoutine != null)
                 return;
 
-            EnergyRefillRoutine = StartCoroutine(FreeEnergyCoro(PlayerLaserDetails.LaserCooldownTime * 2));
+            EnergyRefillRoutine = StartCoroutine(FreeEnergyCoro(playerLaser.LaserCooldownTime * 2));
         }
         else
         {
@@ -115,24 +115,24 @@ public class Fire : MonoBehaviour
                 StopCoroutine(EnergyRefillRoutine);
         }
 
-        TargetingReticule.SetTargetFillAmount(PlayerLaserDetails.NormalisedCharge);
+        TargetingReticule.SetTargetFillAmount(playerLaser.NormalisedCharge);
     }
 
     private IEnumerator FreeEnergyCoro(float cooldownTime)
     {
         yield return new WaitForSeconds(cooldownTime);
 
-        PlayerLaserDetails.CurrentLaserCharge += PlayerLaserDetails.LaserDrainSpeedCurve.Evaluate(PlayerLaserDetails.NormalisedCharge);
+        playerLaser.CurrentLaserCharge += playerLaser.LaserDrainSpeedCurve.Evaluate(playerLaser.NormalisedCharge);
         EnergyRefillRoutine = null;
     }
 
     private void LaserRaycast()
     {
-        if (!Physics.SphereCast(_pointer.Transform.position, PlayerLaserDetails.LaserRadius, _pointer.Transform.forward, out var hit,
+        if (!Physics.SphereCast(_pointer.Transform.position, playerLaser.LaserRadius, _pointer.Transform.forward, out var hit,
             Mathf.Infinity))
             return;
 
-        PlayerLaserDetails.LaserRend.SetPosition(1, hit.point);
+        playerLaser.LaserRend.SetPosition(1, hit.point);
 
         var killableObject = hit.collider.GetComponent<IKillable>();
 

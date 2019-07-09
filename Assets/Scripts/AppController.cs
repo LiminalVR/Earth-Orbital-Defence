@@ -46,7 +46,7 @@ public class AppController
 
     private IEnumerator TimerCoro()
     {
-        FireController.PlayerLaserDetails.CanFire = true;
+        FireController.playerLaser.CanFire = true;
 
         while (CurrentTime < MaxGameLength && !_isEnded)
         {
@@ -71,7 +71,7 @@ public class AppController
     private IEnumerator EndSequenceCoro()
     {
         SpawnSystem.Active = false;
-        FireController.PlayerLaserDetails.CanFire = false;
+        FireController.playerLaser.CanFire = false;
         Crosshairs.SetCrosshairVisibility(false);
 
         TextPanel.text = $"00:00";
