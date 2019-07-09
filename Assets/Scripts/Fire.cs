@@ -38,14 +38,15 @@ public class Fire : MonoBehaviour
         => _enemiesKilled;
 
     private float _currentLaserCharge;
-    private IVRInputDevice _inputDevice;
-    private IVRPointer _pointer;
-    private LineRenderer _laserRend;
-    private Material _laserMaterial;
     private float _normalisedCharge => _currentLaserCharge / MaxLaserCharge;
     private int _shotsFired;
     private int _enemiesKilled;
     private bool _canFire;
+
+    private IVRInputDevice _inputDevice;
+    private IVRPointer _pointer;
+    private LineRenderer _laserRend;
+    private Material _laserMaterial;
     private Coroutine EnergyRefillRoutine;
     private GameObject[] Ex;
     private GameObject[] Gu;
