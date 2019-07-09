@@ -22,6 +22,7 @@ public class AppController
     public Fire FireController;
     public SpawnSystem SpawnSystem;
     public Reticule Crosshairs;
+    public ScoreMenu ScoreMenu;
 
     private bool _timerActive;
 
@@ -67,6 +68,9 @@ public class AppController
         TextPanel.text = $"00:00";
 
         yield return ClearEnemiesCoro();
+        ScoreMenu.gameObject.SetActive(true);
+
+        yield return ScoreMenu.DisplayScoreCoro(FireController.GetShotsFired(), FireController.GetEnemiesKilled());
 
         yield return EndExperience.EndExperienceCoro(AudioFadeSpeed);
     }
@@ -74,7 +78,6 @@ public class AppController
 
     private IEnumerator ClearEnemiesCoro()
     {
-
         var clearingWall = new GameObject("Clearing Wall");
 
         clearingWall.transform.SetParent(Earth);
