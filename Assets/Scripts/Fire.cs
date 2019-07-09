@@ -14,7 +14,7 @@ public class Fire : MonoBehaviour
     public GameObject ExplosionEffect;
     public GameObject FireEffect;
     public GameObject earth;
-    public LineRenderer LaserPrefab;
+    
     private AudioSource Gunfire;
     private AudioSource Explosion;
 
@@ -65,7 +65,7 @@ public class Fire : MonoBehaviour
             Gu[i].SetActive(false);
         }
 
-        _laserRend = Instantiate(LaserPrefab, new Vector3(0, 0, 0), new Quaternion());
+        _laserRend = Instantiate(PlayerLaserDetails.LaserPrefab, new Vector3(0, 0, 0), new Quaternion());
         _laserMaterial = _laserRend.material;
         _laserMaterial.color = PlayerLaserDetails.ChargedColor;
 

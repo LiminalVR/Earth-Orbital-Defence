@@ -9,6 +9,7 @@ using UnityEngine;
 [Serializable]
 public class LaserDetails
 {
+    public LineRenderer LaserPrefab;
     public float MaxLaserCharge;
     public AnimationCurve LaserChargeSpeed;
     public AnimationCurve LaserDrainSpeedCurve;
