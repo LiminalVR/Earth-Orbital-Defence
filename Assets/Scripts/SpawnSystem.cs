@@ -14,6 +14,11 @@ public class SpawnSystem
     public List<WeightedEnemy> HostileObjects;
     public AnimationCurve WaveSpawnCount;
     public AnimationCurve TimeBetweenWaves;
+
+    [Space]
+    public List<Enemy> ActiveEnemies = new List<Enemy>();
+    [Space]
+
     public Transform EarthTransform;
     public float SpawnDistance;
     public bool Active;
@@ -32,6 +37,9 @@ public class SpawnSystem
         if(!Active)
             return;
 
+        if (ActiveEnemies.Count > 2)
+            return;
+
         _timeSinceLastSpawn += Time.deltaTime;
 
         if (_timeSinceLastSpawn < (int)TimeBetweenWaves.Evaluate(Timer.CurrentTime))
@@ -47,13 +55,18 @@ public class SpawnSystem
     private IEnumerator SpawnerCoro()
     {
         var spawnedEnemies = 0;
+        var enemyCount = (int) WaveSpawnCount.Evaluate(Timer.CurrentTime);
 
-        while (spawnedEnemies < (int)WaveSpawnCount.Evaluate(Timer.CurrentTime))
+        for (var i = 0; i < enemyCount; i++)
         {
-            var pos = RandomCircle(EarthTransform.position, SpawnDistance);
+            var pos = GetPosInCircle(EarthTransform.position, Random.Range(SpawnDistance, SpawnDistance * 1.1f),
+                360f / enemyCount, i);
 
             var prefab = GetRandomWeightedPrefab(HostileObjects);
-            Instantiate(prefab, pos, Quaternion.identity);
+            var enemy = Instantiate(prefab, pos, Quaternion.identity);
+            enemy.SpawnSystem = this;
+
+            ActiveEnemies.Add(enemy);
 
             spawnedEnemies++;
 
@@ -63,7 +76,7 @@ public class SpawnSystem
         SpawnerRoutine = null;
     }
 
-    public GameObject GetRandomWeightedPrefab(List<WeightedEnemy> weightedEnemies)
+    public Enemy GetRandomWeightedPrefab(List<WeightedEnemy> weightedEnemies)
     {
         var weightSum = 0;
 
@@ -88,15 +101,12 @@ public class SpawnSystem
         return weightedEnemies[index].Prefab;
     }
 
-    Vector3 RandomCircle(Vector3 center, float radius)
+    Vector3 GetPosInCircle(Vector3 center, float radius, float angle, int itemNumber)
     {
-        var ang = Random.value * 360;
-        Vector3 pos;
+        var rotation = Quaternion.AngleAxis(itemNumber * angle, Vector3.up);
+        var direction = rotation * Vector3.forward;
+        var position = center + (direction * radius);
 
-        pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
-        pos.y = center.y;
-        pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
-
-        return pos;
+        return position;
     }
 }

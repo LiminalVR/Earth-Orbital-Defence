@@ -14,6 +14,7 @@ public class Enemy
     float timer;
     public float Basespeed;
     public bool spaceship = false;
+    public SpawnSystem SpawnSystem;
 
     int speed;
     void Start()
@@ -63,6 +64,7 @@ public class Enemy
     {
         var explosion =  Instantiate(collisionExplossion, this.transform.position, this.transform.rotation);
         explosion.Play();
+        SpawnSystem.ActiveEnemies.Remove(this);
         Destroy(gameObject);
     }
 }

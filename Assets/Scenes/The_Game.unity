@@ -163,13 +163,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timer: {fileID: 661571354}
   HostileObjects:
-  - Prefab: {fileID: 8889528796676172953, guid: a8f40263bcb315b4a9612fb12c0777ab,
+  - Prefab: {fileID: 4263326942169312124, guid: a8f40263bcb315b4a9612fb12c0777ab,
       type: 3}
     Weight: 50
-  - Prefab: {fileID: 6518821337871650744, guid: cd01d2320841dd0478e9f7545296fd1e,
+  - Prefab: {fileID: 7931566427520175567, guid: cd01d2320841dd0478e9f7545296fd1e,
       type: 3}
     Weight: 35
-  - Prefab: {fileID: 6081174868770802860, guid: 6870a305ec31a9e40a334443a4bb375e,
+  - Prefab: {fileID: 7871380609128387799, guid: 6870a305ec31a9e40a334443a4bb375e,
       type: 3}
     Weight: 15
   WaveSpawnCount:
@@ -186,7 +186,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 180
-      value: 8
+      value: 20
       inSlope: 0.0005405409
       outSlope: 0.0005405409
       tangentMode: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 7
+      value: 5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 60
-      value: 5
+      value: 3
       inSlope: -0.0072350223
       outSlope: -0.0072350223
       tangentMode: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
       outWeight: 0.1809625
     - serializedVersion: 3
       time: 140
-      value: 2
+      value: 1
       inSlope: 0.0011450668
       outSlope: 0.0011450668
       tangentMode: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
       outWeight: 0.46338996
     - serializedVersion: 3
       time: 180
-      value: 2
+      value: 1
       inSlope: -0.000072984396
       outSlope: -0.000072984396
       tangentMode: 0
@@ -238,6 +238,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  ActiveEnemies: []
   EarthTransform: {fileID: 4649786932154586490}
   SpawnDistance: 1000
   Active: 0
@@ -3832,7 +3833,7 @@ MonoBehaviour:
   m_Script: {fileID: 403216476, guid: a80148f7c24f27741a9721c40a216ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AppData: {fileID: 4900000, guid: a8ef4fd6e5bbc42469a4809cf1818796, type: 3}
+  m_AppData: {fileID: 4900000, guid: 0039a43adce18484e90b0cad31d5f22c, type: 3}
   m_AssetLookup: {fileID: 0}
   m_RootGameObjects:
   - {fileID: 0}
@@ -6205,6 +6206,11 @@ PrefabInstance:
     - target: {fileID: 2070293302, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
       propertyPath: astroRotate
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649786932157779505, guid: c52c1d74deee8b641a5dca453930ed70,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.49
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}

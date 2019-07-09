@@ -8,6 +8,6 @@ using UnityEngine;
 [Serializable]
 public class WeightedEnemy
 {
-    public GameObject Prefab;
+    public Enemy Prefab;
     public int Weight;
 }
