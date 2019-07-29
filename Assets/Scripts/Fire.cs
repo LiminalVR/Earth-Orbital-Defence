@@ -67,6 +67,12 @@ public class Fire : MonoBehaviour
 
     private void Update()
     {
+        if (_pointer == null)
+        {
+            _pointer = VRDevice.Device.PrimaryInputDevice.Pointer;
+            return;
+        }
+
         this.gameObject.transform.position = obj.transform.position;
         this.gameObject.transform.rotation = obj.transform.rotation;
 
