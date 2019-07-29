@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour
+public class Enemy 
+    : MonoBehaviour
+    , IKillable
 {
     public int Speedmin = 4;
     public float Speedmax = 20;
@@ -12,6 +14,7 @@ public class Move : MonoBehaviour
     float timer;
     public float Basespeed;
     public bool spaceship = false;
+    public SpawnSystem SpawnSystem;
 
     int speed;
     void Start()
@@ -54,9 +57,14 @@ public class Move : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Instantiate(collisionExplossion, this.transform.position, this.transform.rotation);
-       // collisionExplossion.transform.position = this.gameObject.transform.position;
-        collisionExplossion.Play();
-        this.gameObject.SetActive(false);
+        Kill();
+    }
+
+    public void Kill()
+    {
+        var explosion =  Instantiate(collisionExplossion, this.transform.position, this.transform.rotation);
+        explosion.Play();
+        SpawnSystem.ActiveEnemies.Remove(this);
+        Destroy(gameObject);
     }
 }

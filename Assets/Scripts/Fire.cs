@@ -1,45 +1,47 @@
 ﻿using System.Collections;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-public class Fire : MonoBehaviour
-{
-    [Header("Events")]
-    [Tooltip("Raised when Button Pressed")]
-    public UnityEngine.Events.UnityEvent OnPressed = new UnityEngine.Events.UnityEvent();
-    #region MonoBehaviour
-    private void Update()
-    {
-        this.gameObject.transform.position = obj.transform.position;
-        this.gameObject.transform.rotation = obj.transform.rotation;
-        var pointer = Liminal.SDK.VR.VRDevice.Device.PrimaryInputDevice.Pointer;
+using UnityEngine.Assertions;
+using Liminal.SDK.VR;
+using Liminal.SDK.VR.Input;
+using Liminal.SDK.VR.Pointers;
 
-        //this.gameObject.transform.localPosition = obj.transform.localPosition;
-        FireGun();
-    }
-    #endregion
+/// <summary>
+/// <see cref="Fire"/> Is used to control the player's laser and call the destroy interface on enemy objects via a spherical raycast.
+/// </summary>
+public class Fire 
+    : MonoBehaviour
+{
     public GameObject obj;
     public GameObject ExplosionEffect;
     public GameObject FireEffect;
-    public GameObject FireEffectSP;
     public GameObject earth;
-    public GameObject longboi;
-    GameObject lazer;
+    
+    [Header("Laser Details")]
+    public GameObject CannonObject;
+    public Laser playerLaser;
+    public Reticule TargetingReticule;
+    public float ReticuleFillSpeed;
+
+    private int _shotsFired;
+    private int _enemiesKilled;
+    private IVRInputDevice _inputDevice;
+    private IVRPointer _pointer;
+    private Coroutine EnergyRefillRoutine;
+    private GameObject[] Ex;
+    private GameObject[] Gu;
     private AudioSource Gunfire;
     private AudioSource Explosion;
 
-    float cooldown = 2.0f;
-    public bool fired;
-        
+    public int GetShotsFired()
+        => _shotsFired;
+    public int GetEnemiesKilled()
+        => _enemiesKilled;
 
-    private GameObject[] Ex;
+    private void OnValidate()
+    {
+        Assert.IsNotNull(TargetingReticule, "TargetingReticule must not be null.");
+    }
 
-    private GameObject[] Gu;
-    // Enemy Count //////////////
-    public Text textBox;
-    private int enemyCount = 0;
-    ////////////////////////////
     private void Start()
     {
         Gunfire = GetComponent<AudioSource>();
@@ -57,91 +59,103 @@ public class Fire : MonoBehaviour
             Gu[i].SetActive(false);
         }
 
-        lazer = GameObject.Instantiate(longboi, new Vector3(0, 0, 0), new Quaternion());
-        lazer.SetActive(false);
+        playerLaser.LaserRend = Instantiate(playerLaser.LaserPrefab, new Vector3(0, 0, 0), new Quaternion());
+        playerLaser.SetLaserVisuals();
 
+        _inputDevice = VRDevice.Device.PrimaryInputDevice;
+        _pointer = VRDevice.Device.PrimaryInputDevice.Pointer;
+
+        playerLaser.CurrentLaserCharge = playerLaser.MaxLaserCharge;
+        TargetingReticule.FillSpeed = ReticuleFillSpeed;
     }
 
-
-
-
-    public void FireGun()
+    private void Update()
     {
-        int layerMask = 1 << 8;
-        layerMask = ~layerMask;
-        RaycastHit hit;
-        var vrDevice = Liminal.SDK.VR.VRDevice.Device;
-        var pointer = vrDevice.PrimaryInputDevice.Pointer;
-
-        if (vrDevice == null)
+        if (_pointer == null)
         {
-            Debug.Log("VRDEVICE WAS NULL");
+            _pointer = VRDevice.Device.PrimaryInputDevice.Pointer;
             return;
         }
 
-        var input = vrDevice.PrimaryInputDevice;
-        if (input == null)
-        {
-            Debug.Log("VR INPUT WAS NULL");
+        this.gameObject.transform.position = obj.transform.position;
+        this.gameObject.transform.rotation = obj.transform.rotation;
+
+        FireLaser();
+
+        CannonObject.transform.rotation = _pointer.Transform.rotation;
+    }
+
+    private void FireLaser()
+    {
+        if (_pointer == null)
             return;
-        }
 
-      
-        if (input.GetButtonDown(Liminal.SDK.VR.Input.VRButton.One))
+        if (_inputDevice.GetButton(VRButton.One) && playerLaser.CurrentLaserCharge > 0f && playerLaser.CanFire)
         {
-            ///////////////////
-            lazer.transform.position = pointer.Transform.position;
-            lazer.transform.rotation = pointer.Transform.rotation;
-            lazer.SetActive(true);
-            // Instantiate(longboi, pointer.Transform.position, pointer.Transform.rotation);
-            fired = true;
+            playerLaser.CanFire = false;
+            playerLaser.DrainEnergy();
 
-            ///////////////////////
+            LaserRaycast();
+            playerLaser.UpdateLaserVisual();
 
-            Debug.Log(string.Format("[InputHandler] Input detected: {0}", Liminal.SDK.VR.Input.VRButton.One), this);
-            if (Physics.Raycast(pointer.Transform.position, pointer.Transform.forward, out hit, Mathf.Infinity))
+            if(!Gunfire.isPlaying)
             {
-                Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * hit.distance, Color.yellow, 40, false);
-                //PlayerEffect(1, FireEffectSP.transform.position);
                 Gunfire.Play();
-                if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Button") ||
-                    hit.collider.CompareTag("Enemy2") ||
-                    hit.collider.CompareTag("Enemy3"))
-                {
-                    hit.collider.gameObject.SetActive(false);
-                   // Instantiate(longboi, hit.transform.position, pointer.Transform.rotation);
-                    PlayerEffect(0, hit.transform.position);
-                    Explosion.Play();
+            }
 
-                    // Enemy Count ///////////////////////
-                    enemyCount++;
-                    textBox.text = enemyCount.ToString();
-                    print("WE got one!!!");
-                    //////////////////////////////////////
-                }
-                Debug.Log("Did Hit");
-            }
-            else
-            {
-                Debug.DrawRay(pointer.Transform.position, pointer.Transform.forward * 1000, Color.white, 40, false);
-                Debug.Log("Did not Hit");
-                lazer.SetActive(false);
-                fired = false;
-                //Instantiate(longboi, pointer.Transform.position, pointer.Transform.rotation);
-            }
-            
-            OnPressed.Invoke();
-            Invoke("CoolDown", .2f);
+            StartCoroutine(playerLaser.FireCooldownCoro(_pointer.Transform.position));
+
+            _shotsFired++;
         }
 
+        if (!_inputDevice.GetButton(VRButton.One))
+        {
+            playerLaser.ChargeLaser();
+        }
+        else if (playerLaser.CurrentLaserCharge <= 1f)
+        {
+            if (EnergyRefillRoutine != null)
+                return;
+
+            EnergyRefillRoutine = StartCoroutine(FreeEnergyCoro(playerLaser.LaserCooldownTime * 2));
+        }
+        else
+        {
+            if (EnergyRefillRoutine != null)
+                StopCoroutine(EnergyRefillRoutine);
+        }
+
+        TargetingReticule.SetTargetFillAmount(playerLaser.NormalisedCharge);
     }
 
-    void CoolDown()
+    private IEnumerator FreeEnergyCoro(float cooldownTime)
     {
-      lazer.SetActive(false);
+        yield return new WaitForSeconds(cooldownTime * 2f);
+
+        playerLaser.CurrentLaserCharge += playerLaser.LaserDrainSpeedCurve.Evaluate(playerLaser.NormalisedCharge);
+        EnergyRefillRoutine = null;
     }
 
+    private void LaserRaycast()
+    {
+        if (!Physics.SphereCast(_pointer.Transform.position, playerLaser.LaserRadius, _pointer.Transform.forward, out var hit,
+            Mathf.Infinity))
+            return;
 
+        playerLaser.LaserRend.SetPosition(1, hit.point);
+
+        var killableObject = hit.collider.GetComponent<IKillable>();
+
+        if (killableObject == null)
+            return;
+
+        killableObject.Kill();
+
+        PlayerEffect(0, hit.transform.position);
+        Explosion.Play();
+
+        _enemiesKilled++;
+    }
 
     private void PlayerEffect(int effect, Vector3 pos)
     {

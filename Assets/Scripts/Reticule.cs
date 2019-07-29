@@ -1,73 +1,63 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Reticule : MonoBehaviour
 {
-    public SpriteRenderer crosshairsRenderer;
-    public Sprite crosshairsSprite;
-    public GameObject cannonPrefab;
-    public Button button;
-    public GameObject l;
-    public GameObject lazer;
+    public Transform Crosshairs;
+    public Button Button;
+    public Image EnergyFill;
+    public float FillSpeed;
 
+    private float _targetFillValue;
+    private bool _start = false;
 
-    private bool fire;
-
-  
-    private bool start = false;
     private void Start()
     {
-        button.onClick.AddListener(StartG);
-        crosshairsRenderer.gameObject.SetActive(false);
-
-        fire = l.GetComponent<Fire>().fired;
-
-        Instantiate(lazer);
-        lazer.SetActive(false);
+        Button.onClick.AddListener(StartG);
+        SetCrosshairVisibility(false);
+        EnergyFill.fillAmount = 1;
     }
 
 
     private void FixedUpdate()
     {
-        var VRDevice = Liminal.SDK.VR.VRDevice.Device; 
+        var VRDevice = Liminal.SDK.VR.VRDevice.Device;
         var pointer = VRDevice.PrimaryInputDevice.Pointer;
 
+        if (_start == true)
+            Crosshairs.SetPositionAndRotation(pointer.CurrentRaycastResult.worldPosition, pointer.Transform.rotation);
+    }
 
-        if (start == true)
-        crosshairsRenderer.transform.SetPositionAndRotation(pointer.CurrentRaycastResult.worldPosition, pointer.Transform.rotation);
-        cannonPrefab.transform.rotation = pointer.Transform.rotation;
-
-        if(fire)
-        {
-            Debug.Log("Im in");
-            lazer.SetActive(true);
-            lazer.transform.position = pointer.Transform.position;
-            lazer.transform.rotation = pointer.Transform.rotation;
-        }
-
-        else
-        {
-            lazer.SetActive(false);
-        }
-    }    
-    
-     void StartG()
+    void StartG()
     {
-        if (start == false)
+        if (_start == false)
         {
-            start = true;
-            button.gameObject.SetActive(false);
-            crosshairsRenderer.gameObject.SetActive(true);
+            _start = true;
+            Button.gameObject.SetActive(false);
+            SetCrosshairVisibility(true);
             return;
         }
-        if (start == true)
+
+        if (_start == true)
         {
-            start = false;
+            _start = false;
             return;
         }
     }
-}   
 
+    private void Update()
+    {
+        EnergyFill.fillAmount = Mathf.MoveTowards(EnergyFill.fillAmount, _targetFillValue, FillSpeed * Time.deltaTime);
+    }
 
+    public void SetTargetFillAmount(float targetValue)
+    {
+        _targetFillValue = targetValue;
+    }
+
+    public void SetCrosshairVisibility(bool state)
+    {
+        Crosshairs.gameObject.SetActive(state);
+    }
+}

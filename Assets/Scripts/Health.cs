@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
@@ -9,20 +10,23 @@ public class Health : MonoBehaviour
     public Image screenBar;
     public Text percetengeBox;
     private SphereCollider earthCollider;
-
     public GameObject explossionPrefab;
     public GameObject fog;
-    GameObject geo;
-
     public int earthHealth;
     public int currentHealth;
     public float mHealth;
     public float mPercentage;
+    public AppController AppController;
     private bool dead = false;
-
     private int damageOne;
     private int damageTwo;
     private int damageThree;
+    private GameObject geo;
+
+    private void OnValidate()
+    {
+        Assert.IsNotNull(AppController, "AppController must not be null");
+    }
 
     // Initalizing Variables
     void Start()
@@ -64,6 +68,8 @@ public class Health : MonoBehaviour
             screenBar.fillAmount = mPercentage;
             percetengeBox.text = mPercentage.ToString("0");
             dead = false;
+
+            AppController.SetIsEnded(true);
         }
     }
 
