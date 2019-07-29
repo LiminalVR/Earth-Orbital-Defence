@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-
 using UnityEngine;
-
 using Liminal.Core.Fader;
 using Liminal.SDK.Core;
 

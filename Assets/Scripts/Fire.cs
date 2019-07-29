@@ -1,20 +1,21 @@
 ﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.Assertions;
 using Liminal.SDK.VR;
 using Liminal.SDK.VR.Input;
 using Liminal.SDK.VR.Pointers;
-using UnityEngine;
-using UnityEngine.Assertions;
 
-public class Fire : MonoBehaviour
+/// <summary>
+/// <see cref="Fire"/> Is used to control the player's laser and call the destroy interface on enemy objects via a spherical raycast.
+/// </summary>
+public class Fire 
+    : MonoBehaviour
 {
     public GameObject obj;
     public GameObject ExplosionEffect;
     public GameObject FireEffect;
     public GameObject earth;
     
-    private AudioSource Gunfire;
-    private AudioSource Explosion;
-
     [Header("Laser Details")]
     public GameObject CannonObject;
     public Laser playerLaser;
@@ -32,6 +33,8 @@ public class Fire : MonoBehaviour
     private Coroutine EnergyRefillRoutine;
     private GameObject[] Ex;
     private GameObject[] Gu;
+    private AudioSource Gunfire;
+    private AudioSource Explosion;
 
     private void OnValidate()
     {

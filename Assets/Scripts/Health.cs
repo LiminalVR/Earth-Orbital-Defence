@@ -10,22 +10,18 @@ public class Health : MonoBehaviour
     public Image screenBar;
     public Text percetengeBox;
     private SphereCollider earthCollider;
-
     public GameObject explossionPrefab;
     public GameObject fog;
-    GameObject geo;
-
     public int earthHealth;
     public int currentHealth;
     public float mHealth;
     public float mPercentage;
     public AppController AppController;
-
     private bool dead = false;
-
     private int damageOne;
     private int damageTwo;
     private int damageThree;
+    private GameObject geo;
 
     private void OnValidate()
     {
