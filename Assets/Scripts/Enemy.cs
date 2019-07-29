@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Enemy 
     : MonoBehaviour
-    , IKillable
+    , IEnemy
 {
+    public int DamageToDeal;
     public int Speedmin = 4;
     public float Speedmax = 20;
     public GameObject earth;
@@ -57,6 +58,7 @@ public class Enemy
 
     private void OnTriggerEnter(Collider other)
     {
+        DealDamage(other.gameObject);
         Kill();
     }
 
@@ -66,5 +68,15 @@ public class Enemy
         explosion.Play();
         SpawnSystem.ActiveEnemies.Remove(this);
         Destroy(gameObject);
+    }
+
+    public void DealDamage(GameObject targetObject)
+    {
+        if (targetObject == null)
+            return;
+
+        var damageInterface = targetObject.GetComponent<IDamagable>();
+
+        damageInterface?.Damage(DamageToDeal);
     }
 }

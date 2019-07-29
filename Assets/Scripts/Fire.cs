@@ -144,7 +144,7 @@ public class Fire
 
         playerLaser.LaserRend.SetPosition(1, hit.point);
 
-        var killableObject = hit.collider.GetComponent<IKillable>();
+        var killableObject = hit.collider.GetComponent<IEnemy>();
 
         if (killableObject == null)
             return;

@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class Health 
+    : MonoBehaviour
+    , IDamagable
 {
     public Image earthBar;
     public Image screenBar;
@@ -18,9 +20,6 @@ public class Health : MonoBehaviour
     public float mPercentage;
     public AppController AppController;
     private bool dead = false;
-    private int damageOne;
-    private int damageTwo;
-    private int damageThree;
     private GameObject geo;
 
     private void OnValidate()
@@ -39,10 +38,6 @@ public class Health : MonoBehaviour
    
 
         currentHealth = earthHealth;
-        
-        damageOne = 5;
-        damageTwo = 10;
-        damageThree = 15;
     }
 
     // BOOM!
@@ -73,43 +68,14 @@ public class Health : MonoBehaviour
         }
     }
 
-    // Updates Health Bar on Trigger Enter 
-    private void OnTriggerEnter(Collider other)
+    public void Damage(int damageToTake)
     {
-        if(other.gameObject.CompareTag("Enemy"))
-        {
-            currentHealth -= damageOne;
-            mHealth = (float)currentHealth / (float)earthHealth;
-            earthBar.fillAmount = mHealth;
-            screenBar.fillAmount = mHealth;
-            mPercentage = mHealth * earthHealth;
-            percetengeBox.text = mPercentage.ToString();
-            print("Enemy1 has collided!!");
-            print(mHealth);
-        }
-
-        if (other.gameObject.CompareTag("Enemy2"))
-        {
-            currentHealth -= damageTwo;
-            mHealth = (float)currentHealth / (float)earthHealth;
-            earthBar.fillAmount = mHealth;
-            screenBar.fillAmount = mHealth;
-            mPercentage = mHealth * earthHealth;
-            percetengeBox.text = mPercentage.ToString();
-            print("Enemy1 has collided!!");
-            print(mHealth);
-        }
-
-        if (other.gameObject.CompareTag("Enemy3"))
-        {
-            currentHealth -= damageThree;
-            mHealth = (float)currentHealth / (float)earthHealth;
-            earthBar.fillAmount = mHealth;
-            screenBar.fillAmount = mHealth;
-            mPercentage = mHealth * earthHealth;
-            percetengeBox.text = mPercentage.ToString();
-            print("Enemy1 has collided!!");
-            print(mHealth);
-        }
+        currentHealth -= damageToTake;
+        currentHealth = Mathf.Clamp(currentHealth, 0, earthHealth);
+        mHealth = (float)currentHealth / (float)earthHealth;
+        earthBar.fillAmount = mHealth;
+        screenBar.fillAmount = mHealth;
+        mPercentage = mHealth * earthHealth;
+        percetengeBox.text = mPercentage.ToString();
     }
 }
