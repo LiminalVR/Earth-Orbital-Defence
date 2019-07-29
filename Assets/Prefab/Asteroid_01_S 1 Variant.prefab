@@ -42,6 +42,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d323be45e87ad3d44ac393f90bd02a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageToDeal: 5
   Speedmin: 4
   Speedmax: 20
   earth: {fileID: 4649786932157779518, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
@@ -50,6 +51,7 @@ MonoBehaviour:
     type: 3}
   Basespeed: 10
   spaceship: 0
+  SpawnSystem: {fileID: 0}
 --- !u!114 &5120348113890443359
 MonoBehaviour:
   m_ObjectHideFlags: 0
