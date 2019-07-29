@@ -25,7 +25,7 @@ public class SpawnSystem
 
     public void StartSpawning()
     {
-        _timeSinceLastSpawn = (int) TimeBetweenWaves.Evaluate(Timer.CurrentTime);
+        _timeSinceLastSpawn = (int)TimeBetweenWaves.Evaluate(Timer.CurrentTime);
         Active = true;
     }
 
@@ -39,7 +39,7 @@ public class SpawnSystem
 
         _timeSinceLastSpawn += Time.deltaTime;
 
-        if (_timeSinceLastSpawn < (int) TimeBetweenWaves.Evaluate(Timer.CurrentTime))
+        if (_timeSinceLastSpawn < (int)TimeBetweenWaves.Evaluate(Timer.CurrentTime))
             return;
 
         if (SpawnerRoutine != null)
@@ -52,13 +52,11 @@ public class SpawnSystem
     private IEnumerator SpawnerCoro()
     {
         var spawnedEnemies = 0;
-        var enemyCount = (int) WaveSpawnCount.Evaluate(Timer.CurrentTime);
+        var enemyCount = (int)WaveSpawnCount.Evaluate(Timer.CurrentTime);
 
         for (var i = 0; i < enemyCount; i++)
         {
-            var pos = GetPosInCircle(EarthTransform.position, Random.Range(SpawnDistance, SpawnDistance * 1.1f),
-                360f / enemyCount, i);
-
+            var pos = GetPosInCircle(EarthTransform.position, Random.Range(SpawnDistance, SpawnDistance * 1.1f), 360f/enemyCount, i);
             var prefab = GetRandomWeightedPrefab(HostileObjects);
             var enemy = Instantiate(prefab, pos, Quaternion.identity);
             enemy.SpawnSystem = this;

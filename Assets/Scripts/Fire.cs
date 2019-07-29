@@ -21,10 +21,6 @@ public class Fire
     public Laser playerLaser;
     public Reticule TargetingReticule;
     public float ReticuleFillSpeed;
-    public int GetShotsFired() 
-        => _shotsFired;
-    public int GetEnemiesKilled()
-        => _enemiesKilled;
 
     private int _shotsFired;
     private int _enemiesKilled;
@@ -35,6 +31,11 @@ public class Fire
     private GameObject[] Gu;
     private AudioSource Gunfire;
     private AudioSource Explosion;
+
+    public int GetShotsFired()
+        => _shotsFired;
+    public int GetEnemiesKilled()
+        => _enemiesKilled;
 
     private void OnValidate()
     {

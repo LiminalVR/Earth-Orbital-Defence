@@ -20,11 +20,12 @@ public class Laser
     public AnimationCurve LaserDrainSpeedCurve;
     public Color ChargedColor;
     public Color DrainedColor;
-    
-    public float NormalisedCharge => CurrentLaserCharge / MaxLaserCharge;
     public bool CanFire;
 
     private Material _laserMaterial;
+
+    public float NormalisedCharge 
+        => CurrentLaserCharge / MaxLaserCharge;
 
     public void SetLaserVisuals()
     {

@@ -2269,6 +2269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxGameLength: 180
+  CurrentTime: 0
   AudioFadeSpeed: 1
   ClearingWallGrowthSpeed: 400
   Earth: {fileID: 4649786932154586490}
@@ -3466,6 +3467,11 @@ PrefabInstance:
       propertyPath: l
       value: 
       objectReference: {fileID: 1190934127}
+    - target: {fileID: 622656507232026036, guid: a5493118129f3b14c8a2d22c2d093654,
+        type: 3}
+      propertyPath: Button
+      value: 
+      objectReference: {fileID: 465749014}
     - target: {fileID: 7129379462751546293, guid: a5493118129f3b14c8a2d22c2d093654,
         type: 3}
       propertyPath: m_LocalPosition.z

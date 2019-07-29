@@ -10,15 +10,9 @@ public class AppController
     : MonoBehaviour
 {
     public float MaxGameLength;
-    public float CurrentTime { get; private set; }
-    public float CountdownTime => MaxGameLength - CurrentTime;
+    public float CurrentTime;
     public float AudioFadeSpeed;
     public float ClearingWallGrowthSpeed;
-    public bool SetActive(bool state)
-        => _timerActive = state;
-    public bool SetIsEnded(bool state)
-
-        => _isEnded = state;
     public Transform Earth;
     public Text TextPanel;
     public Fire FireController;
@@ -28,6 +22,13 @@ public class AppController
 
     private bool _timerActive;
     private bool _isEnded;
+
+    public float CountdownTime 
+        => MaxGameLength - CurrentTime;
+    public bool SetActive(bool state)
+        => _timerActive = state;
+    public bool SetIsEnded(bool state)
+        => _isEnded = state;
 
     public void OnValidate()
     {
@@ -82,7 +83,6 @@ public class AppController
 
         yield return EndExperience.EndExperienceCoro(AudioFadeSpeed);
     }
-
 
     private IEnumerator ClearEnemiesCoro()
     {

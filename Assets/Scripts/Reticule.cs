@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Reticule : MonoBehaviour
 {
     public Transform Crosshairs;
-    public Button button;
+    public Button Button;
     public Image EnergyFill;
     public float FillSpeed;
 
     private float _targetFillValue;
-    private bool start = false;
+    private bool _start = false;
 
     private void Start()
     {
-        button.onClick.AddListener(StartG);
+        Button.onClick.AddListener(StartG);
         SetCrosshairVisibility(false);
         EnergyFill.fillAmount = 1;
     }
@@ -24,24 +25,23 @@ public class Reticule : MonoBehaviour
         var VRDevice = Liminal.SDK.VR.VRDevice.Device;
         var pointer = VRDevice.PrimaryInputDevice.Pointer;
 
-
-        if (start == true)
+        if (_start == true)
             Crosshairs.SetPositionAndRotation(pointer.CurrentRaycastResult.worldPosition, pointer.Transform.rotation);
     }
 
     void StartG()
     {
-        if (start == false)
+        if (_start == false)
         {
-            start = true;
-            button.gameObject.SetActive(false);
+            _start = true;
+            Button.gameObject.SetActive(false);
             SetCrosshairVisibility(true);
             return;
         }
 
-        if (start == true)
+        if (_start == true)
         {
-            start = false;
+            _start = false;
             return;
         }
     }
