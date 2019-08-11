@@ -3769,6 +3769,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1613514210}
     m_Modifications:
+    - target: {fileID: 1260162970045296579, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: m_Name
+      value: VRAvatar
+      objectReference: {fileID: 0}
     - target: {fileID: 1260162969423114810, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3828,11 +3833,6 @@ PrefabInstance:
         type: 3}
       propertyPath: far clip plane
       value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1260162970045296579, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: m_Name
-      value: VRAvatar
       objectReference: {fileID: 0}
     - target: {fileID: 1260162968871696498, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
@@ -4114,9 +4114,11 @@ MonoBehaviour:
   m_Script: {fileID: 403216476, guid: a80148f7c24f27741a9721c40a216ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AppData: {fileID: 0}
+  m_AppData: {fileID: 4900000, guid: 55ed08dd2ef85ef4eb3168566322cd88, type: 3}
   m_AssetLookup: {fileID: 0}
-  m_RootGameObjects: []
+  m_RootGameObjects:
+  - {fileID: 0}
+  - {fileID: 1613514207}
   m_FadeIn:
     m_Color: {r: 0, g: 0, b: 0, a: 1}
     m_Duration: 2
