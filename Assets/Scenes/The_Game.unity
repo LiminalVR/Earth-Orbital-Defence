@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.27246398, g: 0.19332045, b: 0.20716438, a: 1}
+  m_IndirectSpecularColor: {r: 0.27180675, g: 0.1928947, b: 0.20698914, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2741,7 +2741,7 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 418d46c733966f3429cce7f40447ea0e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0b40f407d7a02d9489bfa90db879609b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.75
   m_Pitch: 1
@@ -2837,7 +2837,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f2f210c8c4633f841b429bb9f69f7f81, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5b783de5108cafe41982a2d540397a8e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.75
   m_Pitch: 1
@@ -4114,7 +4114,7 @@ MonoBehaviour:
   m_Script: {fileID: 403216476, guid: a80148f7c24f27741a9721c40a216ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AppData: {fileID: 4900000, guid: 55ed08dd2ef85ef4eb3168566322cd88, type: 3}
+  m_AppData: {fileID: 4900000, guid: 9ff39df00c0792a4a92237f34af30073, type: 3}
   m_AssetLookup: {fileID: 0}
   m_RootGameObjects:
   - {fileID: 0}
@@ -4125,6 +4125,9 @@ MonoBehaviour:
   m_FadeOut:
     m_Color: {r: 0, g: 0, b: 0, a: 1}
     m_Duration: 2
+  LimappConfig:
+    SavedProfile: {fileID: 0}
+    ProfileToApply: {fileID: 11400000, guid: 55e2ab6e9d020984db7d3d53c770559a, type: 2}
 --- !u!4 &1613514210
 Transform:
   m_ObjectHideFlags: 0
