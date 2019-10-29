@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LimappAudioSettings:
     Volume: 1
-    SpeakerMode: 2
-    OutputSampleRate: 48000
+    AudioConfig:
+      SpeakerMode: 2
+      DspBufferSize: 1024
+      SampleRate: 48000
+      NumRealVoices: 32
+      NumVirtualVoices: 512
   LimappGraphicsSettings:
     ScriptableRenderPipelineSettings: {fileID: 0}
     TransparencySortMode: 0

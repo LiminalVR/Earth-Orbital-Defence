@@ -73,9 +73,12 @@ public class Fire
     {
         if (_pointer == null)
         {
-            _pointer = VRDevice.Device.PrimaryInputDevice.Pointer;
+            _pointer = VRDevice.Device?.PrimaryInputDevice?.Pointer;
             return;
         }
+
+        if (_pointer.Transform == null)
+            return;
 
         this.gameObject.transform.position = obj.transform.position;
         this.gameObject.transform.rotation = obj.transform.rotation;
