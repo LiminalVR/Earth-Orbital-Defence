@@ -10,7 +10,6 @@ public class Health
 {
     public Image earthBar;
     public Image screenBar;
-    public Text percetengeBox;
     private SphereCollider earthCollider;
     public GameObject explossionPrefab;
     public GameObject fog;
@@ -19,6 +18,8 @@ public class Health
     public float mHealth;
     public float mPercentage;
     public AppController AppController;
+    public float NormalisedHealth
+        => (float)currentHealth / earthHealth;
     private bool dead = false;
     private GameObject geo;
 
@@ -51,7 +52,6 @@ public class Health
             geo.SetActive(true);
             mGeo.Play();
 
-            this.currentHealth = earthHealth;
             mPercentage = 0;
             dead = true;
             this.gameObject.SetActive(false);
@@ -61,7 +61,6 @@ public class Health
         {
             mPercentage = currentHealth;
             screenBar.fillAmount = mPercentage;
-            percetengeBox.text = mPercentage.ToString("0");
             dead = false;
 
             AppController.SetIsEnded(true);
@@ -76,6 +75,5 @@ public class Health
         earthBar.fillAmount = mHealth;
         screenBar.fillAmount = mHealth;
         mPercentage = mHealth * earthHealth;
-        percetengeBox.text = mPercentage.ToString();
     }
 }
