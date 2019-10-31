@@ -40,8 +40,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Float0: 1
+    - _Float0: 2
     - _HealthRemaining: 1
+    - _LavaPoolVisibility: 0
+    - _LavaStrength: 7
+    - _NoiseScale: 7
     - __dirty: 0
     m_Colors:
     - _AlbedoTint: {r: 1, g: 1, b: 1, a: 1}
+    - _LavaColor: {r: 1, g: 0.3291138, b: 0, a: 1}
