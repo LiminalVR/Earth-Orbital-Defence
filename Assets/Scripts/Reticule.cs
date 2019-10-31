@@ -8,6 +8,7 @@ public class Reticule : MonoBehaviour
     public Button Button;
     public Image EnergyFill;
     public float FillSpeed;
+    public float ReticuleDrawDistance;
 
     private float _targetFillValue;
     private bool _start = false;
@@ -25,8 +26,12 @@ public class Reticule : MonoBehaviour
         var VRDevice = Liminal.SDK.VR.VRDevice.Device;
         var pointer = VRDevice.PrimaryInputDevice.Pointer;
 
-        if (_start == true)
-            Crosshairs.SetPositionAndRotation(pointer.CurrentRaycastResult.worldPosition, pointer.Transform.rotation);
+        if (_start != true) 
+            return;
+
+        var reticulePos = pointer.Transform.position + (pointer.Transform.forward * ReticuleDrawDistance);
+
+        Crosshairs.SetPositionAndRotation(reticulePos, pointer.Transform.rotation);
     }
 
     void StartG()

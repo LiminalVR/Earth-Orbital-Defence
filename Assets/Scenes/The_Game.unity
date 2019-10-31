@@ -3419,6 +3419,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Reticule
       objectReference: {fileID: 0}
+    - target: {fileID: 7095658703522512950, guid: a5493118129f3b14c8a2d22c2d093654,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7095658703522512948, guid: a5493118129f3b14c8a2d22c2d093654,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3505,6 +3510,16 @@ PrefabInstance:
       propertyPath: Button
       value: 
       objectReference: {fileID: 465749014}
+    - target: {fileID: 622656507232026036, guid: a5493118129f3b14c8a2d22c2d093654,
+        type: 3}
+      propertyPath: ReticuleRaycastMask.m_Bits
+      value: 818
+      objectReference: {fileID: 0}
+    - target: {fileID: 622656507232026036, guid: a5493118129f3b14c8a2d22c2d093654,
+        type: 3}
+      propertyPath: ReticuleDrawDistance
+      value: 1200
+      objectReference: {fileID: 0}
     - target: {fileID: 7129379462751546293, guid: a5493118129f3b14c8a2d22c2d093654,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -3537,7 +3552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1311085756
 Transform:
   m_ObjectHideFlags: 0
@@ -3750,11 +3765,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1260162969970794154, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: far clip plane
-      value: 10000
-      objectReference: {fileID: 0}
     - target: {fileID: 1260162968871696498, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -3795,6 +3805,41 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.005
       objectReference: {fileID: 0}
+    - target: {fileID: 1260162968871696497, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: m_AnchorAttachments.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260162968871696497, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: m_Events.m_OnAnchored.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260162968871696497, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: m_Events.m_OnAnchored.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260162968871696497, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: m_Events.m_OnAnchored.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260162968871696497, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: m_Tracking.MatchPosition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260162969354081713, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260162969970794154, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: far clip plane
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 1260162969970794164, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -3805,9 +3850,9 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1260162969218418913, guid: 22276a8657744e04cba8ad0a2caf4195,
+    - target: {fileID: 1260162970045296578, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
-      propertyPath: m_LocalPosition.z
+      propertyPath: m_ActivationPolicy
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1260162968470769514, guid: 22276a8657744e04cba8ad0a2caf4195,
@@ -3845,46 +3890,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1260162968871696499, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1260162969354081713, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1260162970045296578, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: m_ActivationPolicy
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1260162968871696497, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: m_AnchorAttachments.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1260162968871696497, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: m_Events.m_OnAnchored.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1260162968871696497, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: m_Events.m_OnAnchored.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1260162968871696497, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: m_Events.m_OnAnchored.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1260162968871696497, guid: 22276a8657744e04cba8ad0a2caf4195,
-        type: 3}
-      propertyPath: m_Tracking.MatchPosition
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1260162968470769512, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
       propertyPath: far clip plane
@@ -3895,16 +3900,26 @@ PrefabInstance:
       propertyPath: far clip plane
       value: 10000
       objectReference: {fileID: 0}
-    - target: {fileID: 1260162968766363322, guid: 22276a8657744e04cba8ad0a2caf4195,
+    - target: {fileID: 1260162969218418913, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
-      propertyPath: m_FirstSelected
-      value: 
-      objectReference: {fileID: 502009523}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260162968871696499, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1260162969572976434, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1260162968766363322, guid: 22276a8657744e04cba8ad0a2caf4195,
+        type: 3}
+      propertyPath: m_FirstSelected
+      value: 
+      objectReference: {fileID: 502009523}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22276a8657744e04cba8ad0a2caf4195, type: 3}
 --- !u!1001 &1465595367
@@ -6402,6 +6417,61 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4649786932157779518, guid: c52c1d74deee8b641a5dca453930ed70,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1830682523}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: explossionPrefab
+      value: 
+      objectReference: {fileID: 1121192042590650, guid: b6290d05520a7ac4ebf1e36fe846c02f,
+        type: 3}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: earthHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: earthBar
+      value: 
+      objectReference: {fileID: 1830682523}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: screenhBar
+      value: 
+      objectReference: {fileID: 191865273}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: setActiveBarOne
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: screenBar
+      value: 
+      objectReference: {fileID: 606180774}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: setActiveBarTwo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: percetengeBox
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: fog
+      value: 
+      objectReference: {fileID: 280332313}
+    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
+      propertyPath: AppController
+      value: 
+      objectReference: {fileID: 661571354}
+    - target: {fileID: 4649786932157779504, guid: c52c1d74deee8b641a5dca453930ed70,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3386d43a96a85004b8170daf5c6827a5, type: 2}
     - target: {fileID: 5450199488673983800, guid: c52c1d74deee8b641a5dca453930ed70,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6527,51 +6597,6 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.49
       objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 1830682523}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: explossionPrefab
-      value: 
-      objectReference: {fileID: 1121192042590650, guid: b6290d05520a7ac4ebf1e36fe846c02f,
-        type: 3}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: earthHealth
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: earthBar
-      value: 
-      objectReference: {fileID: 1830682523}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: screenhBar
-      value: 
-      objectReference: {fileID: 191865273}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: setActiveBarOne
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: screenBar
-      value: 
-      objectReference: {fileID: 606180774}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: setActiveBarTwo
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: percetengeBox
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: fog
-      value: 
-      objectReference: {fileID: 280332313}
-    - target: {fileID: 2070293300, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
-      propertyPath: AppController
-      value: 
-      objectReference: {fileID: 661571354}
     - target: {fileID: 2070293302, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
       propertyPath: rotationSpeed
       value: 10
@@ -6584,11 +6609,6 @@ PrefabInstance:
       propertyPath: astroRotate
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4649786932157779504, guid: c52c1d74deee8b641a5dca453930ed70,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3386d43a96a85004b8170daf5c6827a5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c52c1d74deee8b641a5dca453930ed70, type: 3}
 --- !u!224 &4649786932154586490 stripped
