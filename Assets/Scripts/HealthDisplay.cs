@@ -9,8 +9,16 @@ public class HealthDisplay : MonoBehaviour
     public Image HexGridFill;
     public Image ColoredFill;
     public Gradient HealthFillGradient;
+    public MeshRenderer EarthMeshRenderer;
 
     private float _normalisedHealth;
+    private Material _earthMat;
+    private static readonly int HealthRemaining = Shader.PropertyToID("_HealthRemaining");
+
+    private void Start()
+    {
+        _earthMat = EarthMeshRenderer.material;
+    }
 
     // Update is called once per frame
     void Update()
@@ -24,5 +32,10 @@ public class HealthDisplay : MonoBehaviour
         ColoredFill.fillAmount = _normalisedHealth;
 
         ColoredFill.color = HealthFillGradient.Evaluate(_normalisedHealth);
+
+        if (_earthMat == null)
+            return;
+
+        _earthMat.SetFloat(HealthRemaining, _normalisedHealth);
     }
 }

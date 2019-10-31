@@ -11,7 +11,6 @@ public class Health
     public Image earthBar;
     public Image screenBar;
     private SphereCollider earthCollider;
-    public GameObject explossionPrefab;
     public GameObject fog;
     public int earthHealth;
     public int currentHealth;
@@ -21,7 +20,6 @@ public class Health
     public float NormalisedHealth
         => (float)currentHealth / earthHealth;
     private bool dead = false;
-    private GameObject geo;
 
     private void OnValidate()
     {
@@ -34,29 +32,19 @@ public class Health
         earthCollider = GetComponent<SphereCollider>();
         earthCollider.isTrigger = true;
         mHealth = 0.0f;
-        geo = GameObject.Instantiate(explossionPrefab, new Vector3 (0,0,0), new Quaternion ());
-        geo.SetActive(false);
-   
-
         currentHealth = earthHealth;
     }
 
     // BOOM!
     private void Update()
     {
-
         if (currentHealth <= 0.0f)
         {
-            ParticleSystem mGeo = geo.GetComponent<ParticleSystem>();
-            geo.transform.position = this.transform.position;
-            geo.SetActive(true);
-            mGeo.Play();
-
             mPercentage = 0;
             dead = true;
-            this.gameObject.SetActive(false);
         }
 
+        return;
         if (dead)
         {
             mPercentage = currentHealth;
