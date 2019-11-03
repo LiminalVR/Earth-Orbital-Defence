@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: a7f52fa8b4a06784aa4304fdeaa8068f
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _ShieldWaves: {fileID: 2800000, guid: 950fad1597bb5ac49bb7d1aa175d787d, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
