@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Shield : MonoBehaviour, IDamagable
@@ -10,15 +12,37 @@ public class Shield : MonoBehaviour, IDamagable
     public Vector2 offsetDelta;
     public int HitsBeforeDisappearing;
     public float FadeSpeed;
+    [GradientUsage(true)]
+    public Gradient ShieldColorGradient;
+    public float GradientFadeSpeed;
 
     private int _totalHits;
     private float _pulseStrength;
+    private float _cachedGradientTime;
     private Coroutine _pulseRoutine;
     private Coroutine _fadeRoutine;
     private static readonly int PulseStrength = Shader.PropertyToID("_PulseStrength");
     private static readonly int HitOffset = Shader.PropertyToID("_HitOffset");
     private static readonly int HitPoint = Shader.PropertyToID("_HitPoint");
     private static readonly int PulseProgress = Shader.PropertyToID("_PulseProgress");
+    private static readonly int ShieldOpacity = Shader.PropertyToID("_ShieldOpacity");
+    private static readonly int ShieldColor = Shader.PropertyToID("_ShieldColor");
+
+    public void Update()
+    {
+        if (ShieldRenderer == null)
+            return;
+
+        var gradientTime = (float) _totalHits / HitsBeforeDisappearing;
+
+        if (Mathf.Approximately(_cachedGradientTime, gradientTime))
+            return;
+
+        _cachedGradientTime = Mathf.MoveTowards(_cachedGradientTime, gradientTime, GradientFadeSpeed * Time.deltaTime);
+
+        var color = ShieldColorGradient.Evaluate(_cachedGradientTime);
+        ShieldRenderer.material.SetColor(ShieldColor, color);
+    }
 
     public void Damage(int damageToTake, GameObject origin = null)
     {
@@ -78,7 +102,7 @@ public class Shield : MonoBehaviour, IDamagable
         while (shieldOpacity > 0f)
         {
             shieldOpacity -= Time.deltaTime * FadeSpeed;
-            ShieldRenderer.material.SetFloat("_ShieldOpacity", shieldOpacity);
+            ShieldRenderer.material.SetFloat(ShieldOpacity, shieldOpacity);
             yield return new WaitForEndOfFrame();
         }
 
