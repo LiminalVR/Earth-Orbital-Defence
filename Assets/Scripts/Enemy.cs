@@ -76,6 +76,6 @@ public class Enemy
             return;
 
         var damageInterface = targetObject.GetComponent<IDamagable>();
-        damageInterface?.Damage(DamageToDeal);
+        damageInterface?.Damage(DamageToDeal, gameObject);
     }
 }

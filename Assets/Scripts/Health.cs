@@ -11,7 +11,6 @@ public class Health
 
     public MeshRenderer EarthMeshRenderer;
     public GameObject fog;
-    public MeshRenderer ShieldRenderer;
     public float ShieldShowSpeed;
     public Vector3 ShieldFinalSize;
     public int earthHealth;
@@ -26,7 +25,6 @@ public class Health
     private SphereCollider earthCollider;
     private Material _earthMat;
     private static readonly int HealthRemaining = Shader.PropertyToID("_HealthRemaining");
-    private static readonly int ShieldVisibility = Shader.PropertyToID("_ShieldVisibility");
 
     private void OnValidate()
     {
@@ -56,32 +54,9 @@ public class Health
             return;
 
         _earthMat.SetFloat(HealthRemaining, NormalisedHealth);
-
-        if (NormalisedHealth <= 0f && ShieldRenderer.gameObject.activeSelf == false)
-        {
-            StartCoroutine(ShieldActivation());
-        }
     }
 
-    private IEnumerator ShieldActivation()
-    {
-        var shieldVis = 0f;
-        ShieldRenderer.transform.localScale = Vector3.zero;
-        ShieldRenderer.material.SetFloat(ShieldVisibility, shieldVis);
-        ShieldRenderer.gameObject.SetActive(true);
-
-        while (shieldVis<1f)
-        {
-            ShieldRenderer.transform.localScale = Vector3.Lerp(Vector3.zero, ShieldFinalSize, shieldVis);
-            shieldVis += Time.deltaTime * ShieldShowSpeed;
-            ShieldRenderer.material.SetFloat(ShieldVisibility, shieldVis);
-            yield return new WaitForEndOfFrame();
-        }
-
-        ShieldRenderer.material.SetFloat(ShieldVisibility, 1f);
-    }
-
-    public void Damage(int damageToTake)
+    public void Damage(int damageToTake, GameObject origin = null)
     {
         currentHealth -= damageToTake;
         currentHealth = Mathf.Clamp(currentHealth, 0, earthHealth);

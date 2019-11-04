@@ -8,5 +8,5 @@ public interface IEnemy
 
 public interface IDamagable
 {
-    void Damage(int damageToTake);
+    void Damage(int damageToTake, GameObject origin = null);
 }
