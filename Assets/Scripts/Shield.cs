@@ -8,9 +8,13 @@ public class Shield : MonoBehaviour, IDamagable
     public float StartingPulseStrength;
     public float PulseLength;
     public Vector2 offsetDelta;
+    public int HitsBeforeDisappearing;
+    public float FadeSpeed;
 
+    private int _totalHits;
     private float _pulseStrength;
     private Coroutine _pulseRoutine;
+    private Coroutine _fadeRoutine;
     private static readonly int PulseStrength = Shader.PropertyToID("_PulseStrength");
     private static readonly int HitOffset = Shader.PropertyToID("_HitOffset");
     private static readonly int HitPoint = Shader.PropertyToID("_HitPoint");
@@ -21,7 +25,12 @@ public class Shield : MonoBehaviour, IDamagable
         if (ShieldRenderer == null)
             return;
 
-        if(_pulseRoutine !=null)
+        if (_fadeRoutine != null)
+            return;
+
+        _totalHits++;
+
+        if (_pulseRoutine !=null)
             StopCoroutine(_pulseRoutine);
 
         var localHitPoint = ShieldRenderer.transform.InverseTransformPoint(origin.transform.position);
@@ -57,5 +66,23 @@ public class Shield : MonoBehaviour, IDamagable
         _pulseRoutine = null;
 
         yield return new WaitForEndOfFrame();
+
+        if (_totalHits >= HitsBeforeDisappearing)
+            _fadeRoutine = StartCoroutine(ShieldFade());
+    }
+
+    private IEnumerator ShieldFade()
+    {
+        var shieldOpacity = 1f;
+
+        while (shieldOpacity > 0f)
+        {
+            shieldOpacity -= Time.deltaTime * FadeSpeed;
+            ShieldRenderer.material.SetFloat("_ShieldOpacity", shieldOpacity);
+            yield return new WaitForEndOfFrame();
+        }
+
+        gameObject.SetActive(false);
+        yield break;
     }
 }

@@ -35,7 +35,7 @@ Material:
     - _AnimationScale: 0.546
     - _Bias: 0.1
     - _EmissionMultiplier: 10
-    - _Float0: 0
+    - _Float0: 1
     - _HitEffectSize: 0.2
     - _HitSize: 0.2
     - _HitTime: 1
@@ -47,7 +47,7 @@ Material:
     - _PulseY: 0.05
     - _Scale: 1.5
     - _ScrollSpeed: 0.1
-    - _ShieldOpacity: 0.5
+    - _ShieldOpacity: 1
     - _ShieldVisibility: 0
     - _Strength: 1
     - __dirty: 0
