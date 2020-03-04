@@ -68,7 +68,7 @@ public class Enemy
         explosion.Play();
 
         var sound = SharedSounds.Instance.Explosions[Random.Range(0, SharedSounds.Instance.Explosions.Count)];
-        AudioPool.Instance.PlaySound(sound);
+        AudioPool.Instance.PlaySound(sound,0.85f);
 
         SpawnSystem.ActiveEnemies.Remove(this);
         Destroy(gameObject);
