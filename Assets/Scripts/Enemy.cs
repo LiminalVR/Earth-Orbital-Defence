@@ -66,6 +66,10 @@ public class Enemy
     {
         var explosion =  Instantiate(collisionExplossion, this.transform.position, this.transform.rotation);
         explosion.Play();
+
+        var sound = SharedSounds.Instance.Explosions[Random.Range(0, SharedSounds.Instance.Explosions.Count)];
+        AudioPool.Instance.PlaySound(sound);
+
         SpawnSystem.ActiveEnemies.Remove(this);
         Destroy(gameObject);
     }

@@ -29,7 +29,6 @@ public class Fire
     private Coroutine EnergyRefillRoutine;
     private GameObject[] Ex;
     private GameObject[] Gu;
-    private AudioSource Gunfire;
     private AudioSource Explosion;
 
     public int GetShotsFired()
@@ -44,7 +43,6 @@ public class Fire
 
     private void Start()
     {
-        Gunfire = GetComponent<AudioSource>();
         Explosion = GetComponent<AudioSource>();
         Ex = new GameObject[50];
         Gu = new GameObject[10];
@@ -67,6 +65,11 @@ public class Fire
 
         playerLaser.CurrentLaserCharge = playerLaser.MaxLaserCharge;
         TargetingReticule.FillSpeed = ReticuleFillSpeed;
+    }
+
+    public void SetCanFire(bool state)
+    {
+        playerLaser.CanFire = state;
     }
 
     private void Update()
@@ -101,10 +104,8 @@ public class Fire
             LaserRaycast();
             playerLaser.UpdateLaserVisual();
 
-            if(!Gunfire.isPlaying)
-            {
-                Gunfire.Play();
-            }
+            var sound = SharedSounds.Instance.LaserSounds[Random.Range(0, SharedSounds.Instance.LaserSounds.Count)];
+            AudioPool.Instance.PlaySound(sound, 0.5f);
 
             StartCoroutine(playerLaser.FireCooldownCoro(_pointer.Transform.position));
 

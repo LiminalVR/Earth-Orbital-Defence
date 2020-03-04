@@ -50,7 +50,7 @@ Material:
     - _ShieldOpacity: 1
     - _ShieldVisibility: 0
     - _Strength: 1
-    - __dirty: 0
+    - __dirty: 1
     m_Colors:
     - _HitColor: {r: 1, g: 0, b: 0.1333332, a: 1}
     - _HitOffset: {r: 0, g: 0, b: 0, a: 0}

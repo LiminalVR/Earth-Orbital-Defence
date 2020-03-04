@@ -1718,16 +1718,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1190934127}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1190934129}
+        m_MethodName: SetCanFire
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -3049,7 +3049,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     ChargedColor: {r: 1, g: 0.7530315, b: 0, a: 1}
     DrainedColor: {r: 1, g: 0, b: 0, a: 1}
-    CanFire: 1
+    CanFire: 0
   TargetingReticule: {fileID: 1884428081}
   ReticuleFillSpeed: 0.25
 --- !u!82 &1190934130
@@ -5218,6 +5218,53 @@ Transform:
   m_Father: {fileID: 1311085756}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1965072828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1965072830}
+  - component: {fileID: 1965072829}
+  m_Layer: 0
+  m_Name: '[AudioPool]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1965072829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965072828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60640d773d5cb34b992c564c657e7de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialCount: 10
+  SourcePrefab: {fileID: 5919137314735437454, guid: 3da859dae82b46645a66eab546ca0db9,
+    type: 3}
+  AllSources: []
+--- !u!4 &1965072830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965072828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1974936726 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1260162969970794154, guid: 22276a8657744e04cba8ad0a2caf4195,
@@ -5303,6 +5350,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984911719}
   m_CullTransparentMesh: 0
+--- !u!1 &1991041643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1991041645}
+  - component: {fileID: 1991041644}
+  m_Layer: 0
+  m_Name: '[Shared Sounds]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1991041644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991041643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f2ed6f39c32b4442a5effcb575d9f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LaserSounds:
+  - {fileID: 8300000, guid: d58951fb1d4189945b2811c265b029d5, type: 3}
+  - {fileID: 8300000, guid: 2f2f4cefa63b1d94798744c0fa7054c0, type: 3}
+  - {fileID: 8300000, guid: 4157f6836a662c844bbd62f237872085, type: 3}
+  - {fileID: 8300000, guid: 0ffeb5dc40d61d34b8d80d071cce06e6, type: 3}
+  - {fileID: 8300000, guid: 3529443423306574cb922457f6fffac8, type: 3}
+  - {fileID: 8300000, guid: ad59b54061f9dd6409589611b081350a, type: 3}
+  - {fileID: 8300000, guid: b105dc5c0b510ed4ea614dffebce381e, type: 3}
+  - {fileID: 8300000, guid: c5bfe87bfa5d37b4c9240d489b67515a, type: 3}
+  LaserStop: {fileID: 8300000, guid: 47a0b5b44af99634fa9c1c9dd88da550, type: 3}
+  Explosions:
+  - {fileID: 8300000, guid: 6ef0f3fe49226a14bb89f95cd60236cb, type: 3}
+  - {fileID: 8300000, guid: 516e9449528d716429958a143b059b69, type: 3}
+  - {fileID: 8300000, guid: b1047602668386d4f984a314fd3a3951, type: 3}
+  - {fileID: 8300000, guid: d699076c3222bf846bf31241add7faa7, type: 3}
+--- !u!4 &1991041645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991041643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2015864786 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4388363155141945719, guid: c6a6356b3611a1848b45530951362592,
