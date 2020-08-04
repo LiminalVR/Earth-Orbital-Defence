@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.27180675, g: 0.1928947, b: 0.20698914, a: 1}
+  m_IndirectSpecularColor: {r: 0.27280912, g: 0.19314983, b: 0.20786521, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -514,7 +514,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3887,13 +3887,9 @@ MonoBehaviour:
   m_Script: {fileID: 403216476, guid: a80148f7c24f27741a9721c40a216ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AppData: {fileID: 4900000, guid: a59fe58d1b8c97048b4be364b837e4dc, type: 3}
+  m_AppData: {fileID: 0}
   m_AssetLookup: {fileID: 0}
-  m_RootGameObjects:
-  - {fileID: 0}
-  - {fileID: 1613514207}
-  - {fileID: 1965072828}
-  - {fileID: 1991041643}
+  m_RootGameObjects: []
   m_FadeIn:
     m_Color: {r: 0, g: 0, b: 0, a: 1}
     m_Duration: 2
