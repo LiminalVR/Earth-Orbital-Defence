@@ -80,7 +80,7 @@ public class Fire
             return;
         }
 
-        if (_pointer.Transform == null)
+        if (_pointer.Transform == null || Time.timeScale == 0)
             return;
 
         this.gameObject.transform.position = obj.transform.position;
