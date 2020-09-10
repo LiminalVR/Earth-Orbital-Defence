@@ -34,7 +34,7 @@ public class Enemy
 
             if (spaceship)
             {
-                transform.LookAt(earth.transform.position);
+                transform.LookAt(earth.transform.position,-Vector3.forward);
             }
 
 
@@ -42,7 +42,6 @@ public class Enemy
 
             if (Vector3.Distance(transform.position, earth.transform.position) < 0.001f)
             {
-
                 gameObject.SetActive(false);
             }
 

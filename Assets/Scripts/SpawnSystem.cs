@@ -60,6 +60,7 @@ public class SpawnSystem
             var prefab = GetRandomWeightedPrefab(HostileObjects);
             var enemy = Instantiate(prefab, pos, Quaternion.identity);
             enemy.SpawnSystem = this;
+            enemy.earth = EarthTransform.gameObject;
 
             ActiveEnemies.Add(enemy);
 
@@ -98,8 +99,8 @@ public class SpawnSystem
 
     private Vector3 GetPosInCircle(Vector3 center, float radius, float angle, int itemNumber)
     {
-        var rotation = Quaternion.AngleAxis(itemNumber * angle, Vector3.up);
-        var direction = rotation * Vector3.forward;
+        var rotation = Quaternion.AngleAxis(itemNumber * angle, transform.up);
+        var direction = rotation * transform.forward;
         var position = center + (direction * radius);
 
         return position;
